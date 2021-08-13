@@ -17,11 +17,16 @@ type V1ManagedFieldsEntry struct {
 	// FieldsType is the discriminator for the different fields format and version. There is currently only one possible value: \"FieldsV1\"
 	FieldsType string `json:"fieldsType,omitempty"`
 	// FieldsV1 holds the first JSON version format as described in the \"FieldsV1\" type.
-	FieldsV1 string `json:"fieldsV1,omitempty"`
+	FieldsV1 *FieldsV1 `json:"fieldsV1,omitempty"`
 	// Manager is an identifier of the workflow managing these fields.
 	Manager string `json:"manager,omitempty"`
 	// Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are 'Apply' and 'Update'.
 	Operation string `json:"operation,omitempty"`
 	// Time is timestamp of when these fields were set. It should always be empty if Operation is 'Apply'
 	Time string `json:"time,omitempty"`
+}
+
+type FieldsV1 struct {
+	// Raw is the underlying serialization of this object.
+	Raw []byte `json:"-" protobuf:"bytes,1,opt,name=Raw"`
 }
