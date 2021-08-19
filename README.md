@@ -13,7 +13,7 @@ For more information, please visit [https://www.jibudata.com](https://www.jibuda
 ## Installation
 Put the package under your project folder and add the following in import:
 ```golang
-import "./swagger"
+import "github.com/jibutech/backup-saas-client"
 ```
 
 ## Documentation for API Endpoints
