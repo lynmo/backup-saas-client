@@ -21,7 +21,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **tenant** | **string**| tenant id | 
-  **body** | [**V1alpha1Tenant**](V1alpha1Tenant.md)|  | 
+  **body** | [**V1alpha1Storage**](V1alpha1Storage.md)|  | 
 
 ### Return type
 

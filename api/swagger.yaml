@@ -180,6 +180,32 @@ paths:
           description: "ok"
           schema:
             $ref: "#/definitions/ysapi.Error"
+  /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster}/resources/namespaces:
+    get:
+      tags:
+      - "Cluster"
+      summary: "Get namespaces in a cluster"
+      operationId: "GetNamespaces"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "tenant"
+        in: "path"
+        description: "tenant id"
+        required: true
+        type: "string"
+        x-exportParamName: "Tenant"
+      - name: "cluster"
+        in: "path"
+        description: "cluster name"
+        required: true
+        type: "string"
+        x-exportParamName: "Cluster"
+      responses:
+        "200":
+          description: "ok"
+          schema:
+            $ref: "#/definitions/v1.NamespaceList"
   /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages:
     get:
       tags:
@@ -218,7 +244,7 @@ paths:
         name: "body"
         required: true
         schema:
-          $ref: "#/definitions/v1alpha1.Tenant"
+          $ref: "#/definitions/v1alpha1.Storage"
         x-exportParamName: "Body"
       responses:
         "200":
@@ -390,6 +416,319 @@ definitions:
       time: "time"
       operation: "operation"
       fieldsType: "fieldsType"
+  v1.Namespace:
+    properties:
+      apiVersion:
+        type: "string"
+        description: "APIVersion defines the versioned schema of this representation\
+          \ of an object. Servers should convert recognized schemas to the latest\
+          \ internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
+      kind:
+        type: "string"
+        description: "Kind is a string value representing the REST resource this object\
+          \ represents. Servers may infer this from the endpoint the client submits\
+          \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+      metadata:
+        description: "Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata"
+        $ref: "#/definitions/v1.ObjectMeta"
+      spec:
+        description: "Spec defines the behavior of the Namespace. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status"
+        $ref: "#/definitions/v1.NamespaceSpec"
+      status:
+        description: "Status describes the current status of a Namespace. More info:\
+          \ https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status"
+        $ref: "#/definitions/v1.NamespaceStatus"
+    description: "Namespace provides a scope for Names. Use of multiple namespaces\
+      \ is optional."
+    example:
+      metadata:
+        generation: 6
+        finalizers:
+        - "finalizers"
+        - "finalizers"
+        resourceVersion: "resourceVersion"
+        annotations:
+          key: "annotations"
+        generateName: "generateName"
+        deletionTimestamp: "deletionTimestamp"
+        labels:
+          key: "labels"
+        ownerReferences:
+        - uid: "uid"
+          controller: true
+          apiVersion: "apiVersion"
+          kind: "kind"
+          name: "name"
+          blockOwnerDeletion: true
+        - uid: "uid"
+          controller: true
+          apiVersion: "apiVersion"
+          kind: "kind"
+          name: "name"
+          blockOwnerDeletion: true
+        selfLink: "selfLink"
+        deletionGracePeriodSeconds: 0
+        uid: "uid"
+        managedFields:
+        - apiVersion: "apiVersion"
+          fieldsV1: "fieldsV1"
+          manager: "manager"
+          time: "time"
+          operation: "operation"
+          fieldsType: "fieldsType"
+        - apiVersion: "apiVersion"
+          fieldsV1: "fieldsV1"
+          manager: "manager"
+          time: "time"
+          operation: "operation"
+          fieldsType: "fieldsType"
+        clusterName: "clusterName"
+        creationTimestamp: "creationTimestamp"
+        name: "name"
+        namespace: "namespace"
+      apiVersion: "apiVersion"
+      kind: "kind"
+      spec:
+        finalizers:
+        - "finalizers"
+        - "finalizers"
+      status:
+        phase: "phase"
+        conditions:
+        - reason: "reason"
+          lastTransitionTime: "lastTransitionTime"
+          message: "message"
+          type: "type"
+          status: "status"
+        - reason: "reason"
+          lastTransitionTime: "lastTransitionTime"
+          message: "message"
+          type: "type"
+          status: "status"
+  v1.NamespaceCondition:
+    required:
+    - "status"
+    - "type"
+    properties:
+      lastTransitionTime:
+        type: "string"
+      message:
+        type: "string"
+      reason:
+        type: "string"
+      status:
+        type: "string"
+        description: "Status of the condition, one of True, False, Unknown."
+      type:
+        type: "string"
+        description: "Type of namespace controller condition."
+    description: "NamespaceCondition contains details about state of namespace."
+    example:
+      reason: "reason"
+      lastTransitionTime: "lastTransitionTime"
+      message: "message"
+      type: "type"
+      status: "status"
+  v1.NamespaceList:
+    required:
+    - "items"
+    properties:
+      apiVersion:
+        type: "string"
+        description: "APIVersion defines the versioned schema of this representation\
+          \ of an object. Servers should convert recognized schemas to the latest\
+          \ internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
+      items:
+        type: "array"
+        description: "Items is the list of Namespace objects in the list. More info:\
+          \ https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/"
+        items:
+          $ref: "#/definitions/v1.Namespace"
+      kind:
+        type: "string"
+        description: "Kind is a string value representing the REST resource this object\
+          \ represents. Servers may infer this from the endpoint the client submits\
+          \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+      metadata:
+        description: "Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+        $ref: "#/definitions/v1.ListMeta"
+    description: "NamespaceList is a list of Namespaces."
+    example:
+      metadata:
+        remainingItemCount: 1
+        continue: "continue"
+        resourceVersion: "resourceVersion"
+        selfLink: "selfLink"
+      apiVersion: "apiVersion"
+      kind: "kind"
+      items:
+      - metadata:
+          generation: 6
+          finalizers:
+          - "finalizers"
+          - "finalizers"
+          resourceVersion: "resourceVersion"
+          annotations:
+            key: "annotations"
+          generateName: "generateName"
+          deletionTimestamp: "deletionTimestamp"
+          labels:
+            key: "labels"
+          ownerReferences:
+          - uid: "uid"
+            controller: true
+            apiVersion: "apiVersion"
+            kind: "kind"
+            name: "name"
+            blockOwnerDeletion: true
+          - uid: "uid"
+            controller: true
+            apiVersion: "apiVersion"
+            kind: "kind"
+            name: "name"
+            blockOwnerDeletion: true
+          selfLink: "selfLink"
+          deletionGracePeriodSeconds: 0
+          uid: "uid"
+          managedFields:
+          - apiVersion: "apiVersion"
+            fieldsV1: "fieldsV1"
+            manager: "manager"
+            time: "time"
+            operation: "operation"
+            fieldsType: "fieldsType"
+          - apiVersion: "apiVersion"
+            fieldsV1: "fieldsV1"
+            manager: "manager"
+            time: "time"
+            operation: "operation"
+            fieldsType: "fieldsType"
+          clusterName: "clusterName"
+          creationTimestamp: "creationTimestamp"
+          name: "name"
+          namespace: "namespace"
+        apiVersion: "apiVersion"
+        kind: "kind"
+        spec:
+          finalizers:
+          - "finalizers"
+          - "finalizers"
+        status:
+          phase: "phase"
+          conditions:
+          - reason: "reason"
+            lastTransitionTime: "lastTransitionTime"
+            message: "message"
+            type: "type"
+            status: "status"
+          - reason: "reason"
+            lastTransitionTime: "lastTransitionTime"
+            message: "message"
+            type: "type"
+            status: "status"
+      - metadata:
+          generation: 6
+          finalizers:
+          - "finalizers"
+          - "finalizers"
+          resourceVersion: "resourceVersion"
+          annotations:
+            key: "annotations"
+          generateName: "generateName"
+          deletionTimestamp: "deletionTimestamp"
+          labels:
+            key: "labels"
+          ownerReferences:
+          - uid: "uid"
+            controller: true
+            apiVersion: "apiVersion"
+            kind: "kind"
+            name: "name"
+            blockOwnerDeletion: true
+          - uid: "uid"
+            controller: true
+            apiVersion: "apiVersion"
+            kind: "kind"
+            name: "name"
+            blockOwnerDeletion: true
+          selfLink: "selfLink"
+          deletionGracePeriodSeconds: 0
+          uid: "uid"
+          managedFields:
+          - apiVersion: "apiVersion"
+            fieldsV1: "fieldsV1"
+            manager: "manager"
+            time: "time"
+            operation: "operation"
+            fieldsType: "fieldsType"
+          - apiVersion: "apiVersion"
+            fieldsV1: "fieldsV1"
+            manager: "manager"
+            time: "time"
+            operation: "operation"
+            fieldsType: "fieldsType"
+          clusterName: "clusterName"
+          creationTimestamp: "creationTimestamp"
+          name: "name"
+          namespace: "namespace"
+        apiVersion: "apiVersion"
+        kind: "kind"
+        spec:
+          finalizers:
+          - "finalizers"
+          - "finalizers"
+        status:
+          phase: "phase"
+          conditions:
+          - reason: "reason"
+            lastTransitionTime: "lastTransitionTime"
+            message: "message"
+            type: "type"
+            status: "status"
+          - reason: "reason"
+            lastTransitionTime: "lastTransitionTime"
+            message: "message"
+            type: "type"
+            status: "status"
+  v1.NamespaceSpec:
+    properties:
+      finalizers:
+        type: "array"
+        description: "Finalizers is an opaque list of values that must be empty to\
+          \ permanently remove object from storage. More info: https://kubernetes.io/docs/tasks/administer-cluster/namespaces/"
+        items:
+          type: "string"
+    description: "NamespaceSpec describes the attributes on a Namespace."
+    example:
+      finalizers:
+      - "finalizers"
+      - "finalizers"
+  v1.NamespaceStatus:
+    properties:
+      conditions:
+        type: "array"
+        description: "Represents the latest available observations of a namespace's\
+          \ current state."
+        items:
+          $ref: "#/definitions/v1.NamespaceCondition"
+      phase:
+        type: "string"
+        description: "Phase is the current lifecycle phase of the namespace. More\
+          \ info: https://kubernetes.io/docs/tasks/administer-cluster/namespaces/"
+    description: "NamespaceStatus is information about the current status of a Namespace."
+    example:
+      phase: "phase"
+      conditions:
+      - reason: "reason"
+        lastTransitionTime: "lastTransitionTime"
+        message: "message"
+        type: "type"
+        status: "status"
+      - reason: "reason"
+        lastTransitionTime: "lastTransitionTime"
+        message: "message"
+        type: "type"
+        status: "status"
   v1.ObjectMeta:
     properties:
       annotations:

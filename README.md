@@ -25,6 +25,7 @@ Class | Method | HTTP request | Description
 *ClusterApi* | [**CreateCluster**](docs/ClusterApi.md#createcluster) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters | Create a cluster.
 *ClusterApi* | [**DeleteCluster**](docs/ClusterApi.md#deletecluster) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster} | Delete a cluster.
 *ClusterApi* | [**GetCluster**](docs/ClusterApi.md#getcluster) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster} | Retrieve storage details.
+*ClusterApi* | [**GetNamespaces**](docs/ClusterApi.md#getnamespaces) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster}/resources/namespaces | Get namespaces in a cluster
 *ClusterApi* | [**ListClusters**](docs/ClusterApi.md#listclusters) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters | List all clusters of a tenant.
 *StorageApi* | [**CreateStorage**](docs/StorageApi.md#createstorage) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages | Create a storage.
 *StorageApi* | [**CreateStorageCredentials**](docs/StorageApi.md#createstoragecredentials) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages/{storage}/credentials | Create a credential for a storage.
@@ -41,6 +42,11 @@ Class | Method | HTTP request | Description
 
  - [V1ListMeta](docs/V1ListMeta.md)
  - [V1ManagedFieldsEntry](docs/V1ManagedFieldsEntry.md)
+ - [V1Namespace](docs/V1Namespace.md)
+ - [V1NamespaceCondition](docs/V1NamespaceCondition.md)
+ - [V1NamespaceList](docs/V1NamespaceList.md)
+ - [V1NamespaceSpec](docs/V1NamespaceSpec.md)
+ - [V1NamespaceStatus](docs/V1NamespaceStatus.md)
  - [V1ObjectMeta](docs/V1ObjectMeta.md)
  - [V1OwnerReference](docs/V1OwnerReference.md)
  - [V1Secret](docs/V1Secret.md)

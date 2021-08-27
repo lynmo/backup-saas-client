@@ -35,7 +35,7 @@ StorageApiService Create a storage.
 
 @return V1alpha1Storage
 */
-func (a *StorageApiService) CreateStorage(ctx context.Context, tenant string, body V1alpha1Tenant) (V1alpha1Storage, *http.Response, error) {
+func (a *StorageApiService) CreateStorage(ctx context.Context, tenant string, body V1alpha1Storage) (V1alpha1Storage, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
