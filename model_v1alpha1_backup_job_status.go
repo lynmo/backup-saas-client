@@ -10,9 +10,7 @@
 
 package swagger
 
-type YsapiError struct {
-	// error code
-	Code string `json:"code"`
-	// error message
-	Message string `json:"message"`
+type V1alpha1BackupJobStatus struct {
+	Conditions []V1alpha1Condition `json:"conditions,omitempty"`
+	Phase string `json:"phase,omitempty"`
 }

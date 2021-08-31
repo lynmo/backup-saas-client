@@ -22,6 +22,14 @@ All URIs are relative to *https://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*BackupJobTagApi* | [**CreateBackupJob**](docs/BackupJobTagApi.md#createbackupjob) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs | Create a backupjob for a tenant.
+*BackupJobTagApi* | [**DeleteBackupJob**](docs/BackupJobTagApi.md#deletebackupjob) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs/{backupjob} | Delete a backupjob for a tenant.
+*BackupJobTagApi* | [**GetBackupJob**](docs/BackupJobTagApi.md#getbackupjob) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs/{backupjob} | Retrieve backupjob details.
+*BackupJobTagApi* | [**ListBackupJobs**](docs/BackupJobTagApi.md#listbackupjobs) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs | List all backupjobs of a tenant
+*BackupPlanTagApi* | [**CreateBackupPlan**](docs/BackupPlanTagApi.md#createbackupplan) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans | Create a backupplan.
+*BackupPlanTagApi* | [**DeleteBackupPlan**](docs/BackupPlanTagApi.md#deletebackupplan) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans/{backupplan} | Delete a backupplan.
+*BackupPlanTagApi* | [**GetBackupPlan**](docs/BackupPlanTagApi.md#getbackupplan) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans/{backupplan} | Retrieve backupplan details.
+*BackupPlanTagApi* | [**ListBackupPlans**](docs/BackupPlanTagApi.md#listbackupplans) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans | List all backupplans of a tenant
 *ClusterApi* | [**CreateCluster**](docs/ClusterApi.md#createcluster) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters | Create a cluster.
 *ClusterApi* | [**DeleteCluster**](docs/ClusterApi.md#deletecluster) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster} | Delete a cluster.
 *ClusterApi* | [**GetCluster**](docs/ClusterApi.md#getcluster) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster} | Retrieve storage details.
@@ -50,6 +58,15 @@ Class | Method | HTTP request | Description
  - [V1ObjectMeta](docs/V1ObjectMeta.md)
  - [V1OwnerReference](docs/V1OwnerReference.md)
  - [V1Secret](docs/V1Secret.md)
+ - [V1alpha1BackupJob](docs/V1alpha1BackupJob.md)
+ - [V1alpha1BackupJobList](docs/V1alpha1BackupJobList.md)
+ - [V1alpha1BackupJobSpec](docs/V1alpha1BackupJobSpec.md)
+ - [V1alpha1BackupJobStatus](docs/V1alpha1BackupJobStatus.md)
+ - [V1alpha1BackupPlan](docs/V1alpha1BackupPlan.md)
+ - [V1alpha1BackupPlanList](docs/V1alpha1BackupPlanList.md)
+ - [V1alpha1BackupPlanSpec](docs/V1alpha1BackupPlanSpec.md)
+ - [V1alpha1BackupPlanStatus](docs/V1alpha1BackupPlanStatus.md)
+ - [V1alpha1BackupPolicy](docs/V1alpha1BackupPolicy.md)
  - [V1alpha1BackupS3Config](docs/V1alpha1BackupS3Config.md)
  - [V1alpha1Cluster](docs/V1alpha1Cluster.md)
  - [V1alpha1ClusterList](docs/V1alpha1ClusterList.md)

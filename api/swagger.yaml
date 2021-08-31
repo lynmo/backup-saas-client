@@ -84,6 +84,198 @@ paths:
           description: "ok"
           schema:
             $ref: "#/definitions/ysapi.Error"
+  /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs:
+    get:
+      tags:
+      - "BackupJobTag"
+      summary: "List all backupjobs of a tenant"
+      operationId: "ListBackupJobs"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "tenant"
+        in: "path"
+        description: "tenant id"
+        required: true
+        type: "string"
+        x-exportParamName: "Tenant"
+      responses:
+        "200":
+          description: "ok"
+          schema:
+            $ref: "#/definitions/v1alpha1.BackupJobList"
+    post:
+      tags:
+      - "BackupJobTag"
+      summary: "Create a backupjob for a tenant."
+      operationId: "CreateBackupJob"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "tenant"
+        in: "path"
+        description: "tenant id"
+        required: true
+        type: "string"
+        x-exportParamName: "Tenant"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/v1alpha1.BackupJob"
+        x-exportParamName: "Body"
+      responses:
+        "200":
+          description: "ok"
+          schema:
+            $ref: "#/definitions/v1alpha1.BackupJob"
+  /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs/{backupjob}:
+    get:
+      tags:
+      - "BackupJobTag"
+      summary: "Retrieve backupjob details."
+      operationId: "GetBackupJob"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "tenant"
+        in: "path"
+        description: "tenant id"
+        required: true
+        type: "string"
+        x-exportParamName: "Tenant"
+      - name: "backupjob"
+        in: "path"
+        description: "backupjob name"
+        required: true
+        type: "string"
+        x-exportParamName: "Backupjob"
+      responses:
+        "200":
+          description: "ok"
+          schema:
+            $ref: "#/definitions/v1alpha1.BackupJob"
+    delete:
+      tags:
+      - "BackupJobTag"
+      summary: "Delete a backupjob for a tenant."
+      operationId: "DeleteBackupJob"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "tenant"
+        in: "path"
+        description: "tenant id"
+        required: true
+        type: "string"
+        x-exportParamName: "Tenant"
+      - name: "backupjob"
+        in: "path"
+        description: "backupjob name"
+        required: true
+        type: "string"
+        x-exportParamName: "Backupjob"
+      responses:
+        "200":
+          description: "ok"
+          schema:
+            $ref: "#/definitions/ysapi.Error"
+  /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans:
+    get:
+      tags:
+      - "BackupPlanTag"
+      summary: "List all backupplans of a tenant"
+      operationId: "ListBackupPlans"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "tenant"
+        in: "path"
+        description: "tenant id"
+        required: true
+        type: "string"
+        x-exportParamName: "Tenant"
+      responses:
+        "200":
+          description: "ok"
+          schema:
+            $ref: "#/definitions/v1alpha1.BackupPlanList"
+    post:
+      tags:
+      - "BackupPlanTag"
+      summary: "Create a backupplan."
+      operationId: "CreateBackupPlan"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "tenant"
+        in: "path"
+        description: "tenant id"
+        required: true
+        type: "string"
+        x-exportParamName: "Tenant"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/v1alpha1.BackupPlan"
+        x-exportParamName: "Body"
+      responses:
+        "200":
+          description: "ok"
+          schema:
+            $ref: "#/definitions/v1alpha1.BackupPlan"
+  /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans/{backupplan}:
+    get:
+      tags:
+      - "BackupPlanTag"
+      summary: "Retrieve backupplan details."
+      operationId: "GetBackupPlan"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "tenant"
+        in: "path"
+        description: "tenant id"
+        required: true
+        type: "string"
+        x-exportParamName: "Tenant"
+      - name: "backupplan"
+        in: "path"
+        description: "backupplan name"
+        required: true
+        type: "string"
+        x-exportParamName: "Backupplan"
+      responses:
+        "200":
+          description: "ok"
+          schema:
+            $ref: "#/definitions/v1alpha1.BackupPlan"
+    delete:
+      tags:
+      - "BackupPlanTag"
+      summary: "Delete a backupplan."
+      operationId: "DeleteBackupPlan"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "tenant"
+        in: "path"
+        description: "tenant id"
+        required: true
+        type: "string"
+        x-exportParamName: "Tenant"
+      - name: "backupplan"
+        in: "path"
+        description: "backupplan name"
+        required: true
+        type: "string"
+        x-exportParamName: "Backupplan"
+      responses:
+        "200":
+          description: "ok"
+          schema:
+            $ref: "#/definitions/ysapi.Error"
   /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters:
     get:
       tags:
@@ -206,6 +398,14 @@ paths:
           description: "ok"
           schema:
             $ref: "#/definitions/v1.NamespaceList"
+        "404":
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/ysapi.Error"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/ysapi.Error"
   /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages:
     get:
       tags:
@@ -1003,6 +1203,680 @@ definitions:
         description: "Used to facilitate programmatic handling of secret data."
     description: "Secret holds secret data of a certain type. The total bytes of the\
       \ values in the Data field must be less than MaxSecretSize bytes."
+  v1alpha1.BackupJob:
+    properties:
+      apiVersion:
+        type: "string"
+        description: "APIVersion defines the versioned schema of this representation\
+          \ of an object. Servers should convert recognized schemas to the latest\
+          \ internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
+      kind:
+        type: "string"
+        description: "Kind is a string value representing the REST resource this object\
+          \ represents. Servers may infer this from the endpoint the client submits\
+          \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+      metadata:
+        $ref: "#/definitions/v1.ObjectMeta"
+      spec:
+        $ref: "#/definitions/v1alpha1.BackupJobSpec"
+      status:
+        $ref: "#/definitions/v1alpha1.BackupJobStatus"
+    example:
+      metadata:
+        generation: 6
+        finalizers:
+        - "finalizers"
+        - "finalizers"
+        resourceVersion: "resourceVersion"
+        annotations:
+          key: "annotations"
+        generateName: "generateName"
+        deletionTimestamp: "deletionTimestamp"
+        labels:
+          key: "labels"
+        ownerReferences:
+        - uid: "uid"
+          controller: true
+          apiVersion: "apiVersion"
+          kind: "kind"
+          name: "name"
+          blockOwnerDeletion: true
+        - uid: "uid"
+          controller: true
+          apiVersion: "apiVersion"
+          kind: "kind"
+          name: "name"
+          blockOwnerDeletion: true
+        selfLink: "selfLink"
+        deletionGracePeriodSeconds: 0
+        uid: "uid"
+        managedFields:
+        - apiVersion: "apiVersion"
+          fieldsV1: "fieldsV1"
+          manager: "manager"
+          time: "time"
+          operation: "operation"
+          fieldsType: "fieldsType"
+        - apiVersion: "apiVersion"
+          fieldsV1: "fieldsV1"
+          manager: "manager"
+          time: "time"
+          operation: "operation"
+          fieldsType: "fieldsType"
+        clusterName: "clusterName"
+        creationTimestamp: "creationTimestamp"
+        name: "name"
+        namespace: "namespace"
+      apiVersion: "apiVersion"
+      kind: "kind"
+      spec:
+        action: "action"
+        backupName: "backupName"
+        tenant: "tenant"
+      status:
+        phase: "phase"
+        conditions:
+        - reason: "reason"
+          lastHeartbeatTime: "lastHeartbeatTime"
+          lastTransitionTime: "lastTransitionTime"
+          message: "message"
+          type: "type"
+          status: "status"
+        - reason: "reason"
+          lastHeartbeatTime: "lastHeartbeatTime"
+          lastTransitionTime: "lastTransitionTime"
+          message: "message"
+          type: "type"
+          status: "status"
+  v1alpha1.BackupJobList:
+    required:
+    - "items"
+    properties:
+      apiVersion:
+        type: "string"
+        description: "APIVersion defines the versioned schema of this representation\
+          \ of an object. Servers should convert recognized schemas to the latest\
+          \ internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
+      items:
+        type: "array"
+        items:
+          $ref: "#/definitions/v1alpha1.BackupJob"
+      kind:
+        type: "string"
+        description: "Kind is a string value representing the REST resource this object\
+          \ represents. Servers may infer this from the endpoint the client submits\
+          \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+      metadata:
+        $ref: "#/definitions/v1.ListMeta"
+    example:
+      metadata:
+        remainingItemCount: 1
+        continue: "continue"
+        resourceVersion: "resourceVersion"
+        selfLink: "selfLink"
+      apiVersion: "apiVersion"
+      kind: "kind"
+      items:
+      - metadata:
+          generation: 6
+          finalizers:
+          - "finalizers"
+          - "finalizers"
+          resourceVersion: "resourceVersion"
+          annotations:
+            key: "annotations"
+          generateName: "generateName"
+          deletionTimestamp: "deletionTimestamp"
+          labels:
+            key: "labels"
+          ownerReferences:
+          - uid: "uid"
+            controller: true
+            apiVersion: "apiVersion"
+            kind: "kind"
+            name: "name"
+            blockOwnerDeletion: true
+          - uid: "uid"
+            controller: true
+            apiVersion: "apiVersion"
+            kind: "kind"
+            name: "name"
+            blockOwnerDeletion: true
+          selfLink: "selfLink"
+          deletionGracePeriodSeconds: 0
+          uid: "uid"
+          managedFields:
+          - apiVersion: "apiVersion"
+            fieldsV1: "fieldsV1"
+            manager: "manager"
+            time: "time"
+            operation: "operation"
+            fieldsType: "fieldsType"
+          - apiVersion: "apiVersion"
+            fieldsV1: "fieldsV1"
+            manager: "manager"
+            time: "time"
+            operation: "operation"
+            fieldsType: "fieldsType"
+          clusterName: "clusterName"
+          creationTimestamp: "creationTimestamp"
+          name: "name"
+          namespace: "namespace"
+        apiVersion: "apiVersion"
+        kind: "kind"
+        spec:
+          action: "action"
+          backupName: "backupName"
+          tenant: "tenant"
+        status:
+          phase: "phase"
+          conditions:
+          - reason: "reason"
+            lastHeartbeatTime: "lastHeartbeatTime"
+            lastTransitionTime: "lastTransitionTime"
+            message: "message"
+            type: "type"
+            status: "status"
+          - reason: "reason"
+            lastHeartbeatTime: "lastHeartbeatTime"
+            lastTransitionTime: "lastTransitionTime"
+            message: "message"
+            type: "type"
+            status: "status"
+      - metadata:
+          generation: 6
+          finalizers:
+          - "finalizers"
+          - "finalizers"
+          resourceVersion: "resourceVersion"
+          annotations:
+            key: "annotations"
+          generateName: "generateName"
+          deletionTimestamp: "deletionTimestamp"
+          labels:
+            key: "labels"
+          ownerReferences:
+          - uid: "uid"
+            controller: true
+            apiVersion: "apiVersion"
+            kind: "kind"
+            name: "name"
+            blockOwnerDeletion: true
+          - uid: "uid"
+            controller: true
+            apiVersion: "apiVersion"
+            kind: "kind"
+            name: "name"
+            blockOwnerDeletion: true
+          selfLink: "selfLink"
+          deletionGracePeriodSeconds: 0
+          uid: "uid"
+          managedFields:
+          - apiVersion: "apiVersion"
+            fieldsV1: "fieldsV1"
+            manager: "manager"
+            time: "time"
+            operation: "operation"
+            fieldsType: "fieldsType"
+          - apiVersion: "apiVersion"
+            fieldsV1: "fieldsV1"
+            manager: "manager"
+            time: "time"
+            operation: "operation"
+            fieldsType: "fieldsType"
+          clusterName: "clusterName"
+          creationTimestamp: "creationTimestamp"
+          name: "name"
+          namespace: "namespace"
+        apiVersion: "apiVersion"
+        kind: "kind"
+        spec:
+          action: "action"
+          backupName: "backupName"
+          tenant: "tenant"
+        status:
+          phase: "phase"
+          conditions:
+          - reason: "reason"
+            lastHeartbeatTime: "lastHeartbeatTime"
+            lastTransitionTime: "lastTransitionTime"
+            message: "message"
+            type: "type"
+            status: "status"
+          - reason: "reason"
+            lastHeartbeatTime: "lastHeartbeatTime"
+            lastTransitionTime: "lastTransitionTime"
+            message: "message"
+            type: "type"
+            status: "status"
+  v1alpha1.BackupJobSpec:
+    required:
+    - "backupName"
+    - "tenant"
+    properties:
+      action:
+        type: "string"
+      backupName:
+        type: "string"
+      tenant:
+        type: "string"
+    example:
+      action: "action"
+      backupName: "backupName"
+      tenant: "tenant"
+  v1alpha1.BackupJobStatus:
+    properties:
+      conditions:
+        type: "array"
+        items:
+          $ref: "#/definitions/v1alpha1.Condition"
+      phase:
+        type: "string"
+    example:
+      phase: "phase"
+      conditions:
+      - reason: "reason"
+        lastHeartbeatTime: "lastHeartbeatTime"
+        lastTransitionTime: "lastTransitionTime"
+        message: "message"
+        type: "type"
+        status: "status"
+      - reason: "reason"
+        lastHeartbeatTime: "lastHeartbeatTime"
+        lastTransitionTime: "lastTransitionTime"
+        message: "message"
+        type: "type"
+        status: "status"
+  v1alpha1.BackupPlan:
+    properties:
+      apiVersion:
+        type: "string"
+        description: "APIVersion defines the versioned schema of this representation\
+          \ of an object. Servers should convert recognized schemas to the latest\
+          \ internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
+      kind:
+        type: "string"
+        description: "Kind is a string value representing the REST resource this object\
+          \ represents. Servers may infer this from the endpoint the client submits\
+          \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+      metadata:
+        $ref: "#/definitions/v1.ObjectMeta"
+      spec:
+        $ref: "#/definitions/v1alpha1.BackupPlanSpec"
+      status:
+        $ref: "#/definitions/v1alpha1.BackupPlanStatus"
+    example:
+      metadata:
+        generation: 6
+        finalizers:
+        - "finalizers"
+        - "finalizers"
+        resourceVersion: "resourceVersion"
+        annotations:
+          key: "annotations"
+        generateName: "generateName"
+        deletionTimestamp: "deletionTimestamp"
+        labels:
+          key: "labels"
+        ownerReferences:
+        - uid: "uid"
+          controller: true
+          apiVersion: "apiVersion"
+          kind: "kind"
+          name: "name"
+          blockOwnerDeletion: true
+        - uid: "uid"
+          controller: true
+          apiVersion: "apiVersion"
+          kind: "kind"
+          name: "name"
+          blockOwnerDeletion: true
+        selfLink: "selfLink"
+        deletionGracePeriodSeconds: 0
+        uid: "uid"
+        managedFields:
+        - apiVersion: "apiVersion"
+          fieldsV1: "fieldsV1"
+          manager: "manager"
+          time: "time"
+          operation: "operation"
+          fieldsType: "fieldsType"
+        - apiVersion: "apiVersion"
+          fieldsV1: "fieldsV1"
+          manager: "manager"
+          time: "time"
+          operation: "operation"
+          fieldsType: "fieldsType"
+        clusterName: "clusterName"
+        creationTimestamp: "creationTimestamp"
+        name: "name"
+        namespace: "namespace"
+      apiVersion: "apiVersion"
+      kind: "kind"
+      spec:
+        excludePV: true
+        excludedResources:
+        - "excludedResources"
+        - "excludedResources"
+        copyMethod: "copyMethod"
+        clusterName: "clusterName"
+        includedResources:
+        - "includedResources"
+        - "includedResources"
+        tenant: "tenant"
+        desc: "desc"
+        namespaces:
+        - "namespaces"
+        - "namespaces"
+        policy:
+          repeat: true
+          name: "name"
+          retention: 6
+          frequency: 0
+        storageName: "storageName"
+      status:
+        phase: "phase"
+        conditions:
+        - reason: "reason"
+          lastHeartbeatTime: "lastHeartbeatTime"
+          lastTransitionTime: "lastTransitionTime"
+          message: "message"
+          type: "type"
+          status: "status"
+        - reason: "reason"
+          lastHeartbeatTime: "lastHeartbeatTime"
+          lastTransitionTime: "lastTransitionTime"
+          message: "message"
+          type: "type"
+          status: "status"
+  v1alpha1.BackupPlanList:
+    required:
+    - "items"
+    properties:
+      apiVersion:
+        type: "string"
+        description: "APIVersion defines the versioned schema of this representation\
+          \ of an object. Servers should convert recognized schemas to the latest\
+          \ internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources"
+      items:
+        type: "array"
+        items:
+          $ref: "#/definitions/v1alpha1.BackupPlan"
+      kind:
+        type: "string"
+        description: "Kind is a string value representing the REST resource this object\
+          \ represents. Servers may infer this from the endpoint the client submits\
+          \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
+      metadata:
+        $ref: "#/definitions/v1.ListMeta"
+    example:
+      metadata:
+        remainingItemCount: 1
+        continue: "continue"
+        resourceVersion: "resourceVersion"
+        selfLink: "selfLink"
+      apiVersion: "apiVersion"
+      kind: "kind"
+      items:
+      - metadata:
+          generation: 6
+          finalizers:
+          - "finalizers"
+          - "finalizers"
+          resourceVersion: "resourceVersion"
+          annotations:
+            key: "annotations"
+          generateName: "generateName"
+          deletionTimestamp: "deletionTimestamp"
+          labels:
+            key: "labels"
+          ownerReferences:
+          - uid: "uid"
+            controller: true
+            apiVersion: "apiVersion"
+            kind: "kind"
+            name: "name"
+            blockOwnerDeletion: true
+          - uid: "uid"
+            controller: true
+            apiVersion: "apiVersion"
+            kind: "kind"
+            name: "name"
+            blockOwnerDeletion: true
+          selfLink: "selfLink"
+          deletionGracePeriodSeconds: 0
+          uid: "uid"
+          managedFields:
+          - apiVersion: "apiVersion"
+            fieldsV1: "fieldsV1"
+            manager: "manager"
+            time: "time"
+            operation: "operation"
+            fieldsType: "fieldsType"
+          - apiVersion: "apiVersion"
+            fieldsV1: "fieldsV1"
+            manager: "manager"
+            time: "time"
+            operation: "operation"
+            fieldsType: "fieldsType"
+          clusterName: "clusterName"
+          creationTimestamp: "creationTimestamp"
+          name: "name"
+          namespace: "namespace"
+        apiVersion: "apiVersion"
+        kind: "kind"
+        spec:
+          excludePV: true
+          excludedResources:
+          - "excludedResources"
+          - "excludedResources"
+          copyMethod: "copyMethod"
+          clusterName: "clusterName"
+          includedResources:
+          - "includedResources"
+          - "includedResources"
+          tenant: "tenant"
+          desc: "desc"
+          namespaces:
+          - "namespaces"
+          - "namespaces"
+          policy:
+            repeat: true
+            name: "name"
+            retention: 6
+            frequency: 0
+          storageName: "storageName"
+        status:
+          phase: "phase"
+          conditions:
+          - reason: "reason"
+            lastHeartbeatTime: "lastHeartbeatTime"
+            lastTransitionTime: "lastTransitionTime"
+            message: "message"
+            type: "type"
+            status: "status"
+          - reason: "reason"
+            lastHeartbeatTime: "lastHeartbeatTime"
+            lastTransitionTime: "lastTransitionTime"
+            message: "message"
+            type: "type"
+            status: "status"
+      - metadata:
+          generation: 6
+          finalizers:
+          - "finalizers"
+          - "finalizers"
+          resourceVersion: "resourceVersion"
+          annotations:
+            key: "annotations"
+          generateName: "generateName"
+          deletionTimestamp: "deletionTimestamp"
+          labels:
+            key: "labels"
+          ownerReferences:
+          - uid: "uid"
+            controller: true
+            apiVersion: "apiVersion"
+            kind: "kind"
+            name: "name"
+            blockOwnerDeletion: true
+          - uid: "uid"
+            controller: true
+            apiVersion: "apiVersion"
+            kind: "kind"
+            name: "name"
+            blockOwnerDeletion: true
+          selfLink: "selfLink"
+          deletionGracePeriodSeconds: 0
+          uid: "uid"
+          managedFields:
+          - apiVersion: "apiVersion"
+            fieldsV1: "fieldsV1"
+            manager: "manager"
+            time: "time"
+            operation: "operation"
+            fieldsType: "fieldsType"
+          - apiVersion: "apiVersion"
+            fieldsV1: "fieldsV1"
+            manager: "manager"
+            time: "time"
+            operation: "operation"
+            fieldsType: "fieldsType"
+          clusterName: "clusterName"
+          creationTimestamp: "creationTimestamp"
+          name: "name"
+          namespace: "namespace"
+        apiVersion: "apiVersion"
+        kind: "kind"
+        spec:
+          excludePV: true
+          excludedResources:
+          - "excludedResources"
+          - "excludedResources"
+          copyMethod: "copyMethod"
+          clusterName: "clusterName"
+          includedResources:
+          - "includedResources"
+          - "includedResources"
+          tenant: "tenant"
+          desc: "desc"
+          namespaces:
+          - "namespaces"
+          - "namespaces"
+          policy:
+            repeat: true
+            name: "name"
+            retention: 6
+            frequency: 0
+          storageName: "storageName"
+        status:
+          phase: "phase"
+          conditions:
+          - reason: "reason"
+            lastHeartbeatTime: "lastHeartbeatTime"
+            lastTransitionTime: "lastTransitionTime"
+            message: "message"
+            type: "type"
+            status: "status"
+          - reason: "reason"
+            lastHeartbeatTime: "lastHeartbeatTime"
+            lastTransitionTime: "lastTransitionTime"
+            message: "message"
+            type: "type"
+            status: "status"
+  v1alpha1.BackupPlanSpec:
+    required:
+    - "clusterName"
+    - "storageName"
+    - "tenant"
+    properties:
+      clusterName:
+        type: "string"
+      copyMethod:
+        type: "string"
+      desc:
+        type: "string"
+      excludePV:
+        type: "boolean"
+      excludedResources:
+        type: "array"
+        items:
+          type: "string"
+      includedResources:
+        type: "array"
+        items:
+          type: "string"
+      namespaces:
+        type: "array"
+        items:
+          type: "string"
+      policy:
+        $ref: "#/definitions/v1alpha1.BackupPolicy"
+      storageName:
+        type: "string"
+      tenant:
+        type: "string"
+    example:
+      excludePV: true
+      excludedResources:
+      - "excludedResources"
+      - "excludedResources"
+      copyMethod: "copyMethod"
+      clusterName: "clusterName"
+      includedResources:
+      - "includedResources"
+      - "includedResources"
+      tenant: "tenant"
+      desc: "desc"
+      namespaces:
+      - "namespaces"
+      - "namespaces"
+      policy:
+        repeat: true
+        name: "name"
+        retention: 6
+        frequency: 0
+      storageName: "storageName"
+  v1alpha1.BackupPlanStatus:
+    properties:
+      conditions:
+        type: "array"
+        items:
+          $ref: "#/definitions/v1alpha1.Condition"
+      phase:
+        type: "string"
+    example:
+      phase: "phase"
+      conditions:
+      - reason: "reason"
+        lastHeartbeatTime: "lastHeartbeatTime"
+        lastTransitionTime: "lastTransitionTime"
+        message: "message"
+        type: "type"
+        status: "status"
+      - reason: "reason"
+        lastHeartbeatTime: "lastHeartbeatTime"
+        lastTransitionTime: "lastTransitionTime"
+        message: "message"
+        type: "type"
+        status: "status"
+  v1alpha1.BackupPolicy:
+    properties:
+      frequency:
+        type: "integer"
+        format: "int32"
+      name:
+        type: "string"
+      repeat:
+        type: "boolean"
+      retention:
+        type: "integer"
+        format: "int32"
+    example:
+      repeat: true
+      name: "name"
+      retention: 6
+      frequency: 0
   v1alpha1.BackupS3Config:
     required:
     - "accessKeyId"
@@ -2188,10 +3062,15 @@ definitions:
       region: "region"
   ysapi.Error:
     required:
+    - "code"
     - "message"
     properties:
+      code:
+        type: "string"
+        description: "error code"
       message:
         type: "string"
         description: "error message"
     example:
+      code: "code"
       message: "message"

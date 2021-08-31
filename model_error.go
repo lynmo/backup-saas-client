@@ -10,9 +10,5 @@
 
 package swagger
 
-type YsapiError struct {
-	// error code
-	Code string `json:"code"`
-	// error message
-	Message string `json:"message"`
+type ModelError struct {
 }

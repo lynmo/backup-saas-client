@@ -4,6 +4,8 @@ import (
 	"context"
 	"io/ioutil"
 	"net/http"
+	"os/user"
+	"path/filepath"
 	"testing"
 
 	yscli "github.com/jibutech/backup-saas-client"
@@ -52,7 +54,11 @@ func TestRestAPIs(t *testing.T) {
 	kubeconfig, err = ioutil.ReadFile("kubeconfig")
 	if err != nil {
 		t.Log("no kubeconfig file in current dir, will try $HOME/.kube/config")
-		kubeconfig, err = ioutil.ReadFile("~/.kube/config")
+		usr, err := user.Current()
+		if err != nil {
+			t.Error("failed to get current user")
+		}
+		kubeconfig, err = ioutil.ReadFile(filepath.Join(usr.HomeDir, ".kube/config"))
 		if err != nil {
 			t.Error("failed to load kubeconfig")
 		}
