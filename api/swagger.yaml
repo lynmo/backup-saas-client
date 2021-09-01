@@ -398,10 +398,6 @@ paths:
           description: "ok"
           schema:
             $ref: "#/definitions/v1.NamespaceList"
-        "404":
-          description: "Not Found"
-          schema:
-            $ref: "#/definitions/ysapi.Error"
         "500":
           description: "Internal Server Error"
           schema:

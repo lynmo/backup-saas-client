@@ -374,17 +374,6 @@ func (a *ClusterApiService) GetNamespaces(ctx context.Context, tenant string, cl
 				return localVarReturnValue, localVarHttpResponse, newErr
 		}
 		
-		if localVarHttpResponse.StatusCode == 404 {
-			var v YsapiError
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
-				return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		
 		if localVarHttpResponse.StatusCode == 500 {
 			var v YsapiError
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));

@@ -2,6 +2,7 @@ package sample
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"log"
 	"net/http"
@@ -16,15 +17,15 @@ func TestListNamespaces(t *testing.T) {
 	cli.ChangeBasePath("http://127.0.0.1:31800")
 	nsList, resp, err := cli.ClusterApi.GetNamespaces(context.TODO(), tenantID, clusterName)
 	if err != nil {
-		if se, ok := err.(yscli.GenericSwaggerError); ok && se.Model() != nil {
-			if ye, ok := se.Model().(yscli.YsapiError); ok {
-				fmt.Println(ye.Code)
-				fmt.Println(ye.Message)
-			}
-		} else if resp != nil && resp.StatusCode == http.StatusNotFound {
+		var ye yscli.YsapiError
+		if resp != nil && resp.StatusCode == http.StatusNotFound {
 			t.Log("not found")
+		} else if errors.As(err, &ye) {
+			fmt.Println(ye.Code)
+			fmt.Println(ye.Message)
 		}
 		t.Error("failed to list namespaces", err)
+		return
 	}
 	log.Println("list of namespaces:")
 	for _, t := range nsList.Items {
