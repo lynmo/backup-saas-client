@@ -2,8 +2,227 @@ apiVersion: v1
 kind: Namespace
 metadata:
   labels:
-    app.kubernetes.io/part-of: jibudata-backup-saas
+    app.kubernetes.io/part-of: jibudata-backup-rest-server
   name: backup-saas-system
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.4.1
+  creationTimestamp: null
+  name: backupjobs.ys.jibudata.com
+spec:
+  group: ys.jibudata.com
+  names:
+    kind: BackupJob
+    listKind: BackupJobList
+    plural: backupjobs
+    singular: backupjob
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: BackupJob is the Schema for the backupjobs API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: BackupJobSpec defines the desired state of BackupJob
+            properties:
+              action:
+                description: Action for this job, { start, cancel }
+                type: string
+              backupName:
+                description: Backup plan name
+                type: string
+              tenant:
+                description: Unique name of tenant
+                type: string
+            required:
+            - backupName
+            - tenant
+            type: object
+          status:
+            description: BackupJobStatus defines the observed state of BackupJob
+            properties:
+              conditions:
+                description: Conditions describes the detailed state of cluster
+                items:
+                  description: Condition represents the state of the operator's reconciliation functionality.
+                  properties:
+                    lastHeartbeatTime:
+                      format: date-time
+                      type: string
+                    lastTransitionTime:
+                      format: date-time
+                      type: string
+                    message:
+                      type: string
+                    reason:
+                      type: string
+                    status:
+                      type: string
+                    type:
+                      description: ConditionType is the state of the operator's reconciliation functionality.
+                      type: string
+                  required:
+                  - status
+                  - type
+                  type: object
+                type: array
+              phase:
+                description: Phase describes the overall status of Cluster
+                type: string
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.4.1
+  creationTimestamp: null
+  name: backupplans.ys.jibudata.com
+spec:
+  group: ys.jibudata.com
+  names:
+    kind: BackupPlan
+    listKind: BackupPlanList
+    plural: backupplans
+    singular: backupplan
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: BackupPlan is the Schema for the backupplans API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: BackupPlanSpec defines the desired state of BackupPlan
+            properties:
+              clusterName:
+                description: Name of the cluster CR
+                type: string
+              copyMethod:
+                description: Copy method, in {"filesystem", "snapshot"}, default is "filesystem"
+                type: string
+              desc:
+                description: Desc is description for a backup plan.
+                type: string
+              excludePV:
+                description: Exclude PV as backup resource, default is false
+                type: boolean
+              excludedResources:
+                description: Included resources, default is emty, means exclude none
+                items:
+                  type: string
+                type: array
+              includedResources:
+                description: Included resources, default is emty, means all resources
+                items:
+                  type: string
+                type: array
+              namespaces:
+                description: Namespaces to be backed up
+                items:
+                  type: string
+                type: array
+              policy:
+                description: Policy of the backup plan. Default is on demand backup, retention is default to 7 days
+                properties:
+                  frequency:
+                    description: Frequency of the backup, unit is hour, 1-24 hour is valid
+                    type: integer
+                  name:
+                    description: Name of the policy
+                    type: string
+                  repeat:
+                    description: Repeat true means scheduled backup, false means on demand backup
+                    type: boolean
+                  retention:
+                    description: Retention of the backup, unit is hour
+                    type: integer
+                type: object
+              storageName:
+                description: Name of the storage CR
+                type: string
+              tenant:
+                description: Tenant is global unique tenant id of a user
+                type: string
+            required:
+            - clusterName
+            - storageName
+            - tenant
+            type: object
+          status:
+            description: BackupPlanStatus defines the observed state of BackupPlan
+            properties:
+              conditions:
+                description: Conditions describes the detailed state of cluster
+                items:
+                  description: Condition represents the state of the operator's reconciliation functionality.
+                  properties:
+                    lastHeartbeatTime:
+                      format: date-time
+                      type: string
+                    lastTransitionTime:
+                      format: date-time
+                      type: string
+                    message:
+                      type: string
+                    reason:
+                      type: string
+                    status:
+                      type: string
+                    type:
+                      description: ConditionType is the state of the operator's reconciliation functionality.
+                      type: string
+                  required:
+                  - status
+                  - type
+                  type: object
+                type: array
+              phase:
+                description: Phase describes the overall status of Cluster
+                type: string
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
@@ -44,7 +263,7 @@ spec:
                 description: Desc is description for a cluster.
                 type: string
               excludedNamespaces:
-                description: ExcludedNamespaces indicts the namespaces is excluded for backup management
+                description: ExcludedNamespaces indicates the namespaces is excluded for backup management
                 items:
                   type: string
                 type: array
@@ -63,7 +282,10 @@ spec:
                 description: Region reflects cloud region of running cluster
                 type: string
               role:
-                description: Role indicts the cluster type for multi-cluster environment
+                description: Role indicates the cluster type for multi-cluster environment
+                type: string
+              secretName:
+                description: Secret name
                 type: string
               serviceAccount:
                 description: Servcie account
@@ -102,9 +324,6 @@ spec:
                 type: array
               tenant:
                 description: Tenant is global unique tenant id of a user
-                type: string
-              token:
-                description: Token
                 type: string
               zone:
                 description: Zone reflects available zone of running cluster
@@ -196,7 +415,7 @@ spec:
                 description: Desc is description for a cluster.
                 type: string
               isDefaultStorage:
-                description: IsDefaultStorage indicts it is default storage for use
+                description: IsDefaultStorage indicates it is default storage for use
                 type: boolean
               s3Config:
                 description: S3Config includes S3 access configuration
@@ -211,7 +430,7 @@ spec:
                     description: CredsSecretName links to a secret to access S3 object
                     type: string
                   insecure:
-                    description: Insecure indicts not to verify https of s3url
+                    description: Insecure indicates not to verify https of s3url
                     type: boolean
                   region:
                     description: Region is S3 region
@@ -446,6 +665,72 @@ rules:
   - update
   - watch
 - apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ys.jibudata.com
+  resources:
+  - backupjobs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ys.jibudata.com
+  resources:
+  - backupjobs/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - ys.jibudata.com
+  resources:
+  - backupjobs/status
+  verbs:
+  - get
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ys.jibudata.com
+  resources:
+  - backupplans
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ys.jibudata.com
+  resources:
+  - backupplans/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - ys.jibudata.com
+  resources:
+  - backupplans/status
+  verbs:
+  - get
+  - patch
+  - update
+  - watch
+- apiGroups:
   - ys.jibudata.com
   resources:
   - clusters
@@ -615,7 +900,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app.kubernetes.io/part-of: jibudata-backup-saas
+    app.kubernetes.io/part-of: jibudata-backup-rest-server
   name: jibu-baas-rest-server-metrics-service
   namespace: backup-saas-system
 spec:
@@ -624,13 +909,13 @@ spec:
     port: 8443
     targetPort: https
   selector:
-    app.kubernetes.io/part-of: jibudata-backup-saas
+    app.kubernetes.io/part-of: jibudata-backup-rest-server
 ---
 apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app.kubernetes.io/part-of: jibudata-backup-saas
+    app.kubernetes.io/part-of: jibudata-backup-rest-server
   name: jibu-baas-rest-server-service
   namespace: backup-saas-system
 spec:
@@ -639,32 +924,33 @@ spec:
     port: 8000
     protocol: TCP
   selector:
-    app.kubernetes.io/part-of: jibudata-backup-saas
+    app.kubernetes.io/part-of: jibudata-backup-rest-server
   type: NodePort
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app.kubernetes.io/part-of: jibudata-backup-saas
+    app.kubernetes.io/part-of: jibudata-backup-rest-server
   name: jibu-baas-rest-server
   namespace: backup-saas-system
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/part-of: jibudata-backup-saas
+      app.kubernetes.io/part-of: jibudata-backup-rest-server
   template:
     metadata:
       labels:
-        app.kubernetes.io/part-of: jibudata-backup-saas
+        app.kubernetes.io/part-of: jibudata-backup-rest-server
     spec:
       containers:
       - args:
         - --leader-elect
         command:
         - /manager
-        image: jibutech/backup-rest-server:20210817.7325b49
+        image: jibutech/backup-rest-server:20210901.cb7d571
+        imagePullPolicy: Always
         name: manager
         resources:
           limits:

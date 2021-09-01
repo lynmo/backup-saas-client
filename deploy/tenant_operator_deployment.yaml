@@ -174,13 +174,19 @@ spec:
         command:
         - /manager
         env:
+        - name: QIMING_OPERATOR_REGISTRY
+          value: jibutech
         - name: QIMING_OPERATOR_VERSION
-          value: v0.1.0-saas
+          value: main.2dfc19b
         - name: QIMING_CONTROLLER_VERSION
-          value: v0.1.6-saas
+          value: v1.0.7-backup
         - name: VELERO_VERSION
           value: v1.5.3
-        image: jibutech/tenant-operator:20210816.814ecdb
+        - name: VELERO_INSTALLER_VERSION
+          value: v0.0.2
+        #image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:v0.1.9-backup
+        image: jibutech/tenant-operator:main.c1083a4
+        imagePullPolicy: Always
         name: manager
         resources:
           limits:
