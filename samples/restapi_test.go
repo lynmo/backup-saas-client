@@ -2,6 +2,8 @@ package sample
 
 import (
 	"context"
+	"errors"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os/user"
@@ -17,26 +19,32 @@ func TestRestAPIs(t *testing.T) {
 	cli.ChangeBasePath("http://127.0.0.1:31800")
 
 	var err error
-	var resp *http.Response
+	var ye yscli.Error
 
 	listTenants(t, cli)
 	listClusters(t, cli)
 
 	//clear
 	t.Log("deleting cluster", clusterName)
-	_, resp, err = cli.ClusterApi.DeleteCluster(context.TODO(), tenantID, clusterName)
-	if err != nil && (resp == nil || resp.StatusCode != 404) {
-		t.Error("failed to clear cluster", err, resp)
+	_, _, err = cli.ClusterApi.DeleteCluster(context.TODO(), tenantID, clusterName)
+	if err != nil {
+		if errors.As(err, &ye) && ye.StatusCode() != http.StatusNotFound {
+			t.Error("failed to clear cluster", err)
+		}
 	}
 	t.Log("deleting storage", storageName)
-	_, resp, err = cli.StorageApi.DeleteStorage(context.TODO(), tenantID, storageName)
-	if err != nil && (resp == nil || resp.StatusCode != 404) {
-		t.Error("failed to clear storage", err, resp)
+	_, _, err = cli.StorageApi.DeleteStorage(context.TODO(), tenantID, storageName)
+	if err != nil {
+		if errors.As(err, &ye) && ye.StatusCode() != http.StatusNotFound {
+			t.Error("failed to clear storage", err)
+		}
 	}
 	t.Log("deleting tenant", tenantID)
-	_, resp, err = cli.TenantApi.DeleteTenant(context.TODO(), tenantID)
-	if err != nil && (resp == nil || resp.StatusCode != 404) {
-		t.Error("failed to clear tenant", err, resp)
+	_, _, err = cli.TenantApi.DeleteTenant(context.TODO(), tenantID)
+	if err != nil {
+		if errors.As(err, &ye) && ye.StatusCode() != http.StatusNotFound {
+			t.Error("failed to clear tenant", err)
+		}
 	}
 
 	listTenants(t, cli)
@@ -44,9 +52,9 @@ func TestRestAPIs(t *testing.T) {
 
 	t.Log("creating tenant", tenantID)
 	testTenant := yscli.V1alpha1Tenant{Metadata: &yscli.V1ObjectMeta{Name: tenantID}}
-	testTenant, resp, err = cli.TenantApi.CreateTenant(context.TODO(), testTenant)
+	testTenant, _, err = cli.TenantApi.CreateTenant(context.TODO(), testTenant)
 	if err != nil {
-		t.Error("failed to create tenant", err, resp)
+		t.Error("failed to create tenant", err)
 	}
 
 	t.Log("creating cluster", clusterName)
@@ -73,6 +81,12 @@ func TestRestAPIs(t *testing.T) {
 	testCluster, _, err = cli.ClusterApi.CreateCluster(context.TODO(), tenantID, testCluster)
 	if err != nil {
 		t.Error("failed to create cluster", err)
+		var ye yscli.Error
+		if errors.As(err, &ye) {
+			fmt.Println(ye.Code())
+			fmt.Println(ye.Message())
+			fmt.Println(ye.Errs())
+		}
 	}
 
 	t.Log("creating storage", storageName)

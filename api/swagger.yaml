@@ -398,10 +398,6 @@ paths:
           description: "ok"
           schema:
             $ref: "#/definitions/v1.NamespaceList"
-        "500":
-          description: "Internal Server Error"
-          schema:
-            $ref: "#/definitions/ysapi.Error"
   /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages:
     get:
       tags:
@@ -531,6 +527,7 @@ paths:
           schema:
             $ref: "#/definitions/ysapi.Error"
 definitions:
+  error: {}
   v1.ListMeta:
     properties:
       continue:
@@ -3057,16 +3054,26 @@ definitions:
       credsSecretName: "credsSecretName"
       region: "region"
   ysapi.Error:
-    required:
-    - "code"
-    - "message"
     properties:
       code:
         type: "string"
         description: "error code"
+      errs:
+        type: "array"
+        description: "errors that caused this error"
+        items:
+          $ref: "#/definitions/error"
       message:
         type: "string"
         description: "error message"
+      statusCode:
+        type: "integer"
+        format: "int32"
+        description: "http status code"
     example:
+      errs:
+      - {}
+      - {}
       code: "code"
       message: "message"
+      statusCode: 0

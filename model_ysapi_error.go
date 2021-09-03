@@ -12,7 +12,11 @@ package swagger
 
 type YsapiError struct {
 	// error code
-	Code string `json:"code"`
+	Code string `json:"code,omitempty"`
+	// errors that caused this error
+	Errs []string `json:"errs,omitempty"`
 	// error message
-	Message string `json:"message"`
+	Message string `json:"message,omitempty"`
+	// http status code
+	StatusCode int32 `json:"statusCode,omitempty"`
 }

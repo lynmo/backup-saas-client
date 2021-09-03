@@ -48,6 +48,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [ModelError](docs/ModelError.md)
  - [V1ListMeta](docs/V1ListMeta.md)
  - [V1ManagedFieldsEntry](docs/V1ManagedFieldsEntry.md)
  - [V1Namespace](docs/V1Namespace.md)

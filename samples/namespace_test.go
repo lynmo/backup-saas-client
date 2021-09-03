@@ -15,14 +15,17 @@ func TestListNamespaces(t *testing.T) {
 	cfg := yscli.NewConfiguration()
 	cli := yscli.NewAPIClient(cfg)
 	cli.ChangeBasePath("http://127.0.0.1:31800")
-	nsList, resp, err := cli.ClusterApi.GetNamespaces(context.TODO(), tenantID, clusterName)
+	nsList, _, err := cli.ClusterApi.GetNamespaces(context.TODO(), tenantID, clusterName)
 	if err != nil {
-		var ye yscli.YsapiError
-		if resp != nil && resp.StatusCode == http.StatusNotFound {
-			t.Log("not found")
-		} else if errors.As(err, &ye) {
-			fmt.Println(ye.Code)
-			fmt.Println(ye.Message)
+		var ye yscli.Error
+		if errors.As(err, &ye) {
+			if ye.StatusCode() == http.StatusNotFound {
+				fmt.Println("not found")
+			} else {
+				fmt.Println(ye.Code())
+				fmt.Println(ye.Message())
+				fmt.Println(ye.Errs())
+			}
 		}
 		t.Error("failed to list namespaces", err)
 		return
