@@ -156,7 +156,7 @@ kind: Deployment
 metadata:
   labels:
     app.kubernetes.io/part-of: jibudata-backup-saas
-  name: jibu-baas-tenant-operator
+  name: jibu-tenant-operator
   namespace: backup-saas-system
 spec:
   replicas: 1
@@ -177,15 +177,14 @@ spec:
         - name: QIMING_OPERATOR_REGISTRY
           value: jibutech
         - name: QIMING_OPERATOR_VERSION
-          value: main.2dfc19b
+          value: main-latest
         - name: QIMING_CONTROLLER_VERSION
-          value: v1.0.7-backup
+          value: main-latest
         - name: VELERO_VERSION
           value: v1.5.3
         - name: VELERO_INSTALLER_VERSION
-          value: v0.0.2
-        #image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:v0.1.9-backup
-        image: jibutech/tenant-operator:main.c1083a4
+          value: main-latest
+        image: jibutech/tenant-operator:main-latest
         imagePullPolicy: Always
         name: manager
         resources:
