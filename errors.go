@@ -9,7 +9,7 @@ type Error interface {
 	StatusCode() int
 	Code() string
 	Message() string
-	Errs() []string
+	OrigError() string
 }
 
 type ysError struct {
@@ -30,7 +30,11 @@ func (e GenericSwaggerError) Unwrap() error {
 
 // satisfy error interface
 func (e ysError) Error() string {
-	return fmt.Sprintf("%s: %s", e.Code, e.Message)
+	if e.OrigError() != "" {
+		return fmt.Sprintf("%s: %s\ncaused by: %s", e.Code(), e.Message(), e.OrigError())
+	} else {
+		return fmt.Sprintf("%s: %s", e.Code(), e.Message())
+	}
 }
 
 // satisfy Error interface
@@ -47,6 +51,6 @@ func (e ysError) StatusCode() int {
 	return int(e.YsapiError.StatusCode)
 }
 
-func (e ysError) Errs() []string {
-	return e.YsapiError.Errs
+func (e ysError) OrigError() string {
+	return e.YsapiError.OrigError
 }

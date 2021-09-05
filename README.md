@@ -13,7 +13,7 @@ For more information, please visit [https://www.jibudata.com](https://www.jibuda
 ## Installation
 Put the package under your project folder and add the following in import:
 ```golang
-import "github.com/jibutech/backup-saas-client"
+import "./swagger"
 ```
 
 ## Documentation for API Endpoints
@@ -25,16 +25,29 @@ Class | Method | HTTP request | Description
 *BackupJobTagApi* | [**CreateBackupJob**](docs/BackupJobTagApi.md#createbackupjob) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs | Create a backupjob for a tenant.
 *BackupJobTagApi* | [**DeleteBackupJob**](docs/BackupJobTagApi.md#deletebackupjob) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs/{backupjob} | Delete a backupjob for a tenant.
 *BackupJobTagApi* | [**GetBackupJob**](docs/BackupJobTagApi.md#getbackupjob) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs/{backupjob} | Retrieve backupjob details.
-*BackupJobTagApi* | [**ListBackupJobs**](docs/BackupJobTagApi.md#listbackupjobs) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs | List all backupjobs of a tenant
+*BackupJobTagApi* | [**ListBackupJobs**](docs/BackupJobTagApi.md#listbackupjobs) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs | List backupjobs of a tenant, or under a backup plan
+*BackupJobTagApi* | [**UpdateBackupJob**](docs/BackupJobTagApi.md#updatebackupjob) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs/{backupjob} | Update a backupjob for a tenant.
 *BackupPlanTagApi* | [**CreateBackupPlan**](docs/BackupPlanTagApi.md#createbackupplan) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans | Create a backupplan.
 *BackupPlanTagApi* | [**DeleteBackupPlan**](docs/BackupPlanTagApi.md#deletebackupplan) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans/{backupplan} | Delete a backupplan.
 *BackupPlanTagApi* | [**GetBackupPlan**](docs/BackupPlanTagApi.md#getbackupplan) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans/{backupplan} | Retrieve backupplan details.
 *BackupPlanTagApi* | [**ListBackupPlans**](docs/BackupPlanTagApi.md#listbackupplans) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans | List all backupplans of a tenant
+*BackupPlanTagApi* | [**UpdateBackupPlan**](docs/BackupPlanTagApi.md#updatebackupplan) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans/{backupplan} | Update backupplan details.
 *ClusterApi* | [**CreateCluster**](docs/ClusterApi.md#createcluster) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters | Create a cluster.
 *ClusterApi* | [**DeleteCluster**](docs/ClusterApi.md#deletecluster) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster} | Delete a cluster.
 *ClusterApi* | [**GetCluster**](docs/ClusterApi.md#getcluster) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster} | Retrieve storage details.
 *ClusterApi* | [**GetNamespaces**](docs/ClusterApi.md#getnamespaces) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster}/resources/namespaces | Get namespaces in a cluster
 *ClusterApi* | [**ListClusters**](docs/ClusterApi.md#listclusters) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters | List all clusters of a tenant.
+*ClusterApi* | [**UpdateCluster**](docs/ClusterApi.md#updatecluster) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster} | Update a cluster.
+*RestoreJobTagApi* | [**CreateRestoreJob**](docs/RestoreJobTagApi.md#createrestorejob) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restorejobs | Create a restorejob for a tenant.
+*RestoreJobTagApi* | [**DeleteRestoreJob**](docs/RestoreJobTagApi.md#deleterestorejob) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restorejobs/{restorejob} | Delete a restorejob for a tenant.
+*RestoreJobTagApi* | [**GetRestoreJob**](docs/RestoreJobTagApi.md#getrestorejob) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restorejobs/{restorejob} | Retrieve restorejob details.
+*RestoreJobTagApi* | [**ListRestoreJobs**](docs/RestoreJobTagApi.md#listrestorejobs) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restorejobs | List all restorejobs of a tenant
+*RestoreJobTagApi* | [**UpdateRestoreJob**](docs/RestoreJobTagApi.md#updaterestorejob) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restorejobs/{restorejob} | Update a restorejob for a tenant.
+*RestorePlanTagApi* | [**CreateRestorePlan**](docs/RestorePlanTagApi.md#createrestoreplan) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans | Create a restoreplan.
+*RestorePlanTagApi* | [**DeleteRestorePlan**](docs/RestorePlanTagApi.md#deleterestoreplan) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans/{restoreplan} | Delete a restoreplan.
+*RestorePlanTagApi* | [**GetRestorePlan**](docs/RestorePlanTagApi.md#getrestoreplan) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans/{restoreplan} | Retrieve restoreplan details.
+*RestorePlanTagApi* | [**ListRestorePlans**](docs/RestorePlanTagApi.md#listrestoreplans) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans | List all restoreplans of a tenant
+*RestorePlanTagApi* | [**UpdateRestorePlan**](docs/RestorePlanTagApi.md#updaterestoreplan) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans/{restoreplan} | Update restoreplan details.
 *StorageApi* | [**CreateStorage**](docs/StorageApi.md#createstorage) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages | Create a storage.
 *StorageApi* | [**CreateStorageCredentials**](docs/StorageApi.md#createstoragecredentials) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages/{storage}/credentials | Create a credential for a storage.
 *StorageApi* | [**DeleteStorage**](docs/StorageApi.md#deletestorage) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages/{storage} | Delete a storage.
@@ -44,11 +57,12 @@ Class | Method | HTTP request | Description
 *TenantApi* | [**DeleteTenant**](docs/TenantApi.md#deletetenant) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant} | Delete a tenant.
 *TenantApi* | [**GetTenant**](docs/TenantApi.md#gettenant) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant} | Retrieve tenant details.
 *TenantApi* | [**ListTenants**](docs/TenantApi.md#listtenants) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants | List all tenants
+*TenantApi* | [**UpdateStorage**](docs/TenantApi.md#updatestorage) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages/{storage} | Update a storage
+*TenantApi* | [**UpdateTenant**](docs/TenantApi.md#updatetenant) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant} | Update a tenant
 
 
 ## Documentation For Models
 
- - [ModelError](docs/ModelError.md)
  - [V1ListMeta](docs/V1ListMeta.md)
  - [V1ManagedFieldsEntry](docs/V1ManagedFieldsEntry.md)
  - [V1Namespace](docs/V1Namespace.md)
@@ -74,6 +88,14 @@ Class | Method | HTTP request | Description
  - [V1alpha1ClusterSpec](docs/V1alpha1ClusterSpec.md)
  - [V1alpha1ClusterStatus](docs/V1alpha1ClusterStatus.md)
  - [V1alpha1Condition](docs/V1alpha1Condition.md)
+ - [V1alpha1RestoreJob](docs/V1alpha1RestoreJob.md)
+ - [V1alpha1RestoreJobList](docs/V1alpha1RestoreJobList.md)
+ - [V1alpha1RestoreJobSpec](docs/V1alpha1RestoreJobSpec.md)
+ - [V1alpha1RestoreJobStatus](docs/V1alpha1RestoreJobStatus.md)
+ - [V1alpha1RestorePlan](docs/V1alpha1RestorePlan.md)
+ - [V1alpha1RestorePlanList](docs/V1alpha1RestorePlanList.md)
+ - [V1alpha1RestorePlanSpec](docs/V1alpha1RestorePlanSpec.md)
+ - [V1alpha1RestorePlanStatus](docs/V1alpha1RestorePlanStatus.md)
  - [V1alpha1Storage](docs/V1alpha1Storage.md)
  - [V1alpha1StorageClass](docs/V1alpha1StorageClass.md)
  - [V1alpha1StorageList](docs/V1alpha1StorageList.md)

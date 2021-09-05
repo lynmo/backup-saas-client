@@ -1,19 +1,19 @@
-# \BackupJobTagApi
+# \RestoreJobTagApi
 
 All URIs are relative to *https://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateBackupJob**](BackupJobTagApi.md#CreateBackupJob) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs | Create a backupjob for a tenant.
-[**DeleteBackupJob**](BackupJobTagApi.md#DeleteBackupJob) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs/{backupjob} | Delete a backupjob for a tenant.
-[**GetBackupJob**](BackupJobTagApi.md#GetBackupJob) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs/{backupjob} | Retrieve backupjob details.
-[**ListBackupJobs**](BackupJobTagApi.md#ListBackupJobs) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs | List backupjobs of a tenant, or under a backup plan
-[**UpdateBackupJob**](BackupJobTagApi.md#UpdateBackupJob) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs/{backupjob} | Update a backupjob for a tenant.
+[**CreateRestoreJob**](RestoreJobTagApi.md#CreateRestoreJob) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restorejobs | Create a restorejob for a tenant.
+[**DeleteRestoreJob**](RestoreJobTagApi.md#DeleteRestoreJob) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restorejobs/{restorejob} | Delete a restorejob for a tenant.
+[**GetRestoreJob**](RestoreJobTagApi.md#GetRestoreJob) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restorejobs/{restorejob} | Retrieve restorejob details.
+[**ListRestoreJobs**](RestoreJobTagApi.md#ListRestoreJobs) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restorejobs | List all restorejobs of a tenant
+[**UpdateRestoreJob**](RestoreJobTagApi.md#UpdateRestoreJob) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restorejobs/{restorejob} | Update a restorejob for a tenant.
 
 
-# **CreateBackupJob**
-> V1alpha1BackupJob CreateBackupJob(ctx, tenant, body)
-Create a backupjob for a tenant.
+# **CreateRestoreJob**
+> V1alpha1RestoreJob CreateRestoreJob(ctx, tenant, body)
+Create a restorejob for a tenant.
 
 ### Required Parameters
 
@@ -21,11 +21,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **tenant** | **string**| tenant id | 
-  **body** | [**V1alpha1BackupJob**](V1alpha1BackupJob.md)|  | 
+  **body** | [**V1alpha1RestoreJob**](V1alpha1RestoreJob.md)|  | 
 
 ### Return type
 
-[**V1alpha1BackupJob**](v1alpha1.BackupJob.md)
+[**V1alpha1RestoreJob**](v1alpha1.RestoreJob.md)
 
 ### Authorization
 
@@ -38,9 +38,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **DeleteBackupJob**
-> YsapiError DeleteBackupJob(ctx, tenant, backupjob)
-Delete a backupjob for a tenant.
+# **DeleteRestoreJob**
+> YsapiError DeleteRestoreJob(ctx, tenant, restorejob)
+Delete a restorejob for a tenant.
 
 ### Required Parameters
 
@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **tenant** | **string**| tenant id | 
-  **backupjob** | **string**| backupjob name | 
+  **restorejob** | **string**| restorejob name | 
 
 ### Return type
 
@@ -65,9 +65,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **GetBackupJob**
-> V1alpha1BackupJob GetBackupJob(ctx, tenant, backupjob)
-Retrieve backupjob details.
+# **GetRestoreJob**
+> V1alpha1RestoreJob GetRestoreJob(ctx, tenant, restorejob)
+Retrieve restorejob details.
 
 ### Required Parameters
 
@@ -75,11 +75,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **tenant** | **string**| tenant id | 
-  **backupjob** | **string**| backupjob name | 
+  **restorejob** | **string**| restorejob name | 
 
 ### Return type
 
-[**V1alpha1BackupJob**](v1alpha1.BackupJob.md)
+[**V1alpha1RestoreJob**](v1alpha1.RestoreJob.md)
 
 ### Authorization
 
@@ -92,9 +92,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **ListBackupJobs**
-> V1alpha1BackupJobList ListBackupJobs(ctx, tenant, optional)
-List backupjobs of a tenant, or under a backup plan
+# **ListRestoreJobs**
+> V1alpha1RestoreJobList ListRestoreJobs(ctx, tenant)
+List all restorejobs of a tenant
 
 ### Required Parameters
 
@@ -102,19 +102,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **tenant** | **string**| tenant id | 
- **optional** | ***BackupJobTagApiListBackupJobsOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a BackupJobTagApiListBackupJobsOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **planName** | **optional.String**| backup plan name | 
 
 ### Return type
 
-[**V1alpha1BackupJobList**](v1alpha1.BackupJobList.md)
+[**V1alpha1RestoreJobList**](v1alpha1.RestoreJobList.md)
 
 ### Authorization
 
@@ -127,9 +118,9 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **UpdateBackupJob**
-> V1alpha1BackupJob UpdateBackupJob(ctx, tenant, backupjob, body)
-Update a backupjob for a tenant.
+# **UpdateRestoreJob**
+> V1alpha1RestoreJob UpdateRestoreJob(ctx, tenant, restorejob, body)
+Update a restorejob for a tenant.
 
 ### Required Parameters
 
@@ -137,12 +128,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **tenant** | **string**| tenant id | 
-  **backupjob** | **string**| backupjob name | 
-  **body** | [**V1alpha1BackupJob**](V1alpha1BackupJob.md)|  | 
+  **restorejob** | **string**| restorejob name | 
+  **body** | [**V1alpha1RestoreJob**](V1alpha1RestoreJob.md)|  | 
 
 ### Return type
 
-[**V1alpha1BackupJob**](v1alpha1.BackupJob.md)
+[**V1alpha1RestoreJob**](v1alpha1.RestoreJob.md)
 
 ### Authorization
 

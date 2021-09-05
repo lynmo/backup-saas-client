@@ -3,7 +3,6 @@ package sample
 import (
 	"context"
 	"errors"
-	"fmt"
 	"log"
 	"net/http"
 	"testing"
@@ -20,18 +19,18 @@ func TestListNamespaces(t *testing.T) {
 		var ye yscli.Error
 		if errors.As(err, &ye) {
 			if ye.StatusCode() == http.StatusNotFound {
-				fmt.Println("not found")
+				t.Log("not found")
 			} else {
-				fmt.Println(ye.Code())
-				fmt.Println(ye.Message())
-				fmt.Println(ye.Errs())
+				t.Log(ye.Code())
+				t.Log(ye.Message())
+				t.Log(ye.OrigError())
 			}
 		}
 		t.Error("failed to list namespaces", err)
 		return
 	}
 	log.Println("list of namespaces:")
-	for _, t := range nsList.Items {
-		fmt.Println(t.Metadata.Name)
+	for _, n := range nsList.Items {
+		t.Log(n.Metadata.Name)
 	}
 }

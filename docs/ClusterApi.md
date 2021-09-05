@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**GetCluster**](ClusterApi.md#GetCluster) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster} | Retrieve storage details.
 [**GetNamespaces**](ClusterApi.md#GetNamespaces) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster}/resources/namespaces | Get namespaces in a cluster
 [**ListClusters**](ClusterApi.md#ListClusters) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters | List all clusters of a tenant.
+[**UpdateCluster**](ClusterApi.md#UpdateCluster) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster} | Update a cluster.
 
 
 # **CreateCluster**
@@ -133,6 +134,34 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1alpha1ClusterList**](v1alpha1.ClusterList.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **UpdateCluster**
+> V1alpha1Cluster UpdateCluster(ctx, tenant, cluster, body)
+Update a cluster.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **tenant** | **string**| tenant id | 
+  **cluster** | **string**| cluster name | 
+  **body** | [**V1alpha1Cluster**](V1alpha1Cluster.md)|  | 
+
+### Return type
+
+[**V1alpha1Cluster**](v1alpha1.Cluster.md)
 
 ### Authorization
 

@@ -52,6 +52,10 @@ type APIClient struct {
 
 	ClusterApi *ClusterApiService
 
+	RestoreJobTagApi *RestoreJobTagApiService
+
+	RestorePlanTagApi *RestorePlanTagApiService
+
 	StorageApi *StorageApiService
 
 	TenantApi *TenantApiService
@@ -76,6 +80,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.BackupJobTagApi = (*BackupJobTagApiService)(&c.common)
 	c.BackupPlanTagApi = (*BackupPlanTagApiService)(&c.common)
 	c.ClusterApi = (*ClusterApiService)(&c.common)
+	c.RestoreJobTagApi = (*RestoreJobTagApiService)(&c.common)
+	c.RestorePlanTagApi = (*RestorePlanTagApiService)(&c.common)
 	c.StorageApi = (*StorageApiService)(&c.common)
 	c.TenantApi = (*TenantApiService)(&c.common)
 

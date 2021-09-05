@@ -18,7 +18,6 @@ import (
 	"net/url"
 	"strings"
 	"fmt"
-	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -26,27 +25,27 @@ var (
 	_ context.Context
 )
 
-type BackupJobTagApiService service
+type RestoreJobTagApiService service
 
 /*
-BackupJobTagApiService Create a backupjob for a tenant.
+RestoreJobTagApiService Create a restorejob for a tenant.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param tenant tenant id
  * @param body
 
-@return V1alpha1BackupJob
+@return V1alpha1RestoreJob
 */
-func (a *BackupJobTagApiService) CreateBackupJob(ctx context.Context, tenant string, body V1alpha1BackupJob) (V1alpha1BackupJob, *http.Response, error) {
+func (a *RestoreJobTagApiService) CreateRestoreJob(ctx context.Context, tenant string, body V1alpha1RestoreJob) (V1alpha1RestoreJob, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue V1alpha1BackupJob
+		localVarReturnValue V1alpha1RestoreJob
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs"
+	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restorejobs"
 	localVarPath = strings.Replace(localVarPath, "{"+"tenant"+"}", fmt.Sprintf("%v", tenant), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -101,7 +100,7 @@ func (a *BackupJobTagApiService) CreateBackupJob(ctx context.Context, tenant str
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v V1alpha1BackupJob
+			var v V1alpha1RestoreJob
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -118,14 +117,14 @@ func (a *BackupJobTagApiService) CreateBackupJob(ctx context.Context, tenant str
 }
 
 /*
-BackupJobTagApiService Delete a backupjob for a tenant.
+RestoreJobTagApiService Delete a restorejob for a tenant.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param tenant tenant id
- * @param backupjob backupjob name
+ * @param restorejob restorejob name
 
 @return YsapiError
 */
-func (a *BackupJobTagApiService) DeleteBackupJob(ctx context.Context, tenant string, backupjob string) (YsapiError, *http.Response, error) {
+func (a *RestoreJobTagApiService) DeleteRestoreJob(ctx context.Context, tenant string, restorejob string) (YsapiError, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
@@ -135,9 +134,9 @@ func (a *BackupJobTagApiService) DeleteBackupJob(ctx context.Context, tenant str
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs/{backupjob}"
+	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restorejobs/{restorejob}"
 	localVarPath = strings.Replace(localVarPath, "{"+"tenant"+"}", fmt.Sprintf("%v", tenant), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"backupjob"+"}", fmt.Sprintf("%v", backupjob), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"restorejob"+"}", fmt.Sprintf("%v", restorejob), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -206,26 +205,26 @@ func (a *BackupJobTagApiService) DeleteBackupJob(ctx context.Context, tenant str
 }
 
 /*
-BackupJobTagApiService Retrieve backupjob details.
+RestoreJobTagApiService Retrieve restorejob details.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param tenant tenant id
- * @param backupjob backupjob name
+ * @param restorejob restorejob name
 
-@return V1alpha1BackupJob
+@return V1alpha1RestoreJob
 */
-func (a *BackupJobTagApiService) GetBackupJob(ctx context.Context, tenant string, backupjob string) (V1alpha1BackupJob, *http.Response, error) {
+func (a *RestoreJobTagApiService) GetRestoreJob(ctx context.Context, tenant string, restorejob string) (V1alpha1RestoreJob, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue V1alpha1BackupJob
+		localVarReturnValue V1alpha1RestoreJob
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs/{backupjob}"
+	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restorejobs/{restorejob}"
 	localVarPath = strings.Replace(localVarPath, "{"+"tenant"+"}", fmt.Sprintf("%v", tenant), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"backupjob"+"}", fmt.Sprintf("%v", backupjob), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"restorejob"+"}", fmt.Sprintf("%v", restorejob), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -277,7 +276,7 @@ func (a *BackupJobTagApiService) GetBackupJob(ctx context.Context, tenant string
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v V1alpha1BackupJob
+			var v V1alpha1RestoreJob
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -294,39 +293,29 @@ func (a *BackupJobTagApiService) GetBackupJob(ctx context.Context, tenant string
 }
 
 /*
-BackupJobTagApiService List backupjobs of a tenant, or under a backup plan
+RestoreJobTagApiService List all restorejobs of a tenant
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param tenant tenant id
- * @param optional nil or *BackupJobTagApiListBackupJobsOpts - Optional Parameters:
-     * @param "PlanName" (optional.String) -  backup plan name
 
-@return V1alpha1BackupJobList
+@return V1alpha1RestoreJobList
 */
-
-type BackupJobTagApiListBackupJobsOpts struct { 
-	PlanName optional.String
-}
-
-func (a *BackupJobTagApiService) ListBackupJobs(ctx context.Context, tenant string, localVarOptionals *BackupJobTagApiListBackupJobsOpts) (V1alpha1BackupJobList, *http.Response, error) {
+func (a *RestoreJobTagApiService) ListRestoreJobs(ctx context.Context, tenant string) (V1alpha1RestoreJobList, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue V1alpha1BackupJobList
+		localVarReturnValue V1alpha1RestoreJobList
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs"
+	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restorejobs"
 	localVarPath = strings.Replace(localVarPath, "{"+"tenant"+"}", fmt.Sprintf("%v", tenant), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.PlanName.IsSet() {
-		localVarQueryParams.Add("plan_name", parameterToString(localVarOptionals.PlanName.Value(), ""))
-	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 
@@ -373,7 +362,7 @@ func (a *BackupJobTagApiService) ListBackupJobs(ctx context.Context, tenant stri
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v V1alpha1BackupJobList
+			var v V1alpha1RestoreJobList
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -390,27 +379,27 @@ func (a *BackupJobTagApiService) ListBackupJobs(ctx context.Context, tenant stri
 }
 
 /*
-BackupJobTagApiService Update a backupjob for a tenant.
+RestoreJobTagApiService Update a restorejob for a tenant.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param tenant tenant id
- * @param backupjob backupjob name
+ * @param restorejob restorejob name
  * @param body
 
-@return V1alpha1BackupJob
+@return V1alpha1RestoreJob
 */
-func (a *BackupJobTagApiService) UpdateBackupJob(ctx context.Context, tenant string, backupjob string, body V1alpha1BackupJob) (V1alpha1BackupJob, *http.Response, error) {
+func (a *RestoreJobTagApiService) UpdateRestoreJob(ctx context.Context, tenant string, restorejob string, body V1alpha1RestoreJob) (V1alpha1RestoreJob, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue V1alpha1BackupJob
+		localVarReturnValue V1alpha1RestoreJob
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs/{backupjob}"
+	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restorejobs/{restorejob}"
 	localVarPath = strings.Replace(localVarPath, "{"+"tenant"+"}", fmt.Sprintf("%v", tenant), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"backupjob"+"}", fmt.Sprintf("%v", backupjob), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"restorejob"+"}", fmt.Sprintf("%v", restorejob), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -464,7 +453,7 @@ func (a *BackupJobTagApiService) UpdateBackupJob(ctx context.Context, tenant str
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v V1alpha1BackupJob
+			var v V1alpha1RestoreJob
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()

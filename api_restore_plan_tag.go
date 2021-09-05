@@ -18,7 +18,6 @@ import (
 	"net/url"
 	"strings"
 	"fmt"
-	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -26,27 +25,27 @@ var (
 	_ context.Context
 )
 
-type BackupJobTagApiService service
+type RestorePlanTagApiService service
 
 /*
-BackupJobTagApiService Create a backupjob for a tenant.
+RestorePlanTagApiService Create a restoreplan.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param tenant tenant id
  * @param body
 
-@return V1alpha1BackupJob
+@return V1alpha1RestorePlan
 */
-func (a *BackupJobTagApiService) CreateBackupJob(ctx context.Context, tenant string, body V1alpha1BackupJob) (V1alpha1BackupJob, *http.Response, error) {
+func (a *RestorePlanTagApiService) CreateRestorePlan(ctx context.Context, tenant string, body V1alpha1RestorePlan) (V1alpha1RestorePlan, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue V1alpha1BackupJob
+		localVarReturnValue V1alpha1RestorePlan
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs"
+	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans"
 	localVarPath = strings.Replace(localVarPath, "{"+"tenant"+"}", fmt.Sprintf("%v", tenant), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -101,7 +100,7 @@ func (a *BackupJobTagApiService) CreateBackupJob(ctx context.Context, tenant str
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v V1alpha1BackupJob
+			var v V1alpha1RestorePlan
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -118,14 +117,14 @@ func (a *BackupJobTagApiService) CreateBackupJob(ctx context.Context, tenant str
 }
 
 /*
-BackupJobTagApiService Delete a backupjob for a tenant.
+RestorePlanTagApiService Delete a restoreplan.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param tenant tenant id
- * @param backupjob backupjob name
+ * @param restoreplan restoreplan name
 
 @return YsapiError
 */
-func (a *BackupJobTagApiService) DeleteBackupJob(ctx context.Context, tenant string, backupjob string) (YsapiError, *http.Response, error) {
+func (a *RestorePlanTagApiService) DeleteRestorePlan(ctx context.Context, tenant string, restoreplan string) (YsapiError, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
@@ -135,9 +134,9 @@ func (a *BackupJobTagApiService) DeleteBackupJob(ctx context.Context, tenant str
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs/{backupjob}"
+	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans/{restoreplan}"
 	localVarPath = strings.Replace(localVarPath, "{"+"tenant"+"}", fmt.Sprintf("%v", tenant), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"backupjob"+"}", fmt.Sprintf("%v", backupjob), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"restoreplan"+"}", fmt.Sprintf("%v", restoreplan), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -206,26 +205,26 @@ func (a *BackupJobTagApiService) DeleteBackupJob(ctx context.Context, tenant str
 }
 
 /*
-BackupJobTagApiService Retrieve backupjob details.
+RestorePlanTagApiService Retrieve restoreplan details.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param tenant tenant id
- * @param backupjob backupjob name
+ * @param restoreplan restoreplan name
 
-@return V1alpha1BackupJob
+@return V1alpha1RestorePlan
 */
-func (a *BackupJobTagApiService) GetBackupJob(ctx context.Context, tenant string, backupjob string) (V1alpha1BackupJob, *http.Response, error) {
+func (a *RestorePlanTagApiService) GetRestorePlan(ctx context.Context, tenant string, restoreplan string) (V1alpha1RestorePlan, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue V1alpha1BackupJob
+		localVarReturnValue V1alpha1RestorePlan
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs/{backupjob}"
+	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans/{restoreplan}"
 	localVarPath = strings.Replace(localVarPath, "{"+"tenant"+"}", fmt.Sprintf("%v", tenant), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"backupjob"+"}", fmt.Sprintf("%v", backupjob), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"restoreplan"+"}", fmt.Sprintf("%v", restoreplan), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -277,7 +276,7 @@ func (a *BackupJobTagApiService) GetBackupJob(ctx context.Context, tenant string
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v V1alpha1BackupJob
+			var v V1alpha1RestorePlan
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -294,39 +293,29 @@ func (a *BackupJobTagApiService) GetBackupJob(ctx context.Context, tenant string
 }
 
 /*
-BackupJobTagApiService List backupjobs of a tenant, or under a backup plan
+RestorePlanTagApiService List all restoreplans of a tenant
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param tenant tenant id
- * @param optional nil or *BackupJobTagApiListBackupJobsOpts - Optional Parameters:
-     * @param "PlanName" (optional.String) -  backup plan name
 
-@return V1alpha1BackupJobList
+@return V1alpha1RestorePlanList
 */
-
-type BackupJobTagApiListBackupJobsOpts struct { 
-	PlanName optional.String
-}
-
-func (a *BackupJobTagApiService) ListBackupJobs(ctx context.Context, tenant string, localVarOptionals *BackupJobTagApiListBackupJobsOpts) (V1alpha1BackupJobList, *http.Response, error) {
+func (a *RestorePlanTagApiService) ListRestorePlans(ctx context.Context, tenant string) (V1alpha1RestorePlanList, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue V1alpha1BackupJobList
+		localVarReturnValue V1alpha1RestorePlanList
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs"
+	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans"
 	localVarPath = strings.Replace(localVarPath, "{"+"tenant"+"}", fmt.Sprintf("%v", tenant), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.PlanName.IsSet() {
-		localVarQueryParams.Add("plan_name", parameterToString(localVarOptionals.PlanName.Value(), ""))
-	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 
@@ -373,7 +362,7 @@ func (a *BackupJobTagApiService) ListBackupJobs(ctx context.Context, tenant stri
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v V1alpha1BackupJobList
+			var v V1alpha1RestorePlanList
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -390,27 +379,26 @@ func (a *BackupJobTagApiService) ListBackupJobs(ctx context.Context, tenant stri
 }
 
 /*
-BackupJobTagApiService Update a backupjob for a tenant.
+RestorePlanTagApiService Update restoreplan details.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param tenant tenant id
- * @param backupjob backupjob name
- * @param body
+ * @param restoreplan restoreplan name
 
-@return V1alpha1BackupJob
+@return V1alpha1RestorePlan
 */
-func (a *BackupJobTagApiService) UpdateBackupJob(ctx context.Context, tenant string, backupjob string, body V1alpha1BackupJob) (V1alpha1BackupJob, *http.Response, error) {
+func (a *RestorePlanTagApiService) UpdateRestorePlan(ctx context.Context, tenant string, restoreplan string) (V1alpha1RestorePlan, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue V1alpha1BackupJob
+		localVarReturnValue V1alpha1RestorePlan
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupjobs/{backupjob}"
+	localVarPath := a.client.cfg.BasePath + "/jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans/{restoreplan}"
 	localVarPath = strings.Replace(localVarPath, "{"+"tenant"+"}", fmt.Sprintf("%v", tenant), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"backupjob"+"}", fmt.Sprintf("%v", backupjob), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"restoreplan"+"}", fmt.Sprintf("%v", restoreplan), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -433,8 +421,6 @@ func (a *BackupJobTagApiService) UpdateBackupJob(ctx context.Context, tenant str
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	// body params
-	localVarPostBody = &body
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -464,7 +450,7 @@ func (a *BackupJobTagApiService) UpdateBackupJob(ctx context.Context, tenant str
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v V1alpha1BackupJob
+			var v V1alpha1RestorePlan
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()

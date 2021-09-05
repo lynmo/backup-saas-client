@@ -2,11 +2,13 @@ package sample
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"log"
 	"net/http"
 	"testing"
 
+	"github.com/antihax/optional"
 	yscli "github.com/jibutech/backup-saas-client"
 )
 
@@ -37,17 +39,20 @@ func TestBackupjob(t *testing.T) {
 }
 
 func listBackupJobs(cli *yscli.APIClient, t *testing.T) {
-	bpList, resp, err := cli.BackupJobTagApi.ListBackupJobs(context.TODO(), tenantID)
+	bpList, _, err := cli.BackupJobTagApi.ListBackupJobs(context.TODO(), tenantID, &yscli.BackupJobTagApiListBackupJobsOpts{PlanName: optional.NewString(backupPlanName)})
 	if err != nil {
-		if se, ok := err.(yscli.GenericSwaggerError); ok && se.Model() != nil {
-			if ye, ok := se.Model().(yscli.YsapiError); ok {
-				fmt.Println(ye.Code)
-				fmt.Println(ye.Message)
+		var ye yscli.Error
+		if errors.As(err, &ye) {
+			if ye.StatusCode() == http.StatusNotFound {
+				fmt.Println("not found")
+			} else {
+				fmt.Println(ye.Code())
+				fmt.Println(ye.Message())
+				fmt.Println(ye.OrigError())
 			}
-		} else if resp != nil && resp.StatusCode == http.StatusNotFound {
-			t.Log("not found")
 		}
 		t.Error("failed to list backupjobs", err)
+		return
 	}
 	log.Println("list of backupjobs:")
 	for _, t := range bpList.Items {

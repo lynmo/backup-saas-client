@@ -3,7 +3,6 @@ package sample
 import (
 	"context"
 	"errors"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os/user"
@@ -55,6 +54,12 @@ func TestRestAPIs(t *testing.T) {
 	testTenant, _, err = cli.TenantApi.CreateTenant(context.TODO(), testTenant)
 	if err != nil {
 		t.Error("failed to create tenant", err)
+		var ye yscli.Error
+		if errors.As(err, &ye) {
+			t.Log(ye.Code())
+			t.Log(ye.Message())
+			t.Log(ye.OrigError())
+		}
 	}
 
 	t.Log("creating cluster", clusterName)
@@ -83,9 +88,9 @@ func TestRestAPIs(t *testing.T) {
 		t.Error("failed to create cluster", err)
 		var ye yscli.Error
 		if errors.As(err, &ye) {
-			fmt.Println(ye.Code())
-			fmt.Println(ye.Message())
-			fmt.Println(ye.Errs())
+			t.Log(ye.Code())
+			t.Log(ye.Message())
+			t.Log(ye.OrigError())
 		}
 	}
 
