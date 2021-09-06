@@ -53,11 +53,11 @@ Class | Method | HTTP request | Description
 *StorageApi* | [**DeleteStorage**](docs/StorageApi.md#deletestorage) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages/{storage} | Delete a storage.
 *StorageApi* | [**GetStorage**](docs/StorageApi.md#getstorage) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages/{storage} | Retrieve storage details.
 *StorageApi* | [**ListStorages**](docs/StorageApi.md#liststorages) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages | List all storages of a tenant.
+*StorageApi* | [**UpdateStorage**](docs/StorageApi.md#updatestorage) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages/{storage} | Update a storage
 *TenantApi* | [**CreateTenant**](docs/TenantApi.md#createtenant) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants | Create a tenant.
 *TenantApi* | [**DeleteTenant**](docs/TenantApi.md#deletetenant) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant} | Delete a tenant.
 *TenantApi* | [**GetTenant**](docs/TenantApi.md#gettenant) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant} | Retrieve tenant details.
 *TenantApi* | [**ListTenants**](docs/TenantApi.md#listtenants) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants | List all tenants
-*TenantApi* | [**UpdateStorage**](docs/TenantApi.md#updatestorage) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages/{storage} | Update a storage
 *TenantApi* | [**UpdateTenant**](docs/TenantApi.md#updatetenant) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant} | Update a tenant
 
 

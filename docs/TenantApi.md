@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**DeleteTenant**](TenantApi.md#DeleteTenant) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant} | Delete a tenant.
 [**GetTenant**](TenantApi.md#GetTenant) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant} | Retrieve tenant details.
 [**ListTenants**](TenantApi.md#ListTenants) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants | List all tenants
-[**UpdateStorage**](TenantApi.md#UpdateStorage) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages/{storage} | Update a storage
 [**UpdateTenant**](TenantApi.md#UpdateTenant) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant} | Update a tenant
 
 
@@ -100,34 +99,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**V1alpha1TenantList**](v1alpha1.TenantList.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **UpdateStorage**
-> V1alpha1Tenant UpdateStorage(ctx, tenant, storage, body)
-Update a storage
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **tenant** | **string**| tenant id | 
-  **storage** | **string**| storage name | 
-  **body** | [**V1alpha1Tenant**](V1alpha1Tenant.md)|  | 
-
-### Return type
-
-[**V1alpha1Tenant**](v1alpha1.Tenant.md)
 
 ### Authorization
 

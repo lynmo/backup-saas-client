@@ -838,7 +838,7 @@ paths:
             $ref: "#/definitions/v1alpha1.Storage"
     put:
       tags:
-      - "Tenant"
+      - "Storage"
       summary: "Update a storage"
       operationId: "UpdateStorage"
       produces:
@@ -860,7 +860,7 @@ paths:
         name: "body"
         required: true
         schema:
-          $ref: "#/definitions/v1alpha1.Tenant"
+          $ref: "#/definitions/v1alpha1.Storage"
         x-exportParamName: "Body"
       responses:
         "200":
