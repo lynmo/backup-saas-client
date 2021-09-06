@@ -54,7 +54,7 @@ spec:
             description: BackupJobStatus defines the observed state of BackupJob
             properties:
               conditions:
-                description: Conditions describes the detailed state of cluster
+                description: Conditions describes the detailed state of BackupJob
                 items:
                   description: Condition represents the state of the operator's reconciliation functionality.
                   properties:
@@ -79,7 +79,7 @@ spec:
                   type: object
                 type: array
               phase:
-                description: Phase describes the overall status of Cluster
+                description: Phase describes the overall status of BackupJob
                 type: string
             type: object
         type: object
@@ -184,7 +184,7 @@ spec:
             description: BackupPlanStatus defines the observed state of BackupPlan
             properties:
               conditions:
-                description: Conditions describes the detailed state of cluster
+                description: Conditions describes the detailed state of backup plan
                 items:
                   description: Condition represents the state of the operator's reconciliation functionality.
                   properties:
@@ -209,7 +209,7 @@ spec:
                   type: object
                 type: array
               phase:
-                description: Phase describes the overall status of Cluster
+                description: Phase describes the overall status of backup plan
                 type: string
             type: object
         type: object
@@ -365,6 +365,199 @@ spec:
                 type: string
               version:
                 description: Version reflects the k8s version of cluster
+                type: string
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.4.1
+  creationTimestamp: null
+  name: restorejobs.ys.jibudata.com
+spec:
+  group: ys.jibudata.com
+  names:
+    kind: RestoreJob
+    listKind: RestoreJobList
+    plural: restorejobs
+    singular: restorejob
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: RestoreJob is the Schema for the restorejobs API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: RestoreJobSpec defines the desired state of RestoreJob
+            properties:
+              action:
+                description: Action of restore job, { start, cancel }
+                type: string
+              backupJobName:
+                description: Name of backupjob
+                type: string
+              restoreName:
+                description: RestorePlan Name
+                type: string
+              tenant:
+                description: Unique name of tenant
+                type: string
+            required:
+            - backupJobName
+            - restoreName
+            - tenant
+            type: object
+          status:
+            description: RestoreJobStatus defines the observed state of RestoreJob
+            properties:
+              conditions:
+                description: Conditions describes the detailed state of RestoreJob
+                items:
+                  description: Condition represents the state of the operator's reconciliation functionality.
+                  properties:
+                    lastHeartbeatTime:
+                      format: date-time
+                      type: string
+                    lastTransitionTime:
+                      format: date-time
+                      type: string
+                    message:
+                      type: string
+                    reason:
+                      type: string
+                    status:
+                      type: string
+                    type:
+                      description: ConditionType is the state of the operator's reconciliation functionality.
+                      type: string
+                  required:
+                  - status
+                  - type
+                  type: object
+                type: array
+              phase:
+                description: Phase describes the overall status of RestoreJob
+                type: string
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.4.1
+  creationTimestamp: null
+  name: restoreplans.ys.jibudata.com
+spec:
+  group: ys.jibudata.com
+  names:
+    kind: RestorePlan
+    listKind: RestorePlanList
+    plural: restoreplans
+    singular: restoreplan
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: RestorePlan is the Schema for the restoreplans API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: RestorePlanSpec defines the desired state of RestorePlan
+            properties:
+              backupName:
+                description: Backup Plan Name
+                type: string
+              destClusterName:
+                description: Destination cluster name
+                type: string
+              excludeResources:
+                description: Excluded resources, default empty means do not exclude any resources
+                items:
+                  type: string
+                type: array
+              namespaceMappings:
+                description: 'Namespace mappings, in k:v pairs, e.g., "A: B" means original backup namepsace is A, restore to namespace B'
+                items:
+                  type: string
+                type: array
+              tenant:
+                description: Unique name of tenant
+                type: string
+            required:
+            - backupName
+            - destClusterName
+            - tenant
+            type: object
+          status:
+            description: RestorePlanStatus defines the observed state of RestorePlan
+            properties:
+              conditions:
+                description: Conditions describes the detailed state of restore plan
+                items:
+                  description: Condition represents the state of the operator's reconciliation functionality.
+                  properties:
+                    lastHeartbeatTime:
+                      format: date-time
+                      type: string
+                    lastTransitionTime:
+                      format: date-time
+                      type: string
+                    message:
+                      type: string
+                    reason:
+                      type: string
+                    status:
+                      type: string
+                    type:
+                      description: ConditionType is the state of the operator's reconciliation functionality.
+                      type: string
+                  required:
+                  - status
+                  - type
+                  type: object
+                type: array
+              phase:
+                description: Phase describes the overall status of restore plan
                 type: string
             type: object
         type: object
@@ -756,6 +949,60 @@ rules:
   - get
   - patch
   - update
+- apiGroups:
+  - ys.jibudata.com
+  resources:
+  - restorejobs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ys.jibudata.com
+  resources:
+  - restorejobs/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - ys.jibudata.com
+  resources:
+  - restorejobs/status
+  verbs:
+  - get
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ys.jibudata.com
+  resources:
+  - restoreplans
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ys.jibudata.com
+  resources:
+  - restoreplans/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - ys.jibudata.com
+  resources:
+  - restoreplans/status
+  verbs:
+  - get
+  - patch
+  - update
+  - watch
 - apiGroups:
   - ys.jibudata.com
   resources:
