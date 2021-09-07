@@ -13,7 +13,7 @@ import (
 func TestListNamespaces(t *testing.T) {
 	cfg := yscli.NewConfiguration()
 	cli := yscli.NewAPIClient(cfg)
-	cli.ChangeBasePath("http://127.0.0.1:31800")
+	cli.ChangeBasePath(apiEndpoint)
 	nsList, _, err := cli.ClusterApi.GetNamespaces(context.TODO(), tenantID, clusterName)
 	if err != nil {
 		var ye yscli.Error

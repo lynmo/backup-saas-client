@@ -13,15 +13,18 @@ import (
 )
 
 func TestBackupjob(t *testing.T) {
+	var ye yscli.Error
 	cfg := yscli.NewConfiguration()
 	cli := yscli.NewAPIClient(cfg)
 	cli.ChangeBasePath("http://127.0.0.1:31800")
 
 	listBackupJobs(cli, t)
 
-	_, resp, err := cli.BackupJobTagApi.DeleteBackupJob(context.TODO(), tenantID, backupJobName)
-	if err != nil && (resp == nil || resp.StatusCode != 404) {
-		t.Error("failed to delete backupjob", err)
+	_, _, err := cli.BackupJobTagApi.DeleteBackupJob(context.TODO(), tenantID, backupJobName)
+	if err != nil {
+		if !errors.As(err, &ye) || ye.StatusCode() != http.StatusNotFound {
+			t.Error("failed to delete backupjob", err)
+		}
 	}
 
 	testBackupJob := yscli.V1alpha1BackupJob{
@@ -34,7 +37,14 @@ func TestBackupjob(t *testing.T) {
 	}
 	_, _, err = cli.BackupJobTagApi.CreateBackupJob(context.TODO(), tenantID, testBackupJob)
 	if err != nil {
-		t.Error("failed to create backupplan", err)
+		var ye yscli.Error
+		if errors.As(err, &ye) {
+			fmt.Println(ye.Code())
+			fmt.Println(ye.Message())
+			fmt.Println(ye.OrigError())
+		}
+		t.Error("failed to create backupjob", err)
+		return
 	}
 }
 
