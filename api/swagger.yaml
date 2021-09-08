@@ -866,7 +866,7 @@ paths:
         "200":
           description: "ok"
           schema:
-            $ref: "#/definitions/v1alpha1.Tenant"
+            $ref: "#/definitions/v1alpha1.Storage"
     delete:
       tags:
       - "Storage"

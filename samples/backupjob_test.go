@@ -16,7 +16,7 @@ func TestBackupjob(t *testing.T) {
 	var ye yscli.Error
 	cfg := yscli.NewConfiguration()
 	cli := yscli.NewAPIClient(cfg)
-	cli.ChangeBasePath("http://127.0.0.1:31800")
+	cli.ChangeBasePath(apiEndpoint)
 
 	listBackupJobs(cli, t)
 

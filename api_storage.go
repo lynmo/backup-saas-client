@@ -476,15 +476,15 @@ StorageApiService Update a storage
  * @param storage storage name
  * @param body
 
-@return V1alpha1Tenant
+@return V1alpha1Storage
 */
-func (a *StorageApiService) UpdateStorage(ctx context.Context, tenant string, storage string, body V1alpha1Storage) (V1alpha1Tenant, *http.Response, error) {
+func (a *StorageApiService) UpdateStorage(ctx context.Context, tenant string, storage string, body V1alpha1Storage) (V1alpha1Storage, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue V1alpha1Tenant
+		localVarReturnValue V1alpha1Storage
 	)
 
 	// create path and map variables
@@ -544,7 +544,7 @@ func (a *StorageApiService) UpdateStorage(ctx context.Context, tenant string, st
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v V1alpha1Tenant
+			var v V1alpha1Storage
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()

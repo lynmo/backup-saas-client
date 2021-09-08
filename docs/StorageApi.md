@@ -148,7 +148,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateStorage**
-> V1alpha1Tenant UpdateStorage(ctx, tenant, storage, body)
+> V1alpha1Storage UpdateStorage(ctx, tenant, storage, body)
 Update a storage
 
 ### Required Parameters
@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**V1alpha1Tenant**](v1alpha1.Tenant.md)
+[**V1alpha1Storage**](v1alpha1.Storage.md)
 
 ### Authorization
 
