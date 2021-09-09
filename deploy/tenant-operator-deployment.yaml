@@ -587,14 +587,14 @@ spec:
         - name: QIMING_OPERATOR_REGISTRY
           value: jibutech
         - name: QIMING_OPERATOR_VERSION
-          value: main-latest
+          value: main.ee89515
         - name: QIMING_CONTROLLER_VERSION
-          value: main-latest
+          value: main.96a87e4
         - name: VELERO_VERSION
-          value: v1.5.3
+          value: v1.6.3
         - name: VELERO_INSTALLER_VERSION
-          value: main-latest
-        image: jibutech/tenant-operator:main-latest
+          value: main.ee89515
+        image: jibutech/tenant-operator:main.3ed015d
         imagePullPolicy: Always
         name: manager
         resources:
