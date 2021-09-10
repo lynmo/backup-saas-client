@@ -285,7 +285,7 @@ rules:
 - apiGroups:
   - rbac.authorization.k8s.io
   resources:
-  - clusterrolebinding
+  - clusterrolebindings
   - clusterroles
   verbs:
   - create
@@ -504,6 +504,19 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
+  name: jibu-tenant-operator-admin-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: jibu-tenant-operator
+  namespace: backup-saas-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
   name: jibu-tenant-operator-proxy-rolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -589,12 +602,12 @@ spec:
         - name: QIMING_OPERATOR_VERSION
           value: main.ee89515
         - name: QIMING_CONTROLLER_VERSION
-          value: main.96a87e4
+          value: main.22d9740
         - name: VELERO_VERSION
           value: v1.6.3
         - name: VELERO_INSTALLER_VERSION
           value: main.ee89515
-        image: jibutech/tenant-operator:main.3ed015d
+        image: jibutech/tenant-operator:main.9c33501
         imagePullPolicy: Always
         name: manager
         resources:
