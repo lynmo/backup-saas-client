@@ -13,6 +13,9 @@ package swagger
 type V1alpha1RestoreJobSpec struct {
 	Action string `json:"action,omitempty"`
 	BackupJobName string `json:"backupJobName"`
+	Desc string `json:"desc,omitempty"`
+	DisplayName string `json:"displayName,omitempty"`
 	RestoreName string `json:"restoreName"`
+	RestorePlanRef *V1alpha1RestorePlanSpec `json:"restorePlanRef,omitempty"`
 	Tenant string `json:"tenant"`
 }

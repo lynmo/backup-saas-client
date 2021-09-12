@@ -1660,9 +1660,52 @@ definitions:
       apiVersion: "apiVersion"
       kind: "kind"
       spec:
+        backupPlanRef:
+          excludePV: true
+          storageRef:
+            isDefaultStorage: true
+            volumeSnapshotProvider: "volumeSnapshotProvider"
+            displayName: "displayName"
+            s3Config:
+              accessKeyId: "accessKeyId"
+              bucket: "bucket"
+              secretAccessKey: "secretAccessKey"
+              s3url: "s3url"
+              insecure: true
+              credsSecretName: "credsSecretName"
+              region: "region"
+            volumeSnapshotConfig:
+              credsSecretName: "credsSecretName"
+              region: "region"
+            tenant: "tenant"
+            desc: "desc"
+            s3Provider: "s3Provider"
+          excludedResources:
+          - "excludedResources"
+          - "excludedResources"
+          copyMethod: "copyMethod"
+          clusterName: "clusterName"
+          includedResources:
+          - "includedResources"
+          - "includedResources"
+          tenant: "tenant"
+          desc: "desc"
+          namespaces:
+          - "namespaces"
+          - "namespaces"
+          policy:
+            displayName: "displayName"
+            repeat: true
+            name: "name"
+            retention: 6
+            desc: "desc"
+            frequency: 0
+          storageName: "storageName"
+        displayName: "displayName"
         action: "action"
         backupName: "backupName"
         tenant: "tenant"
+        desc: "desc"
       status:
         phase: "phase"
         conditions:
@@ -1755,9 +1798,52 @@ definitions:
         apiVersion: "apiVersion"
         kind: "kind"
         spec:
+          backupPlanRef:
+            excludePV: true
+            storageRef:
+              isDefaultStorage: true
+              volumeSnapshotProvider: "volumeSnapshotProvider"
+              displayName: "displayName"
+              s3Config:
+                accessKeyId: "accessKeyId"
+                bucket: "bucket"
+                secretAccessKey: "secretAccessKey"
+                s3url: "s3url"
+                insecure: true
+                credsSecretName: "credsSecretName"
+                region: "region"
+              volumeSnapshotConfig:
+                credsSecretName: "credsSecretName"
+                region: "region"
+              tenant: "tenant"
+              desc: "desc"
+              s3Provider: "s3Provider"
+            excludedResources:
+            - "excludedResources"
+            - "excludedResources"
+            copyMethod: "copyMethod"
+            clusterName: "clusterName"
+            includedResources:
+            - "includedResources"
+            - "includedResources"
+            tenant: "tenant"
+            desc: "desc"
+            namespaces:
+            - "namespaces"
+            - "namespaces"
+            policy:
+              displayName: "displayName"
+              repeat: true
+              name: "name"
+              retention: 6
+              desc: "desc"
+              frequency: 0
+            storageName: "storageName"
+          displayName: "displayName"
           action: "action"
           backupName: "backupName"
           tenant: "tenant"
+          desc: "desc"
         status:
           phase: "phase"
           conditions:
@@ -1821,9 +1907,52 @@ definitions:
         apiVersion: "apiVersion"
         kind: "kind"
         spec:
+          backupPlanRef:
+            excludePV: true
+            storageRef:
+              isDefaultStorage: true
+              volumeSnapshotProvider: "volumeSnapshotProvider"
+              displayName: "displayName"
+              s3Config:
+                accessKeyId: "accessKeyId"
+                bucket: "bucket"
+                secretAccessKey: "secretAccessKey"
+                s3url: "s3url"
+                insecure: true
+                credsSecretName: "credsSecretName"
+                region: "region"
+              volumeSnapshotConfig:
+                credsSecretName: "credsSecretName"
+                region: "region"
+              tenant: "tenant"
+              desc: "desc"
+              s3Provider: "s3Provider"
+            excludedResources:
+            - "excludedResources"
+            - "excludedResources"
+            copyMethod: "copyMethod"
+            clusterName: "clusterName"
+            includedResources:
+            - "includedResources"
+            - "includedResources"
+            tenant: "tenant"
+            desc: "desc"
+            namespaces:
+            - "namespaces"
+            - "namespaces"
+            policy:
+              displayName: "displayName"
+              repeat: true
+              name: "name"
+              retention: 6
+              desc: "desc"
+              frequency: 0
+            storageName: "storageName"
+          displayName: "displayName"
           action: "action"
           backupName: "backupName"
           tenant: "tenant"
+          desc: "desc"
         status:
           phase: "phase"
           conditions:
@@ -1848,12 +1977,61 @@ definitions:
         type: "string"
       backupName:
         type: "string"
+      backupPlanRef:
+        $ref: "#/definitions/v1alpha1.BackupPlanSpec"
+      desc:
+        type: "string"
+      displayName:
+        type: "string"
       tenant:
         type: "string"
     example:
+      backupPlanRef:
+        excludePV: true
+        storageRef:
+          isDefaultStorage: true
+          volumeSnapshotProvider: "volumeSnapshotProvider"
+          displayName: "displayName"
+          s3Config:
+            accessKeyId: "accessKeyId"
+            bucket: "bucket"
+            secretAccessKey: "secretAccessKey"
+            s3url: "s3url"
+            insecure: true
+            credsSecretName: "credsSecretName"
+            region: "region"
+          volumeSnapshotConfig:
+            credsSecretName: "credsSecretName"
+            region: "region"
+          tenant: "tenant"
+          desc: "desc"
+          s3Provider: "s3Provider"
+        excludedResources:
+        - "excludedResources"
+        - "excludedResources"
+        copyMethod: "copyMethod"
+        clusterName: "clusterName"
+        includedResources:
+        - "includedResources"
+        - "includedResources"
+        tenant: "tenant"
+        desc: "desc"
+        namespaces:
+        - "namespaces"
+        - "namespaces"
+        policy:
+          displayName: "displayName"
+          repeat: true
+          name: "name"
+          retention: 6
+          desc: "desc"
+          frequency: 0
+        storageName: "storageName"
+      displayName: "displayName"
       action: "action"
       backupName: "backupName"
       tenant: "tenant"
+      desc: "desc"
   v1alpha1.BackupJobStatus:
     properties:
       conditions:
@@ -1945,6 +2123,24 @@ definitions:
       kind: "kind"
       spec:
         excludePV: true
+        storageRef:
+          isDefaultStorage: true
+          volumeSnapshotProvider: "volumeSnapshotProvider"
+          displayName: "displayName"
+          s3Config:
+            accessKeyId: "accessKeyId"
+            bucket: "bucket"
+            secretAccessKey: "secretAccessKey"
+            s3url: "s3url"
+            insecure: true
+            credsSecretName: "credsSecretName"
+            region: "region"
+          volumeSnapshotConfig:
+            credsSecretName: "credsSecretName"
+            region: "region"
+          tenant: "tenant"
+          desc: "desc"
+          s3Provider: "s3Provider"
         excludedResources:
         - "excludedResources"
         - "excludedResources"
@@ -1959,9 +2155,11 @@ definitions:
         - "namespaces"
         - "namespaces"
         policy:
+          displayName: "displayName"
           repeat: true
           name: "name"
           retention: 6
+          desc: "desc"
           frequency: 0
         storageName: "storageName"
       status:
@@ -2057,6 +2255,24 @@ definitions:
         kind: "kind"
         spec:
           excludePV: true
+          storageRef:
+            isDefaultStorage: true
+            volumeSnapshotProvider: "volumeSnapshotProvider"
+            displayName: "displayName"
+            s3Config:
+              accessKeyId: "accessKeyId"
+              bucket: "bucket"
+              secretAccessKey: "secretAccessKey"
+              s3url: "s3url"
+              insecure: true
+              credsSecretName: "credsSecretName"
+              region: "region"
+            volumeSnapshotConfig:
+              credsSecretName: "credsSecretName"
+              region: "region"
+            tenant: "tenant"
+            desc: "desc"
+            s3Provider: "s3Provider"
           excludedResources:
           - "excludedResources"
           - "excludedResources"
@@ -2071,9 +2287,11 @@ definitions:
           - "namespaces"
           - "namespaces"
           policy:
+            displayName: "displayName"
             repeat: true
             name: "name"
             retention: 6
+            desc: "desc"
             frequency: 0
           storageName: "storageName"
         status:
@@ -2140,6 +2358,24 @@ definitions:
         kind: "kind"
         spec:
           excludePV: true
+          storageRef:
+            isDefaultStorage: true
+            volumeSnapshotProvider: "volumeSnapshotProvider"
+            displayName: "displayName"
+            s3Config:
+              accessKeyId: "accessKeyId"
+              bucket: "bucket"
+              secretAccessKey: "secretAccessKey"
+              s3url: "s3url"
+              insecure: true
+              credsSecretName: "credsSecretName"
+              region: "region"
+            volumeSnapshotConfig:
+              credsSecretName: "credsSecretName"
+              region: "region"
+            tenant: "tenant"
+            desc: "desc"
+            s3Provider: "s3Provider"
           excludedResources:
           - "excludedResources"
           - "excludedResources"
@@ -2154,9 +2390,11 @@ definitions:
           - "namespaces"
           - "namespaces"
           policy:
+            displayName: "displayName"
             repeat: true
             name: "name"
             retention: 6
+            desc: "desc"
             frequency: 0
           storageName: "storageName"
         status:
@@ -2204,10 +2442,30 @@ definitions:
         $ref: "#/definitions/v1alpha1.BackupPolicy"
       storageName:
         type: "string"
+      storageRef:
+        $ref: "#/definitions/v1alpha1.StorageSpec"
       tenant:
         type: "string"
     example:
       excludePV: true
+      storageRef:
+        isDefaultStorage: true
+        volumeSnapshotProvider: "volumeSnapshotProvider"
+        displayName: "displayName"
+        s3Config:
+          accessKeyId: "accessKeyId"
+          bucket: "bucket"
+          secretAccessKey: "secretAccessKey"
+          s3url: "s3url"
+          insecure: true
+          credsSecretName: "credsSecretName"
+          region: "region"
+        volumeSnapshotConfig:
+          credsSecretName: "credsSecretName"
+          region: "region"
+        tenant: "tenant"
+        desc: "desc"
+        s3Provider: "s3Provider"
       excludedResources:
       - "excludedResources"
       - "excludedResources"
@@ -2222,9 +2480,11 @@ definitions:
       - "namespaces"
       - "namespaces"
       policy:
+        displayName: "displayName"
         repeat: true
         name: "name"
         retention: 6
+        desc: "desc"
         frequency: 0
       storageName: "storageName"
   v1alpha1.BackupPlanStatus:
@@ -2252,6 +2512,10 @@ definitions:
         status: "status"
   v1alpha1.BackupPolicy:
     properties:
+      desc:
+        type: "string"
+      displayName:
+        type: "string"
       frequency:
         type: "integer"
         format: "int32"
@@ -2263,9 +2527,11 @@ definitions:
         type: "integer"
         format: "int32"
     example:
+      displayName: "displayName"
       repeat: true
       name: "name"
       retention: 6
+      desc: "desc"
       frequency: 0
   v1alpha1.BackupS3Config:
     required:
@@ -2378,6 +2644,7 @@ definitions:
           - "accessModes"
         secretName: "secretName"
         role: "role"
+        displayName: "displayName"
         extraParams:
           key: "extraParams"
         serviceAccount: "serviceAccount"
@@ -2506,6 +2773,7 @@ definitions:
             - "accessModes"
           secretName: "secretName"
           role: "role"
+          displayName: "displayName"
           extraParams:
             key: "extraParams"
           serviceAccount: "serviceAccount"
@@ -2605,6 +2873,7 @@ definitions:
             - "accessModes"
           secretName: "secretName"
           role: "role"
+          displayName: "displayName"
           extraParams:
             key: "extraParams"
           serviceAccount: "serviceAccount"
@@ -2649,6 +2918,8 @@ definitions:
       apiEndpoint:
         type: "string"
       desc:
+        type: "string"
+      displayName:
         type: "string"
       excludedNamespaces:
         type: "array"
@@ -2698,6 +2969,7 @@ definitions:
         - "accessModes"
       secretName: "secretName"
       role: "role"
+      displayName: "displayName"
       extraParams:
         key: "extraParams"
       serviceAccount: "serviceAccount"
@@ -2844,9 +3116,64 @@ definitions:
       kind: "kind"
       spec:
         backupJobName: "backupJobName"
+        displayName: "displayName"
         action: "action"
         restoreName: "restoreName"
         tenant: "tenant"
+        desc: "desc"
+        restorePlanRef:
+          namespaceMappings:
+          - "namespaceMappings"
+          - "namespaceMappings"
+          excludedResources:
+          - "excludedResources"
+          - "excludedResources"
+          backupPlanRef:
+            excludePV: true
+            storageRef:
+              isDefaultStorage: true
+              volumeSnapshotProvider: "volumeSnapshotProvider"
+              displayName: "displayName"
+              s3Config:
+                accessKeyId: "accessKeyId"
+                bucket: "bucket"
+                secretAccessKey: "secretAccessKey"
+                s3url: "s3url"
+                insecure: true
+                credsSecretName: "credsSecretName"
+                region: "region"
+              volumeSnapshotConfig:
+                credsSecretName: "credsSecretName"
+                region: "region"
+              tenant: "tenant"
+              desc: "desc"
+              s3Provider: "s3Provider"
+            excludedResources:
+            - "excludedResources"
+            - "excludedResources"
+            copyMethod: "copyMethod"
+            clusterName: "clusterName"
+            includedResources:
+            - "includedResources"
+            - "includedResources"
+            tenant: "tenant"
+            desc: "desc"
+            namespaces:
+            - "namespaces"
+            - "namespaces"
+            policy:
+              displayName: "displayName"
+              repeat: true
+              name: "name"
+              retention: 6
+              desc: "desc"
+              frequency: 0
+            storageName: "storageName"
+          displayName: "displayName"
+          backupName: "backupName"
+          destClusterName: "destClusterName"
+          tenant: "tenant"
+          desc: "desc"
       status:
         phase: "phase"
         conditions:
@@ -2940,9 +3267,64 @@ definitions:
         kind: "kind"
         spec:
           backupJobName: "backupJobName"
+          displayName: "displayName"
           action: "action"
           restoreName: "restoreName"
           tenant: "tenant"
+          desc: "desc"
+          restorePlanRef:
+            namespaceMappings:
+            - "namespaceMappings"
+            - "namespaceMappings"
+            excludedResources:
+            - "excludedResources"
+            - "excludedResources"
+            backupPlanRef:
+              excludePV: true
+              storageRef:
+                isDefaultStorage: true
+                volumeSnapshotProvider: "volumeSnapshotProvider"
+                displayName: "displayName"
+                s3Config:
+                  accessKeyId: "accessKeyId"
+                  bucket: "bucket"
+                  secretAccessKey: "secretAccessKey"
+                  s3url: "s3url"
+                  insecure: true
+                  credsSecretName: "credsSecretName"
+                  region: "region"
+                volumeSnapshotConfig:
+                  credsSecretName: "credsSecretName"
+                  region: "region"
+                tenant: "tenant"
+                desc: "desc"
+                s3Provider: "s3Provider"
+              excludedResources:
+              - "excludedResources"
+              - "excludedResources"
+              copyMethod: "copyMethod"
+              clusterName: "clusterName"
+              includedResources:
+              - "includedResources"
+              - "includedResources"
+              tenant: "tenant"
+              desc: "desc"
+              namespaces:
+              - "namespaces"
+              - "namespaces"
+              policy:
+                displayName: "displayName"
+                repeat: true
+                name: "name"
+                retention: 6
+                desc: "desc"
+                frequency: 0
+              storageName: "storageName"
+            displayName: "displayName"
+            backupName: "backupName"
+            destClusterName: "destClusterName"
+            tenant: "tenant"
+            desc: "desc"
         status:
           phase: "phase"
           conditions:
@@ -3007,9 +3389,64 @@ definitions:
         kind: "kind"
         spec:
           backupJobName: "backupJobName"
+          displayName: "displayName"
           action: "action"
           restoreName: "restoreName"
           tenant: "tenant"
+          desc: "desc"
+          restorePlanRef:
+            namespaceMappings:
+            - "namespaceMappings"
+            - "namespaceMappings"
+            excludedResources:
+            - "excludedResources"
+            - "excludedResources"
+            backupPlanRef:
+              excludePV: true
+              storageRef:
+                isDefaultStorage: true
+                volumeSnapshotProvider: "volumeSnapshotProvider"
+                displayName: "displayName"
+                s3Config:
+                  accessKeyId: "accessKeyId"
+                  bucket: "bucket"
+                  secretAccessKey: "secretAccessKey"
+                  s3url: "s3url"
+                  insecure: true
+                  credsSecretName: "credsSecretName"
+                  region: "region"
+                volumeSnapshotConfig:
+                  credsSecretName: "credsSecretName"
+                  region: "region"
+                tenant: "tenant"
+                desc: "desc"
+                s3Provider: "s3Provider"
+              excludedResources:
+              - "excludedResources"
+              - "excludedResources"
+              copyMethod: "copyMethod"
+              clusterName: "clusterName"
+              includedResources:
+              - "includedResources"
+              - "includedResources"
+              tenant: "tenant"
+              desc: "desc"
+              namespaces:
+              - "namespaces"
+              - "namespaces"
+              policy:
+                displayName: "displayName"
+                repeat: true
+                name: "name"
+                retention: 6
+                desc: "desc"
+                frequency: 0
+              storageName: "storageName"
+            displayName: "displayName"
+            backupName: "backupName"
+            destClusterName: "destClusterName"
+            tenant: "tenant"
+            desc: "desc"
         status:
           phase: "phase"
           conditions:
@@ -3035,15 +3472,76 @@ definitions:
         type: "string"
       backupJobName:
         type: "string"
+      desc:
+        type: "string"
+      displayName:
+        type: "string"
       restoreName:
         type: "string"
+      restorePlanRef:
+        $ref: "#/definitions/v1alpha1.RestorePlanSpec"
       tenant:
         type: "string"
     example:
       backupJobName: "backupJobName"
+      displayName: "displayName"
       action: "action"
       restoreName: "restoreName"
       tenant: "tenant"
+      desc: "desc"
+      restorePlanRef:
+        namespaceMappings:
+        - "namespaceMappings"
+        - "namespaceMappings"
+        excludedResources:
+        - "excludedResources"
+        - "excludedResources"
+        backupPlanRef:
+          excludePV: true
+          storageRef:
+            isDefaultStorage: true
+            volumeSnapshotProvider: "volumeSnapshotProvider"
+            displayName: "displayName"
+            s3Config:
+              accessKeyId: "accessKeyId"
+              bucket: "bucket"
+              secretAccessKey: "secretAccessKey"
+              s3url: "s3url"
+              insecure: true
+              credsSecretName: "credsSecretName"
+              region: "region"
+            volumeSnapshotConfig:
+              credsSecretName: "credsSecretName"
+              region: "region"
+            tenant: "tenant"
+            desc: "desc"
+            s3Provider: "s3Provider"
+          excludedResources:
+          - "excludedResources"
+          - "excludedResources"
+          copyMethod: "copyMethod"
+          clusterName: "clusterName"
+          includedResources:
+          - "includedResources"
+          - "includedResources"
+          tenant: "tenant"
+          desc: "desc"
+          namespaces:
+          - "namespaces"
+          - "namespaces"
+          policy:
+            displayName: "displayName"
+            repeat: true
+            name: "name"
+            retention: 6
+            desc: "desc"
+            frequency: 0
+          storageName: "storageName"
+        displayName: "displayName"
+        backupName: "backupName"
+        destClusterName: "destClusterName"
+        tenant: "tenant"
+        desc: "desc"
   v1alpha1.RestoreJobStatus:
     properties:
       conditions:
@@ -3137,12 +3635,55 @@ definitions:
         namespaceMappings:
         - "namespaceMappings"
         - "namespaceMappings"
-        excludeResources:
-        - "excludeResources"
-        - "excludeResources"
+        excludedResources:
+        - "excludedResources"
+        - "excludedResources"
+        backupPlanRef:
+          excludePV: true
+          storageRef:
+            isDefaultStorage: true
+            volumeSnapshotProvider: "volumeSnapshotProvider"
+            displayName: "displayName"
+            s3Config:
+              accessKeyId: "accessKeyId"
+              bucket: "bucket"
+              secretAccessKey: "secretAccessKey"
+              s3url: "s3url"
+              insecure: true
+              credsSecretName: "credsSecretName"
+              region: "region"
+            volumeSnapshotConfig:
+              credsSecretName: "credsSecretName"
+              region: "region"
+            tenant: "tenant"
+            desc: "desc"
+            s3Provider: "s3Provider"
+          excludedResources:
+          - "excludedResources"
+          - "excludedResources"
+          copyMethod: "copyMethod"
+          clusterName: "clusterName"
+          includedResources:
+          - "includedResources"
+          - "includedResources"
+          tenant: "tenant"
+          desc: "desc"
+          namespaces:
+          - "namespaces"
+          - "namespaces"
+          policy:
+            displayName: "displayName"
+            repeat: true
+            name: "name"
+            retention: 6
+            desc: "desc"
+            frequency: 0
+          storageName: "storageName"
+        displayName: "displayName"
         backupName: "backupName"
         destClusterName: "destClusterName"
         tenant: "tenant"
+        desc: "desc"
       status:
         phase: "phase"
         conditions:
@@ -3238,12 +3779,55 @@ definitions:
           namespaceMappings:
           - "namespaceMappings"
           - "namespaceMappings"
-          excludeResources:
-          - "excludeResources"
-          - "excludeResources"
+          excludedResources:
+          - "excludedResources"
+          - "excludedResources"
+          backupPlanRef:
+            excludePV: true
+            storageRef:
+              isDefaultStorage: true
+              volumeSnapshotProvider: "volumeSnapshotProvider"
+              displayName: "displayName"
+              s3Config:
+                accessKeyId: "accessKeyId"
+                bucket: "bucket"
+                secretAccessKey: "secretAccessKey"
+                s3url: "s3url"
+                insecure: true
+                credsSecretName: "credsSecretName"
+                region: "region"
+              volumeSnapshotConfig:
+                credsSecretName: "credsSecretName"
+                region: "region"
+              tenant: "tenant"
+              desc: "desc"
+              s3Provider: "s3Provider"
+            excludedResources:
+            - "excludedResources"
+            - "excludedResources"
+            copyMethod: "copyMethod"
+            clusterName: "clusterName"
+            includedResources:
+            - "includedResources"
+            - "includedResources"
+            tenant: "tenant"
+            desc: "desc"
+            namespaces:
+            - "namespaces"
+            - "namespaces"
+            policy:
+              displayName: "displayName"
+              repeat: true
+              name: "name"
+              retention: 6
+              desc: "desc"
+              frequency: 0
+            storageName: "storageName"
+          displayName: "displayName"
           backupName: "backupName"
           destClusterName: "destClusterName"
           tenant: "tenant"
+          desc: "desc"
         status:
           phase: "phase"
           conditions:
@@ -3310,12 +3894,55 @@ definitions:
           namespaceMappings:
           - "namespaceMappings"
           - "namespaceMappings"
-          excludeResources:
-          - "excludeResources"
-          - "excludeResources"
+          excludedResources:
+          - "excludedResources"
+          - "excludedResources"
+          backupPlanRef:
+            excludePV: true
+            storageRef:
+              isDefaultStorage: true
+              volumeSnapshotProvider: "volumeSnapshotProvider"
+              displayName: "displayName"
+              s3Config:
+                accessKeyId: "accessKeyId"
+                bucket: "bucket"
+                secretAccessKey: "secretAccessKey"
+                s3url: "s3url"
+                insecure: true
+                credsSecretName: "credsSecretName"
+                region: "region"
+              volumeSnapshotConfig:
+                credsSecretName: "credsSecretName"
+                region: "region"
+              tenant: "tenant"
+              desc: "desc"
+              s3Provider: "s3Provider"
+            excludedResources:
+            - "excludedResources"
+            - "excludedResources"
+            copyMethod: "copyMethod"
+            clusterName: "clusterName"
+            includedResources:
+            - "includedResources"
+            - "includedResources"
+            tenant: "tenant"
+            desc: "desc"
+            namespaces:
+            - "namespaces"
+            - "namespaces"
+            policy:
+              displayName: "displayName"
+              repeat: true
+              name: "name"
+              retention: 6
+              desc: "desc"
+              frequency: 0
+            storageName: "storageName"
+          displayName: "displayName"
           backupName: "backupName"
           destClusterName: "destClusterName"
           tenant: "tenant"
+          desc: "desc"
         status:
           phase: "phase"
           conditions:
@@ -3339,9 +3966,15 @@ definitions:
     properties:
       backupName:
         type: "string"
+      backupPlanRef:
+        $ref: "#/definitions/v1alpha1.BackupPlanSpec"
+      desc:
+        type: "string"
       destClusterName:
         type: "string"
-      excludeResources:
+      displayName:
+        type: "string"
+      excludedResources:
         type: "array"
         items:
           type: "string"
@@ -3355,12 +3988,55 @@ definitions:
       namespaceMappings:
       - "namespaceMappings"
       - "namespaceMappings"
-      excludeResources:
-      - "excludeResources"
-      - "excludeResources"
+      excludedResources:
+      - "excludedResources"
+      - "excludedResources"
+      backupPlanRef:
+        excludePV: true
+        storageRef:
+          isDefaultStorage: true
+          volumeSnapshotProvider: "volumeSnapshotProvider"
+          displayName: "displayName"
+          s3Config:
+            accessKeyId: "accessKeyId"
+            bucket: "bucket"
+            secretAccessKey: "secretAccessKey"
+            s3url: "s3url"
+            insecure: true
+            credsSecretName: "credsSecretName"
+            region: "region"
+          volumeSnapshotConfig:
+            credsSecretName: "credsSecretName"
+            region: "region"
+          tenant: "tenant"
+          desc: "desc"
+          s3Provider: "s3Provider"
+        excludedResources:
+        - "excludedResources"
+        - "excludedResources"
+        copyMethod: "copyMethod"
+        clusterName: "clusterName"
+        includedResources:
+        - "includedResources"
+        - "includedResources"
+        tenant: "tenant"
+        desc: "desc"
+        namespaces:
+        - "namespaces"
+        - "namespaces"
+        policy:
+          displayName: "displayName"
+          repeat: true
+          name: "name"
+          retention: 6
+          desc: "desc"
+          frequency: 0
+        storageName: "storageName"
+      displayName: "displayName"
       backupName: "backupName"
       destClusterName: "destClusterName"
       tenant: "tenant"
+      desc: "desc"
   v1alpha1.RestorePlanStatus:
     properties:
       conditions:
@@ -3453,6 +4129,7 @@ definitions:
       spec:
         isDefaultStorage: true
         volumeSnapshotProvider: "volumeSnapshotProvider"
+        displayName: "displayName"
         s3Config:
           accessKeyId: "accessKeyId"
           bucket: "bucket"
@@ -3580,6 +4257,7 @@ definitions:
         spec:
           isDefaultStorage: true
           volumeSnapshotProvider: "volumeSnapshotProvider"
+          displayName: "displayName"
           s3Config:
             accessKeyId: "accessKeyId"
             bucket: "bucket"
@@ -3659,6 +4337,7 @@ definitions:
         spec:
           isDefaultStorage: true
           volumeSnapshotProvider: "volumeSnapshotProvider"
+          displayName: "displayName"
           s3Config:
             accessKeyId: "accessKeyId"
             bucket: "bucket"
@@ -3694,6 +4373,8 @@ definitions:
     properties:
       desc:
         type: "string"
+      displayName:
+        type: "string"
       isDefaultStorage:
         type: "boolean"
       s3Config:
@@ -3709,6 +4390,7 @@ definitions:
     example:
       isDefaultStorage: true
       volumeSnapshotProvider: "volumeSnapshotProvider"
+      displayName: "displayName"
       s3Config:
         accessKeyId: "accessKeyId"
         bucket: "bucket"
@@ -3814,6 +4496,7 @@ definitions:
       kind: "kind"
       spec:
         orgName: "orgName"
+        displayName: "displayName"
         contact: "contact"
         defaultBackupStorage: "defaultBackupStorage"
         desc: "desc"
@@ -3910,6 +4593,7 @@ definitions:
         kind: "kind"
         spec:
           orgName: "orgName"
+          displayName: "displayName"
           contact: "contact"
           defaultBackupStorage: "defaultBackupStorage"
           desc: "desc"
@@ -3977,6 +4661,7 @@ definitions:
         kind: "kind"
         spec:
           orgName: "orgName"
+          displayName: "displayName"
           contact: "contact"
           defaultBackupStorage: "defaultBackupStorage"
           desc: "desc"
@@ -4003,10 +4688,13 @@ definitions:
         type: "string"
       desc:
         type: "string"
+      displayName:
+        type: "string"
       orgName:
         type: "string"
     example:
       orgName: "orgName"
+      displayName: "displayName"
       contact: "contact"
       defaultBackupStorage: "defaultBackupStorage"
       desc: "desc"

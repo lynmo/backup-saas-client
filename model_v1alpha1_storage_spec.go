@@ -12,6 +12,7 @@ package swagger
 
 type V1alpha1StorageSpec struct {
 	Desc string `json:"desc,omitempty"`
+	DisplayName string `json:"displayName,omitempty"`
 	IsDefaultStorage bool `json:"isDefaultStorage,omitempty"`
 	S3Config *V1alpha1BackupS3Config `json:"s3Config,omitempty"`
 	S3Provider string `json:"s3Provider,omitempty"`

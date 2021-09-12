@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Desc** | **string** |  | [optional] [default to null]
+**DisplayName** | **string** |  | [optional] [default to null]
 **IsDefaultStorage** | **bool** |  | [optional] [default to null]
 **S3Config** | [***V1alpha1BackupS3Config**](v1alpha1.BackupS3Config.md) |  | [optional] [default to null]
 **S3Provider** | **string** |  | [optional] [default to null]

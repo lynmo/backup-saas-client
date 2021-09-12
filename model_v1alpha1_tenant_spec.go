@@ -14,5 +14,6 @@ type V1alpha1TenantSpec struct {
 	Contact string `json:"contact,omitempty"`
 	DefaultBackupStorage string `json:"defaultBackupStorage,omitempty"`
 	Desc string `json:"desc,omitempty"`
+	DisplayName string `json:"displayName,omitempty"`
 	OrgName string `json:"orgName,omitempty"`
 }
