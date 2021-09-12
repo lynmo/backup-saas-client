@@ -760,6 +760,19 @@ metadata:
   creationTimestamp: null
   name: migclusters.migration.yinhestor.com
 spec:
+  additionalPrinterColumns:
+  - JSONPath: .spec.url
+    name: URL
+    type: string
+  - JSONPath: .status.conditions[?(@.type=='Connected')].status
+    name: Connected
+    type: string
+  - JSONPath: .status.conditions[?(@.type=='Ready')].status
+    name: Ready
+    type: string
+  - JSONPath: .metadata.creationTimestamp
+    name: Age
+    type: date
   group: migration.yinhestor.com
   names:
     kind: MigCluster
@@ -768,6 +781,7 @@ spec:
     singular: migcluster
   preserveUnknownFields: false
   scope: Namespaced
+  subresources: {}
   validation:
     openAPIV3Schema:
       description: MigCluster is the Schema for the migclusters API

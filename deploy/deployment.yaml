@@ -1196,7 +1196,7 @@ spec:
         - --leader-elect
         command:
         - /manager
-        image: jibutech/backup-rest-server:main.83796ba
+        image: jibutech/backup-rest-server:main.0b3b634
         imagePullPolicy: Always
         name: manager
         resources:
