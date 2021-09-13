@@ -31,6 +31,9 @@ func TestRestAPIs(t *testing.T) {
 	if err != nil {
 		if errors.As(err, &ye) && ye.StatusCode() != http.StatusNotFound {
 			t.Error("failed to clear cluster", err)
+			t.Log(ye.Code())
+			t.Log(ye.Message())
+			t.Log(ye.OrigError())
 		}
 	}
 	t.Log("deleting storage", storageName)
@@ -38,6 +41,9 @@ func TestRestAPIs(t *testing.T) {
 	if err != nil {
 		if errors.As(err, &ye) && ye.StatusCode() != http.StatusNotFound {
 			t.Error("failed to clear storage", err)
+			t.Log(ye.Code())
+			t.Log(ye.Message())
+			t.Log(ye.OrigError())
 		}
 	}
 	t.Log("deleting tenant", tenantID)
@@ -45,6 +51,9 @@ func TestRestAPIs(t *testing.T) {
 	if err != nil {
 		if errors.As(err, &ye) && ye.StatusCode() != http.StatusNotFound {
 			t.Error("failed to clear tenant", err)
+			t.Log(ye.Code())
+			t.Log(ye.Message())
+			t.Log(ye.OrigError())
 		}
 	}
 
@@ -94,6 +103,11 @@ func TestRestAPIs(t *testing.T) {
 	testStorage, _, err = cli.StorageApi.CreateStorage(context.TODO(), tenantID, testStorage)
 	if err != nil {
 		t.Error("failed to create storage", err)
+		if errors.As(err, &ye) {
+			t.Log(ye.Code())
+			t.Log(ye.Message())
+			t.Log(ye.OrigError())
+		}
 	}
 	listStorages(t, cli)
 	// testStorage.Spec.S3Config.AccessKeyId = accessKey
@@ -122,6 +136,11 @@ func TestRestAPIs(t *testing.T) {
 		testTenant, _, err = cli.TenantApi.GetTenant(context.TODO(), tenantID)
 		if err != nil {
 			t.Error("failed to query tenant", tenantID)
+			if errors.As(err, &ye) {
+				t.Log(ye.Code())
+				t.Log(ye.Message())
+				t.Log(ye.OrigError())
+			}
 		}
 		t.Log("tenant phase:", testTenant.Status.Phase)
 		if testTenant.Status.Phase == "Ready" {
@@ -135,9 +154,15 @@ func TestRestAPIs(t *testing.T) {
 }
 
 func listTenants(t *testing.T, cli *yscli.APIClient) {
+	var ye yscli.Error
 	tenantList, _, err := cli.TenantApi.ListTenants(context.TODO())
 	if err != nil {
 		t.Error("failed to list tenants", err)
+		if errors.As(err, &ye) {
+			t.Log(ye.Code())
+			t.Log(ye.Message())
+			t.Log(ye.OrigError())
+		}
 	}
 	t.Log("list of tenants:")
 	for _, tenant := range tenantList.Items {
@@ -145,9 +170,15 @@ func listTenants(t *testing.T, cli *yscli.APIClient) {
 	}
 }
 func listClusters(t *testing.T, cli *yscli.APIClient) {
+	var ye yscli.Error
 	clusterList, _, err := cli.ClusterApi.ListClusters(context.TODO(), tenantID)
 	if err != nil {
 		t.Log("failed to list clusters of tenant ", tenantID, err)
+		if errors.As(err, &ye) {
+			t.Log(ye.Code())
+			t.Log(ye.Message())
+			t.Log(ye.OrigError())
+		}
 	}
 	t.Log("list of clusters:")
 	for _, c := range clusterList.Items {
@@ -155,9 +186,15 @@ func listClusters(t *testing.T, cli *yscli.APIClient) {
 	}
 }
 func listStorages(t *testing.T, cli *yscli.APIClient) {
+	var ye yscli.Error
 	storageList, _, err := cli.StorageApi.ListStorages(context.TODO(), tenantID)
 	if err != nil {
 		t.Log("failed to list storages of tenant ", tenantID, err)
+		if errors.As(err, &ye) {
+			t.Log(ye.Code())
+			t.Log(ye.Message())
+			t.Log(ye.OrigError())
+		}
 	}
 	t.Log("list of storages:")
 	for _, i := range storageList.Items {
@@ -167,6 +204,7 @@ func listStorages(t *testing.T, cli *yscli.APIClient) {
 
 func createCluster(t *testing.T, cli *yscli.APIClient) {
 	var err error
+	var ye yscli.Error
 	t.Log("creating cluster", clusterName)
 	var kubeconfig []byte
 	kubeconfig, err = ioutil.ReadFile("kubeconfig")
@@ -175,10 +213,20 @@ func createCluster(t *testing.T, cli *yscli.APIClient) {
 		usr, err := user.Current()
 		if err != nil {
 			t.Error("failed to get current user")
+			if errors.As(err, &ye) {
+				t.Log(ye.Code())
+				t.Log(ye.Message())
+				t.Log(ye.OrigError())
+			}
 		}
 		kubeconfig, err = ioutil.ReadFile(filepath.Join(usr.HomeDir, ".kube/config"))
 		if err != nil {
 			t.Error("failed to load kubeconfig")
+			if errors.As(err, &ye) {
+				t.Log(ye.Code())
+				t.Log(ye.Message())
+				t.Log(ye.OrigError())
+			}
 		}
 	}
 	testCluster := yscli.V1alpha1Cluster{
@@ -191,7 +239,6 @@ func createCluster(t *testing.T, cli *yscli.APIClient) {
 	testCluster, _, err = cli.ClusterApi.CreateCluster(context.TODO(), tenantID, testCluster)
 	if err != nil {
 		t.Error("failed to create cluster", err)
-		var ye yscli.Error
 		if errors.As(err, &ye) {
 			t.Log(ye.Code())
 			t.Log(ye.Message())

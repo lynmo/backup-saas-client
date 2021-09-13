@@ -46,6 +46,7 @@ func TestBackupjob(t *testing.T) {
 		t.Error("failed to create backupjob", err)
 		return
 	}
+	listBackupJobs(cli, t)
 }
 
 func listBackupJobs(cli *yscli.APIClient, t *testing.T) {

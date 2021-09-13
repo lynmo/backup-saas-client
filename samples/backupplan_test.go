@@ -35,13 +35,13 @@ func TestBackupplan(t *testing.T) {
 			ClusterName: clusterName,
 			StorageName: storageName,
 			Namespaces:  []string{backupNamespace},
-			ExcludePV:   true,
 		},
 	}
 	_, _, err = cli.BackupPlanTagApi.CreateBackupPlan(context.TODO(), tenantID, testBackupPlan)
 	if err != nil {
 		t.Error("failed to create backupplan", err)
 	}
+	listBackupPlans(cli, t)
 }
 
 func listBackupPlans(cli *yscli.APIClient, t *testing.T) {
