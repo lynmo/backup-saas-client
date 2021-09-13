@@ -11,6 +11,8 @@
 package swagger
 
 type V1alpha1BackupPolicy struct {
+	Desc string `json:"desc,omitempty"`
+	DisplayName string `json:"displayName,omitempty"`
 	Frequency int32 `json:"frequency,omitempty"`
 	Name string `json:"name,omitempty"`
 	Repeat bool `json:"repeat,omitempty"`

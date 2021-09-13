@@ -13,6 +13,7 @@ package swagger
 type V1alpha1ClusterSpec struct {
 	ApiEndpoint string `json:"apiEndpoint,omitempty"`
 	Desc string `json:"desc,omitempty"`
+	DisplayName string `json:"displayName,omitempty"`
 	ExcludedNamespaces []string `json:"excludedNamespaces,omitempty"`
 	ExtraParams map[string]string `json:"extraParams,omitempty"`
 	Kubeconfig string `json:"kubeconfig"`

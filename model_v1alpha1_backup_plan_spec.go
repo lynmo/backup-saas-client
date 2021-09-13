@@ -20,5 +20,6 @@ type V1alpha1BackupPlanSpec struct {
 	Namespaces []string `json:"namespaces,omitempty"`
 	Policy *V1alpha1BackupPolicy `json:"policy,omitempty"`
 	StorageName string `json:"storageName"`
+	StorageRef *V1alpha1StorageSpec `json:"storageRef,omitempty"`
 	Tenant string `json:"tenant"`
 }
