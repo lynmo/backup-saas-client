@@ -12,9 +12,10 @@ const (
 	secretKey   = ""
 	region      = "pek3b"
 
-	backupPlanName  = "go-client-test-backupplan"
-	backupNamespace = "wordpress"
-	backupJobName   = "go-client-test-backupjob"
+	backupPlanName           = "go-client-test-backupplan"
+	backupNamespace          = "wordpress"
+	backupJobName            = "go-client-test-backupjob"
+	backupJobForDeletingName = "go-client-test-backupjob-deleting"
 
 	restorePlanName            = "go-client-test-restoreplan"
 	restoreDestNamespace       = "wordpress-restored"

@@ -41,10 +41,143 @@ spec:
                 description: Action for this job, { start, cancel }
                 type: string
               backupName:
-                description: Backup plan name
+                description: BackupName is Backup plan name
+                type: string
+              backupPlanRef:
+                description: BackupPlanRef is Backup Plan spec pointer. Created at plan creation, and readonly
+                properties:
+                  clusterName:
+                    description: Name of the cluster CR
+                    type: string
+                  copyMethod:
+                    description: Copy method, in {"filesystem", "snapshot"}, default is "filesystem"
+                    type: string
+                  desc:
+                    description: Desc is description for a backup plan.
+                    type: string
+                  excludePV:
+                    description: Exclude PV as backup resource, default is false
+                    type: boolean
+                  excludedResources:
+                    description: Excluded resources, default is emty, means exclude none
+                    items:
+                      type: string
+                    type: array
+                  includedResources:
+                    description: Included resources, default is emty, means all resources
+                    items:
+                      type: string
+                    type: array
+                  namespaces:
+                    description: Namespaces to be backed up
+                    items:
+                      type: string
+                    type: array
+                  policy:
+                    description: Policy of the backup plan. Default is on demand backup, retention is default to 7 days
+                    properties:
+                      desc:
+                        description: Desc provides detailed description
+                        type: string
+                      displayName:
+                        description: DisplayName is human-readable name
+                        type: string
+                      frequency:
+                        description: Frequency of the backup, unit is hour, 1-24 hour is valid
+                        type: integer
+                      name:
+                        description: Name of the policy
+                        type: string
+                      repeat:
+                        description: Repeat true means scheduled backup, false means on demand backup
+                        type: boolean
+                      retention:
+                        description: Retention of the backup, unit is hour
+                        type: integer
+                    type: object
+                  storageName:
+                    description: Name of the storage CR
+                    type: string
+                  storageRef:
+                    description: Storage spec structure is embeded as a pointer here. Created at plan creation, and only changed when StorageName is changed.
+                    properties:
+                      desc:
+                        description: Desc provides detailed description
+                        type: string
+                      displayName:
+                        description: DisplayName is human-readable name
+                        type: string
+                      isDefaultStorage:
+                        description: IsDefaultStorage indicates it is default storage for use
+                        type: boolean
+                      s3Config:
+                        description: S3Config includes S3 access configuration
+                        properties:
+                          accessKeyId:
+                            description: AccessKeyId is S3 aws-access-key-id
+                            type: string
+                          bucket:
+                            description: Bucket is S3 bucket name
+                            type: string
+                          credsSecretName:
+                            description: CredsSecretName links to a secret to access S3 object
+                            type: string
+                          insecure:
+                            description: Insecure indicates not to verify https of s3url
+                            type: boolean
+                          region:
+                            description: Region is S3 region
+                            type: string
+                          s3url:
+                            description: S3URL is s3 URL
+                            type: string
+                          secretAccessKey:
+                            description: SecretAccessKey is S3 aws-secret-access-key
+                            type: string
+                        required:
+                        - accessKeyId
+                        - bucket
+                        - s3url
+                        - secretAccessKey
+                        type: object
+                      s3Provider:
+                        description: S3Provider is cloud provider for S3 service
+                        type: string
+                      tenant:
+                        description: Tenant is global unique tenant id of a user
+                        type: string
+                      volumeSnapshotConfig:
+                        description: VolumeSnapshotConfig includes configuration for volume snapshot
+                        properties:
+                          credsSecretName:
+                            description: CredsSecretName links to a secret which includes EBS volume snapshot credential
+                            type: string
+                          region:
+                            description: Region is region of EBS volume in public cloud environment
+                            type: string
+                        type: object
+                      volumeSnapshotProvider:
+                        description: VolumeSnapshotProvider is cloud provider for volume snapshot service
+                        type: string
+                    required:
+                    - tenant
+                    type: object
+                  tenant:
+                    description: Tenant is global unique tenant id of a user
+                    type: string
+                required:
+                - clusterName
+                - storageName
+                - tenant
+                type: object
+              desc:
+                description: Desc provides detailed description
+                type: string
+              displayName:
+                description: DisplayName is human-readable name
                 type: string
               tenant:
-                description: Unique name of tenant
+                description: Tenant is Unique name of tenant
                 type: string
             required:
             - backupName
@@ -139,7 +272,7 @@ spec:
                 description: Exclude PV as backup resource, default is false
                 type: boolean
               excludedResources:
-                description: Included resources, default is emty, means exclude none
+                description: Excluded resources, default is emty, means exclude none
                 items:
                   type: string
                 type: array
@@ -156,6 +289,12 @@ spec:
               policy:
                 description: Policy of the backup plan. Default is on demand backup, retention is default to 7 days
                 properties:
+                  desc:
+                    description: Desc provides detailed description
+                    type: string
+                  displayName:
+                    description: DisplayName is human-readable name
+                    type: string
                   frequency:
                     description: Frequency of the backup, unit is hour, 1-24 hour is valid
                     type: integer
@@ -172,6 +311,70 @@ spec:
               storageName:
                 description: Name of the storage CR
                 type: string
+              storageRef:
+                description: Storage spec structure is embeded as a pointer here. Created at plan creation, and only changed when StorageName is changed.
+                properties:
+                  desc:
+                    description: Desc provides detailed description
+                    type: string
+                  displayName:
+                    description: DisplayName is human-readable name
+                    type: string
+                  isDefaultStorage:
+                    description: IsDefaultStorage indicates it is default storage for use
+                    type: boolean
+                  s3Config:
+                    description: S3Config includes S3 access configuration
+                    properties:
+                      accessKeyId:
+                        description: AccessKeyId is S3 aws-access-key-id
+                        type: string
+                      bucket:
+                        description: Bucket is S3 bucket name
+                        type: string
+                      credsSecretName:
+                        description: CredsSecretName links to a secret to access S3 object
+                        type: string
+                      insecure:
+                        description: Insecure indicates not to verify https of s3url
+                        type: boolean
+                      region:
+                        description: Region is S3 region
+                        type: string
+                      s3url:
+                        description: S3URL is s3 URL
+                        type: string
+                      secretAccessKey:
+                        description: SecretAccessKey is S3 aws-secret-access-key
+                        type: string
+                    required:
+                    - accessKeyId
+                    - bucket
+                    - s3url
+                    - secretAccessKey
+                    type: object
+                  s3Provider:
+                    description: S3Provider is cloud provider for S3 service
+                    type: string
+                  tenant:
+                    description: Tenant is global unique tenant id of a user
+                    type: string
+                  volumeSnapshotConfig:
+                    description: VolumeSnapshotConfig includes configuration for volume snapshot
+                    properties:
+                      credsSecretName:
+                        description: CredsSecretName links to a secret which includes EBS volume snapshot credential
+                        type: string
+                      region:
+                        description: Region is region of EBS volume in public cloud environment
+                        type: string
+                    type: object
+                  volumeSnapshotProvider:
+                    description: VolumeSnapshotProvider is cloud provider for volume snapshot service
+                    type: string
+                required:
+                - tenant
+                type: object
               tenant:
                 description: Tenant is global unique tenant id of a user
                 type: string
@@ -257,10 +460,13 @@ spec:
             description: ClusterSpec defines the desired state of Cluster
             properties:
               apiEndpoint:
-                description: API endpoint
+                description: APIEndpoint is API endpoint
                 type: string
               desc:
                 description: Desc is description for a cluster.
+                type: string
+              displayName:
+                description: DisplayName is human-readable name
                 type: string
               excludedNamespaces:
                 description: ExcludedNamespaces indicates the namespaces is excluded for backup management
@@ -285,10 +491,10 @@ spec:
                 description: Role indicates the cluster type for multi-cluster environment
                 type: string
               secretName:
-                description: Secret name
+                description: SecretName is Secret name
                 type: string
               serviceAccount:
-                description: Servcie account
+                description: ServiceAccount is Servcie account
                 type: string
               snapshotClasses:
                 description: SnapshotClasses contain the available volumeSnapshotClass of the cluster if not empty
@@ -415,13 +621,179 @@ spec:
                 description: Action of restore job, { start, cancel }
                 type: string
               backupJobName:
-                description: Name of backupjob
+                description: BackupJobName is Name of backupjob
+                type: string
+              desc:
+                description: Desc provides detailed description
+                type: string
+              displayName:
+                description: DisplayName is human-readable name
                 type: string
               restoreName:
-                description: RestorePlan Name
+                description: RestoreName is RestorePlan Name
                 type: string
+              restorePlanRef:
+                description: RestorePlanRef is Restore Plan reference
+                properties:
+                  backupName:
+                    description: BackupName is Backup Plan Name
+                    type: string
+                  backupPlanRef:
+                    description: BackupPlanRef is Backup plan reference
+                    properties:
+                      clusterName:
+                        description: Name of the cluster CR
+                        type: string
+                      copyMethod:
+                        description: Copy method, in {"filesystem", "snapshot"}, default is "filesystem"
+                        type: string
+                      desc:
+                        description: Desc is description for a backup plan.
+                        type: string
+                      excludePV:
+                        description: Exclude PV as backup resource, default is false
+                        type: boolean
+                      excludedResources:
+                        description: Excluded resources, default is emty, means exclude none
+                        items:
+                          type: string
+                        type: array
+                      includedResources:
+                        description: Included resources, default is emty, means all resources
+                        items:
+                          type: string
+                        type: array
+                      namespaces:
+                        description: Namespaces to be backed up
+                        items:
+                          type: string
+                        type: array
+                      policy:
+                        description: Policy of the backup plan. Default is on demand backup, retention is default to 7 days
+                        properties:
+                          desc:
+                            description: Desc provides detailed description
+                            type: string
+                          displayName:
+                            description: DisplayName is human-readable name
+                            type: string
+                          frequency:
+                            description: Frequency of the backup, unit is hour, 1-24 hour is valid
+                            type: integer
+                          name:
+                            description: Name of the policy
+                            type: string
+                          repeat:
+                            description: Repeat true means scheduled backup, false means on demand backup
+                            type: boolean
+                          retention:
+                            description: Retention of the backup, unit is hour
+                            type: integer
+                        type: object
+                      storageName:
+                        description: Name of the storage CR
+                        type: string
+                      storageRef:
+                        description: Storage spec structure is embeded as a pointer here. Created at plan creation, and only changed when StorageName is changed.
+                        properties:
+                          desc:
+                            description: Desc provides detailed description
+                            type: string
+                          displayName:
+                            description: DisplayName is human-readable name
+                            type: string
+                          isDefaultStorage:
+                            description: IsDefaultStorage indicates it is default storage for use
+                            type: boolean
+                          s3Config:
+                            description: S3Config includes S3 access configuration
+                            properties:
+                              accessKeyId:
+                                description: AccessKeyId is S3 aws-access-key-id
+                                type: string
+                              bucket:
+                                description: Bucket is S3 bucket name
+                                type: string
+                              credsSecretName:
+                                description: CredsSecretName links to a secret to access S3 object
+                                type: string
+                              insecure:
+                                description: Insecure indicates not to verify https of s3url
+                                type: boolean
+                              region:
+                                description: Region is S3 region
+                                type: string
+                              s3url:
+                                description: S3URL is s3 URL
+                                type: string
+                              secretAccessKey:
+                                description: SecretAccessKey is S3 aws-secret-access-key
+                                type: string
+                            required:
+                            - accessKeyId
+                            - bucket
+                            - s3url
+                            - secretAccessKey
+                            type: object
+                          s3Provider:
+                            description: S3Provider is cloud provider for S3 service
+                            type: string
+                          tenant:
+                            description: Tenant is global unique tenant id of a user
+                            type: string
+                          volumeSnapshotConfig:
+                            description: VolumeSnapshotConfig includes configuration for volume snapshot
+                            properties:
+                              credsSecretName:
+                                description: CredsSecretName links to a secret which includes EBS volume snapshot credential
+                                type: string
+                              region:
+                                description: Region is region of EBS volume in public cloud environment
+                                type: string
+                            type: object
+                          volumeSnapshotProvider:
+                            description: VolumeSnapshotProvider is cloud provider for volume snapshot service
+                            type: string
+                        required:
+                        - tenant
+                        type: object
+                      tenant:
+                        description: Tenant is global unique tenant id of a user
+                        type: string
+                    required:
+                    - clusterName
+                    - storageName
+                    - tenant
+                    type: object
+                  desc:
+                    description: Desc provides detailed description
+                    type: string
+                  destClusterName:
+                    description: DestClusterName is Destination cluster name
+                    type: string
+                  displayName:
+                    description: DisplayName is human-readable name
+                    type: string
+                  excludedResources:
+                    description: ExcludedResources is excluded resources, default empty means do not exclude any resources
+                    items:
+                      type: string
+                    type: array
+                  namespaceMappings:
+                    description: 'NamespaceMappings is namespace mappings, in k:v pairs, e.g., "A: B" means original backup namepsace is A, restore to namespace B'
+                    items:
+                      type: string
+                    type: array
+                  tenant:
+                    description: Tenant is unique name of tenant
+                    type: string
+                required:
+                - backupName
+                - destClusterName
+                - tenant
+                type: object
               tenant:
-                description: Unique name of tenant
+                description: Tenant is unique name of tenant
                 type: string
             required:
             - backupJobName
@@ -505,23 +877,156 @@ spec:
             description: RestorePlanSpec defines the desired state of RestorePlan
             properties:
               backupName:
-                description: Backup Plan Name
+                description: BackupName is Backup Plan Name
+                type: string
+              backupPlanRef:
+                description: BackupPlanRef is Backup plan reference
+                properties:
+                  clusterName:
+                    description: Name of the cluster CR
+                    type: string
+                  copyMethod:
+                    description: Copy method, in {"filesystem", "snapshot"}, default is "filesystem"
+                    type: string
+                  desc:
+                    description: Desc is description for a backup plan.
+                    type: string
+                  excludePV:
+                    description: Exclude PV as backup resource, default is false
+                    type: boolean
+                  excludedResources:
+                    description: Excluded resources, default is emty, means exclude none
+                    items:
+                      type: string
+                    type: array
+                  includedResources:
+                    description: Included resources, default is emty, means all resources
+                    items:
+                      type: string
+                    type: array
+                  namespaces:
+                    description: Namespaces to be backed up
+                    items:
+                      type: string
+                    type: array
+                  policy:
+                    description: Policy of the backup plan. Default is on demand backup, retention is default to 7 days
+                    properties:
+                      desc:
+                        description: Desc provides detailed description
+                        type: string
+                      displayName:
+                        description: DisplayName is human-readable name
+                        type: string
+                      frequency:
+                        description: Frequency of the backup, unit is hour, 1-24 hour is valid
+                        type: integer
+                      name:
+                        description: Name of the policy
+                        type: string
+                      repeat:
+                        description: Repeat true means scheduled backup, false means on demand backup
+                        type: boolean
+                      retention:
+                        description: Retention of the backup, unit is hour
+                        type: integer
+                    type: object
+                  storageName:
+                    description: Name of the storage CR
+                    type: string
+                  storageRef:
+                    description: Storage spec structure is embeded as a pointer here. Created at plan creation, and only changed when StorageName is changed.
+                    properties:
+                      desc:
+                        description: Desc provides detailed description
+                        type: string
+                      displayName:
+                        description: DisplayName is human-readable name
+                        type: string
+                      isDefaultStorage:
+                        description: IsDefaultStorage indicates it is default storage for use
+                        type: boolean
+                      s3Config:
+                        description: S3Config includes S3 access configuration
+                        properties:
+                          accessKeyId:
+                            description: AccessKeyId is S3 aws-access-key-id
+                            type: string
+                          bucket:
+                            description: Bucket is S3 bucket name
+                            type: string
+                          credsSecretName:
+                            description: CredsSecretName links to a secret to access S3 object
+                            type: string
+                          insecure:
+                            description: Insecure indicates not to verify https of s3url
+                            type: boolean
+                          region:
+                            description: Region is S3 region
+                            type: string
+                          s3url:
+                            description: S3URL is s3 URL
+                            type: string
+                          secretAccessKey:
+                            description: SecretAccessKey is S3 aws-secret-access-key
+                            type: string
+                        required:
+                        - accessKeyId
+                        - bucket
+                        - s3url
+                        - secretAccessKey
+                        type: object
+                      s3Provider:
+                        description: S3Provider is cloud provider for S3 service
+                        type: string
+                      tenant:
+                        description: Tenant is global unique tenant id of a user
+                        type: string
+                      volumeSnapshotConfig:
+                        description: VolumeSnapshotConfig includes configuration for volume snapshot
+                        properties:
+                          credsSecretName:
+                            description: CredsSecretName links to a secret which includes EBS volume snapshot credential
+                            type: string
+                          region:
+                            description: Region is region of EBS volume in public cloud environment
+                            type: string
+                        type: object
+                      volumeSnapshotProvider:
+                        description: VolumeSnapshotProvider is cloud provider for volume snapshot service
+                        type: string
+                    required:
+                    - tenant
+                    type: object
+                  tenant:
+                    description: Tenant is global unique tenant id of a user
+                    type: string
+                required:
+                - clusterName
+                - storageName
+                - tenant
+                type: object
+              desc:
+                description: Desc provides detailed description
                 type: string
               destClusterName:
-                description: Destination cluster name
+                description: DestClusterName is Destination cluster name
                 type: string
-              excludeResources:
-                description: Excluded resources, default empty means do not exclude any resources
+              displayName:
+                description: DisplayName is human-readable name
+                type: string
+              excludedResources:
+                description: ExcludedResources is excluded resources, default empty means do not exclude any resources
                 items:
                   type: string
                 type: array
               namespaceMappings:
-                description: 'Namespace mappings, in k:v pairs, e.g., "A: B" means original backup namepsace is A, restore to namespace B'
+                description: 'NamespaceMappings is namespace mappings, in k:v pairs, e.g., "A: B" means original backup namepsace is A, restore to namespace B'
                 items:
                   type: string
                 type: array
               tenant:
-                description: Unique name of tenant
+                description: Tenant is unique name of tenant
                 type: string
             required:
             - backupName
@@ -605,7 +1110,10 @@ spec:
             description: StorageSpec defines the desired state of Storage
             properties:
               desc:
-                description: Desc is description for a cluster.
+                description: Desc provides detailed description
+                type: string
+              displayName:
+                description: DisplayName is human-readable name
                 type: string
               isDefaultStorage:
                 description: IsDefaultStorage indicates it is default storage for use
@@ -745,7 +1253,10 @@ spec:
                 description: DefaultBackupStorage provides default backup storages of a tenant for backup/restore
                 type: string
               desc:
-                description: Desc is human-readable description
+                description: Desc provides detailed description
+                type: string
+              displayName:
+                description: DisplayName is human-readable name
                 type: string
               orgName:
                 description: OrgName is organization name of a tenant

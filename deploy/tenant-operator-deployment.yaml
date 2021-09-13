@@ -607,7 +607,7 @@ spec:
           value: v1.6.3
         - name: VELERO_INSTALLER_VERSION
           value: main.ee89515
-        image: jibutech/tenant-operator:main.0ecd775
+        image: jibutech/tenant-operator:main.cc92a57
         imagePullPolicy: Always
         name: manager
         resources:
