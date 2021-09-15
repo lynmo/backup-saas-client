@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"testing"
+	"time"
 
 	"github.com/antihax/optional"
 	yscli "github.com/jibutech/backup-saas-client"
@@ -25,6 +26,9 @@ func TestBackupjob(t *testing.T) {
 	listBackupJobs(cli, t)
 
 	deleteBackupJob(cli, t, backupJobForDeletingName)
+	listBackupJobs(cli, t)
+
+	waitForBackupJobReady(cli, t, backupJobName)
 	listBackupJobs(cli, t)
 }
 
@@ -83,6 +87,35 @@ func listBackupJobs(cli *yscli.APIClient, t *testing.T) {
 	}
 	log.Println("list of backupjobs:")
 	for _, t := range bpList.Items {
-		fmt.Println("DisplayName:", t.Spec.DisplayName)
+		fmt.Printf("\tDisplayName: %s\n", t.Spec.DisplayName)
+		fmt.Printf("\tstart time: %s\n", t.Status.Report.StartTime)
+		fmt.Printf("\tend time: %s\n", t.Status.Report.EndTime)
+		fmt.Printf("\texpired time: %s\n", t.Status.Report.ExpiredTime)
+		fmt.Printf("\ttotal pvs: %d\n", t.Status.Report.TotalPVC)
+	}
+}
+func waitForBackupJobReady(cli *yscli.APIClient, t *testing.T, name string) {
+	var err error
+	var ye yscli.Error
+
+	var finished = false
+	for !finished {
+		t.Log("wait for backup job ready")
+		time.Sleep(1 * time.Second)
+		var job yscli.V1alpha1BackupJob
+		job, _, err = cli.BackupJobTagApi.GetBackupJob(context.TODO(), tenantID, name)
+		if err != nil {
+			if errors.As(err, &ye) {
+				fmt.Println(ye.StatusCode())
+				fmt.Println(ye.Code())
+				fmt.Println(ye.Message())
+			}
+			t.Error("failed to list backupJobs", err)
+		} else {
+			t.Log("backup job phase:", job.Status.Phase)
+			if job.Status.Phase == "JobCompleted" || job.Status.Phase == "JobCanceled" || job.Status.Phase == "JobFailed" {
+				finished = true
+			}
+		}
 	}
 }

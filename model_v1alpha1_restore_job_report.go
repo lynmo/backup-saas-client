@@ -10,7 +10,8 @@
 
 package swagger
 
-type V1alpha1StorageStatus struct {
-	Conditions []V1alpha1Condition `json:"conditions,omitempty"`
-	Phase string `json:"phase,omitempty"`
+type V1alpha1RestoreJobReport struct {
+	EndTime string `json:"endTime,omitempty"`
+	StartTime string `json:"startTime,omitempty"`
+	TotalPVC int32 `json:"totalPVC,omitempty"`
 }

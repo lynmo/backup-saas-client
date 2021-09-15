@@ -55,6 +55,9 @@ spec:
                   desc:
                     description: Desc is description for a backup plan.
                     type: string
+                  displayName:
+                    description: DisplayName is human-readable name
+                    type: string
                   excludePV:
                     description: Exclude PV as backup resource, default is false
                     type: boolean
@@ -214,6 +217,25 @@ spec:
               phase:
                 description: Phase describes the overall status of BackupJob
                 type: string
+              report:
+                description: Report provides a summary status of backup job execution
+                properties:
+                  endTime:
+                    description: EndTime is the time backup job is completed
+                    format: date-time
+                    type: string
+                  expiredTime:
+                    description: ExpiredTime is the time backup data is expired and deleted
+                    format: date-time
+                    type: string
+                  startTime:
+                    description: StartTime is the time backup job is executed
+                    format: date-time
+                    type: string
+                  totalPVC:
+                    description: TotalPVC is number of PVC preserved in the backup job
+                    type: integer
+                type: object
             type: object
         type: object
     served: true
@@ -267,6 +289,9 @@ spec:
                 type: string
               desc:
                 description: Desc is description for a backup plan.
+                type: string
+              displayName:
+                description: DisplayName is human-readable name
                 type: string
               excludePV:
                 description: Exclude PV as backup resource, default is false
@@ -623,6 +648,158 @@ spec:
               backupJobName:
                 description: BackupJobName is Name of backupjob
                 type: string
+              backupJobRef:
+                description: BackupJobRef is Backup Job reference
+                properties:
+                  action:
+                    description: Action for this job, { start, cancel }
+                    type: string
+                  backupName:
+                    description: BackupName is Backup plan name
+                    type: string
+                  backupPlanRef:
+                    description: BackupPlanRef is Backup Plan spec pointer. Created at plan creation, and readonly
+                    properties:
+                      clusterName:
+                        description: Name of the cluster CR
+                        type: string
+                      copyMethod:
+                        description: Copy method, in {"filesystem", "snapshot"}, default is "filesystem"
+                        type: string
+                      desc:
+                        description: Desc is description for a backup plan.
+                        type: string
+                      displayName:
+                        description: DisplayName is human-readable name
+                        type: string
+                      excludePV:
+                        description: Exclude PV as backup resource, default is false
+                        type: boolean
+                      excludedResources:
+                        description: Excluded resources, default is emty, means exclude none
+                        items:
+                          type: string
+                        type: array
+                      includedResources:
+                        description: Included resources, default is emty, means all resources
+                        items:
+                          type: string
+                        type: array
+                      namespaces:
+                        description: Namespaces to be backed up
+                        items:
+                          type: string
+                        type: array
+                      policy:
+                        description: Policy of the backup plan. Default is on demand backup, retention is default to 7 days
+                        properties:
+                          desc:
+                            description: Desc provides detailed description
+                            type: string
+                          displayName:
+                            description: DisplayName is human-readable name
+                            type: string
+                          frequency:
+                            description: Frequency of the backup, unit is hour, 1-24 hour is valid
+                            type: integer
+                          name:
+                            description: Name of the policy
+                            type: string
+                          repeat:
+                            description: Repeat true means scheduled backup, false means on demand backup
+                            type: boolean
+                          retention:
+                            description: Retention of the backup, unit is hour
+                            type: integer
+                        type: object
+                      storageName:
+                        description: Name of the storage CR
+                        type: string
+                      storageRef:
+                        description: Storage spec structure is embeded as a pointer here. Created at plan creation, and only changed when StorageName is changed.
+                        properties:
+                          desc:
+                            description: Desc provides detailed description
+                            type: string
+                          displayName:
+                            description: DisplayName is human-readable name
+                            type: string
+                          isDefaultStorage:
+                            description: IsDefaultStorage indicates it is default storage for use
+                            type: boolean
+                          s3Config:
+                            description: S3Config includes S3 access configuration
+                            properties:
+                              accessKeyId:
+                                description: AccessKeyId is S3 aws-access-key-id
+                                type: string
+                              bucket:
+                                description: Bucket is S3 bucket name
+                                type: string
+                              credsSecretName:
+                                description: CredsSecretName links to a secret to access S3 object
+                                type: string
+                              insecure:
+                                description: Insecure indicates not to verify https of s3url
+                                type: boolean
+                              region:
+                                description: Region is S3 region
+                                type: string
+                              s3url:
+                                description: S3URL is s3 URL
+                                type: string
+                              secretAccessKey:
+                                description: SecretAccessKey is S3 aws-secret-access-key
+                                type: string
+                            required:
+                            - accessKeyId
+                            - bucket
+                            - s3url
+                            - secretAccessKey
+                            type: object
+                          s3Provider:
+                            description: S3Provider is cloud provider for S3 service
+                            type: string
+                          tenant:
+                            description: Tenant is global unique tenant id of a user
+                            type: string
+                          volumeSnapshotConfig:
+                            description: VolumeSnapshotConfig includes configuration for volume snapshot
+                            properties:
+                              credsSecretName:
+                                description: CredsSecretName links to a secret which includes EBS volume snapshot credential
+                                type: string
+                              region:
+                                description: Region is region of EBS volume in public cloud environment
+                                type: string
+                            type: object
+                          volumeSnapshotProvider:
+                            description: VolumeSnapshotProvider is cloud provider for volume snapshot service
+                            type: string
+                        required:
+                        - tenant
+                        type: object
+                      tenant:
+                        description: Tenant is global unique tenant id of a user
+                        type: string
+                    required:
+                    - clusterName
+                    - storageName
+                    - tenant
+                    type: object
+                  desc:
+                    description: Desc provides detailed description
+                    type: string
+                  displayName:
+                    description: DisplayName is human-readable name
+                    type: string
+                  tenant:
+                    description: Tenant is Unique name of tenant
+                    type: string
+                required:
+                - backupName
+                - tenant
+                type: object
               desc:
                 description: Desc provides detailed description
                 type: string
@@ -649,6 +826,9 @@ spec:
                         type: string
                       desc:
                         description: Desc is description for a backup plan.
+                        type: string
+                      displayName:
+                        description: DisplayName is human-readable name
                         type: string
                       excludePV:
                         description: Exclude PV as backup resource, default is false
@@ -831,6 +1011,21 @@ spec:
               phase:
                 description: Phase describes the overall status of RestoreJob
                 type: string
+              report:
+                description: Report provides a summary status of restore job execution
+                properties:
+                  endTime:
+                    description: EndTime is the time restore job is completed
+                    format: date-time
+                    type: string
+                  startTime:
+                    description: StartTime is the time restore job is executed
+                    format: date-time
+                    type: string
+                  totalPVC:
+                    description: TotalPVC is number of PVC restored in the restore job
+                    type: integer
+                type: object
             type: object
         type: object
     served: true
@@ -890,6 +1085,9 @@ spec:
                     type: string
                   desc:
                     description: Desc is description for a backup plan.
+                    type: string
+                  displayName:
+                    description: DisplayName is human-readable name
                     type: string
                   excludePV:
                     description: Exclude PV as backup resource, default is false
@@ -1707,7 +1905,7 @@ spec:
         - --leader-elect
         command:
         - /manager
-        image: jibutech/backup-rest-server:main.96680d8
+        image: jibutech/backup-rest-server:main.199dc61
         imagePullPolicy: Always
         name: manager
         resources:

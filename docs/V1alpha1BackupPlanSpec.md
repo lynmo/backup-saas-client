@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **ClusterName** | **string** |  | [default to null]
 **CopyMethod** | **string** |  | [optional] [default to null]
 **Desc** | **string** |  | [optional] [default to null]
+**DisplayName** | **string** |  | [optional] [default to null]
 **ExcludePV** | **bool** |  | [optional] [default to null]
 **ExcludedResources** | **[]string** |  | [optional] [default to null]
 **IncludedResources** | **[]string** |  | [optional] [default to null]

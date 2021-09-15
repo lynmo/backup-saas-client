@@ -32,6 +32,8 @@ func TestBackupplan(t *testing.T) {
 		Metadata: &yscli.V1ObjectMeta{Name: backupPlanName},
 		Spec: &yscli.V1alpha1BackupPlanSpec{
 			Tenant:      tenantID,
+			Desc:        "backup plan desc",
+			DisplayName: "backupplan",
 			ClusterName: clusterName,
 			StorageName: storageName,
 			Namespaces:  []string{backupNamespace},
@@ -63,5 +65,7 @@ func listBackupPlans(cli *yscli.APIClient, t *testing.T) {
 	log.Println("list of backupplans:")
 	for _, t := range bpList.Items {
 		fmt.Println(t.Metadata.Name)
+		fmt.Println(t.Spec.Desc)
+		fmt.Println(t.Spec.DisplayName)
 	}
 }

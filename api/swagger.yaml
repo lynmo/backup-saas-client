@@ -7,7 +7,7 @@ info:
   contact:
     name: "Jibudata"
     url: "https://www.jibudata.com"
-    email: "zoubo@jibudata.com"
+    email: "shaofeng@jibudata.com"
   license:
     name: "Apache 2.0"
     url: "https://www.apache.org/licenses/LICENSE-2.0.html"
@@ -1684,6 +1684,7 @@ definitions:
           - "excludedResources"
           - "excludedResources"
           copyMethod: "copyMethod"
+          displayName: "displayName"
           clusterName: "clusterName"
           includedResources:
           - "includedResources"
@@ -1708,6 +1709,11 @@ definitions:
         desc: "desc"
       status:
         phase: "phase"
+        report:
+          startTime: "startTime"
+          endTime: "endTime"
+          expiredTime: "expiredTime"
+          totalPVC: 1
         conditions:
         - reason: "reason"
           lastHeartbeatTime: "lastHeartbeatTime"
@@ -1822,6 +1828,7 @@ definitions:
             - "excludedResources"
             - "excludedResources"
             copyMethod: "copyMethod"
+            displayName: "displayName"
             clusterName: "clusterName"
             includedResources:
             - "includedResources"
@@ -1846,6 +1853,11 @@ definitions:
           desc: "desc"
         status:
           phase: "phase"
+          report:
+            startTime: "startTime"
+            endTime: "endTime"
+            expiredTime: "expiredTime"
+            totalPVC: 1
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -1931,6 +1943,7 @@ definitions:
             - "excludedResources"
             - "excludedResources"
             copyMethod: "copyMethod"
+            displayName: "displayName"
             clusterName: "clusterName"
             includedResources:
             - "includedResources"
@@ -1955,6 +1968,11 @@ definitions:
           desc: "desc"
         status:
           phase: "phase"
+          report:
+            startTime: "startTime"
+            endTime: "endTime"
+            expiredTime: "expiredTime"
+            totalPVC: 1
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -1968,6 +1986,22 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+  v1alpha1.BackupJobReport:
+    properties:
+      endTime:
+        type: "string"
+      expiredTime:
+        type: "string"
+      startTime:
+        type: "string"
+      totalPVC:
+        type: "integer"
+        format: "integer"
+    example:
+      startTime: "startTime"
+      endTime: "endTime"
+      expiredTime: "expiredTime"
+      totalPVC: 1
   v1alpha1.BackupJobSpec:
     required:
     - "backupName"
@@ -2010,6 +2044,7 @@ definitions:
         - "excludedResources"
         - "excludedResources"
         copyMethod: "copyMethod"
+        displayName: "displayName"
         clusterName: "clusterName"
         includedResources:
         - "includedResources"
@@ -2040,8 +2075,15 @@ definitions:
           $ref: "#/definitions/v1alpha1.Condition"
       phase:
         type: "string"
+      report:
+        $ref: "#/definitions/v1alpha1.BackupJobReport"
     example:
       phase: "phase"
+      report:
+        startTime: "startTime"
+        endTime: "endTime"
+        expiredTime: "expiredTime"
+        totalPVC: 1
       conditions:
       - reason: "reason"
         lastHeartbeatTime: "lastHeartbeatTime"
@@ -2145,6 +2187,7 @@ definitions:
         - "excludedResources"
         - "excludedResources"
         copyMethod: "copyMethod"
+        displayName: "displayName"
         clusterName: "clusterName"
         includedResources:
         - "includedResources"
@@ -2277,6 +2320,7 @@ definitions:
           - "excludedResources"
           - "excludedResources"
           copyMethod: "copyMethod"
+          displayName: "displayName"
           clusterName: "clusterName"
           includedResources:
           - "includedResources"
@@ -2380,6 +2424,7 @@ definitions:
           - "excludedResources"
           - "excludedResources"
           copyMethod: "copyMethod"
+          displayName: "displayName"
           clusterName: "clusterName"
           includedResources:
           - "includedResources"
@@ -2423,6 +2468,8 @@ definitions:
       copyMethod:
         type: "string"
       desc:
+        type: "string"
+      displayName:
         type: "string"
       excludePV:
         type: "boolean"
@@ -2470,6 +2517,7 @@ definitions:
       - "excludedResources"
       - "excludedResources"
       copyMethod: "copyMethod"
+      displayName: "displayName"
       clusterName: "clusterName"
       includedResources:
       - "includedResources"
@@ -3116,6 +3164,54 @@ definitions:
       kind: "kind"
       spec:
         backupJobName: "backupJobName"
+        backupJobRef:
+          backupPlanRef:
+            excludePV: true
+            storageRef:
+              isDefaultStorage: true
+              volumeSnapshotProvider: "volumeSnapshotProvider"
+              displayName: "displayName"
+              s3Config:
+                accessKeyId: "accessKeyId"
+                bucket: "bucket"
+                secretAccessKey: "secretAccessKey"
+                s3url: "s3url"
+                insecure: true
+                credsSecretName: "credsSecretName"
+                region: "region"
+              volumeSnapshotConfig:
+                credsSecretName: "credsSecretName"
+                region: "region"
+              tenant: "tenant"
+              desc: "desc"
+              s3Provider: "s3Provider"
+            excludedResources:
+            - "excludedResources"
+            - "excludedResources"
+            copyMethod: "copyMethod"
+            displayName: "displayName"
+            clusterName: "clusterName"
+            includedResources:
+            - "includedResources"
+            - "includedResources"
+            tenant: "tenant"
+            desc: "desc"
+            namespaces:
+            - "namespaces"
+            - "namespaces"
+            policy:
+              displayName: "displayName"
+              repeat: true
+              name: "name"
+              retention: 6
+              desc: "desc"
+              frequency: 0
+            storageName: "storageName"
+          displayName: "displayName"
+          action: "action"
+          backupName: "backupName"
+          tenant: "tenant"
+          desc: "desc"
         displayName: "displayName"
         action: "action"
         restoreName: "restoreName"
@@ -3152,6 +3248,7 @@ definitions:
             - "excludedResources"
             - "excludedResources"
             copyMethod: "copyMethod"
+            displayName: "displayName"
             clusterName: "clusterName"
             includedResources:
             - "includedResources"
@@ -3176,6 +3273,10 @@ definitions:
           desc: "desc"
       status:
         phase: "phase"
+        report:
+          startTime: "startTime"
+          endTime: "endTime"
+          totalPVC: 0
         conditions:
         - reason: "reason"
           lastHeartbeatTime: "lastHeartbeatTime"
@@ -3267,6 +3368,54 @@ definitions:
         kind: "kind"
         spec:
           backupJobName: "backupJobName"
+          backupJobRef:
+            backupPlanRef:
+              excludePV: true
+              storageRef:
+                isDefaultStorage: true
+                volumeSnapshotProvider: "volumeSnapshotProvider"
+                displayName: "displayName"
+                s3Config:
+                  accessKeyId: "accessKeyId"
+                  bucket: "bucket"
+                  secretAccessKey: "secretAccessKey"
+                  s3url: "s3url"
+                  insecure: true
+                  credsSecretName: "credsSecretName"
+                  region: "region"
+                volumeSnapshotConfig:
+                  credsSecretName: "credsSecretName"
+                  region: "region"
+                tenant: "tenant"
+                desc: "desc"
+                s3Provider: "s3Provider"
+              excludedResources:
+              - "excludedResources"
+              - "excludedResources"
+              copyMethod: "copyMethod"
+              displayName: "displayName"
+              clusterName: "clusterName"
+              includedResources:
+              - "includedResources"
+              - "includedResources"
+              tenant: "tenant"
+              desc: "desc"
+              namespaces:
+              - "namespaces"
+              - "namespaces"
+              policy:
+                displayName: "displayName"
+                repeat: true
+                name: "name"
+                retention: 6
+                desc: "desc"
+                frequency: 0
+              storageName: "storageName"
+            displayName: "displayName"
+            action: "action"
+            backupName: "backupName"
+            tenant: "tenant"
+            desc: "desc"
           displayName: "displayName"
           action: "action"
           restoreName: "restoreName"
@@ -3303,6 +3452,7 @@ definitions:
               - "excludedResources"
               - "excludedResources"
               copyMethod: "copyMethod"
+              displayName: "displayName"
               clusterName: "clusterName"
               includedResources:
               - "includedResources"
@@ -3327,6 +3477,10 @@ definitions:
             desc: "desc"
         status:
           phase: "phase"
+          report:
+            startTime: "startTime"
+            endTime: "endTime"
+            totalPVC: 0
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -3389,6 +3543,54 @@ definitions:
         kind: "kind"
         spec:
           backupJobName: "backupJobName"
+          backupJobRef:
+            backupPlanRef:
+              excludePV: true
+              storageRef:
+                isDefaultStorage: true
+                volumeSnapshotProvider: "volumeSnapshotProvider"
+                displayName: "displayName"
+                s3Config:
+                  accessKeyId: "accessKeyId"
+                  bucket: "bucket"
+                  secretAccessKey: "secretAccessKey"
+                  s3url: "s3url"
+                  insecure: true
+                  credsSecretName: "credsSecretName"
+                  region: "region"
+                volumeSnapshotConfig:
+                  credsSecretName: "credsSecretName"
+                  region: "region"
+                tenant: "tenant"
+                desc: "desc"
+                s3Provider: "s3Provider"
+              excludedResources:
+              - "excludedResources"
+              - "excludedResources"
+              copyMethod: "copyMethod"
+              displayName: "displayName"
+              clusterName: "clusterName"
+              includedResources:
+              - "includedResources"
+              - "includedResources"
+              tenant: "tenant"
+              desc: "desc"
+              namespaces:
+              - "namespaces"
+              - "namespaces"
+              policy:
+                displayName: "displayName"
+                repeat: true
+                name: "name"
+                retention: 6
+                desc: "desc"
+                frequency: 0
+              storageName: "storageName"
+            displayName: "displayName"
+            action: "action"
+            backupName: "backupName"
+            tenant: "tenant"
+            desc: "desc"
           displayName: "displayName"
           action: "action"
           restoreName: "restoreName"
@@ -3425,6 +3627,7 @@ definitions:
               - "excludedResources"
               - "excludedResources"
               copyMethod: "copyMethod"
+              displayName: "displayName"
               clusterName: "clusterName"
               includedResources:
               - "includedResources"
@@ -3449,6 +3652,10 @@ definitions:
             desc: "desc"
         status:
           phase: "phase"
+          report:
+            startTime: "startTime"
+            endTime: "endTime"
+            totalPVC: 0
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -3462,6 +3669,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+  v1alpha1.RestoreJobReport:
+    properties:
+      endTime:
+        type: "string"
+      startTime:
+        type: "string"
+      totalPVC:
+        type: "integer"
+        format: "integer"
+    example:
+      startTime: "startTime"
+      endTime: "endTime"
+      totalPVC: 0
   v1alpha1.RestoreJobSpec:
     required:
     - "backupJobName"
@@ -3472,6 +3692,8 @@ definitions:
         type: "string"
       backupJobName:
         type: "string"
+      backupJobRef:
+        $ref: "#/definitions/v1alpha1.BackupJobSpec"
       desc:
         type: "string"
       displayName:
@@ -3484,6 +3706,54 @@ definitions:
         type: "string"
     example:
       backupJobName: "backupJobName"
+      backupJobRef:
+        backupPlanRef:
+          excludePV: true
+          storageRef:
+            isDefaultStorage: true
+            volumeSnapshotProvider: "volumeSnapshotProvider"
+            displayName: "displayName"
+            s3Config:
+              accessKeyId: "accessKeyId"
+              bucket: "bucket"
+              secretAccessKey: "secretAccessKey"
+              s3url: "s3url"
+              insecure: true
+              credsSecretName: "credsSecretName"
+              region: "region"
+            volumeSnapshotConfig:
+              credsSecretName: "credsSecretName"
+              region: "region"
+            tenant: "tenant"
+            desc: "desc"
+            s3Provider: "s3Provider"
+          excludedResources:
+          - "excludedResources"
+          - "excludedResources"
+          copyMethod: "copyMethod"
+          displayName: "displayName"
+          clusterName: "clusterName"
+          includedResources:
+          - "includedResources"
+          - "includedResources"
+          tenant: "tenant"
+          desc: "desc"
+          namespaces:
+          - "namespaces"
+          - "namespaces"
+          policy:
+            displayName: "displayName"
+            repeat: true
+            name: "name"
+            retention: 6
+            desc: "desc"
+            frequency: 0
+          storageName: "storageName"
+        displayName: "displayName"
+        action: "action"
+        backupName: "backupName"
+        tenant: "tenant"
+        desc: "desc"
       displayName: "displayName"
       action: "action"
       restoreName: "restoreName"
@@ -3520,6 +3790,7 @@ definitions:
           - "excludedResources"
           - "excludedResources"
           copyMethod: "copyMethod"
+          displayName: "displayName"
           clusterName: "clusterName"
           includedResources:
           - "includedResources"
@@ -3550,8 +3821,14 @@ definitions:
           $ref: "#/definitions/v1alpha1.Condition"
       phase:
         type: "string"
+      report:
+        $ref: "#/definitions/v1alpha1.RestoreJobReport"
     example:
       phase: "phase"
+      report:
+        startTime: "startTime"
+        endTime: "endTime"
+        totalPVC: 0
       conditions:
       - reason: "reason"
         lastHeartbeatTime: "lastHeartbeatTime"
@@ -3662,6 +3939,7 @@ definitions:
           - "excludedResources"
           - "excludedResources"
           copyMethod: "copyMethod"
+          displayName: "displayName"
           clusterName: "clusterName"
           includedResources:
           - "includedResources"
@@ -3806,6 +4084,7 @@ definitions:
             - "excludedResources"
             - "excludedResources"
             copyMethod: "copyMethod"
+            displayName: "displayName"
             clusterName: "clusterName"
             includedResources:
             - "includedResources"
@@ -3921,6 +4200,7 @@ definitions:
             - "excludedResources"
             - "excludedResources"
             copyMethod: "copyMethod"
+            displayName: "displayName"
             clusterName: "clusterName"
             includedResources:
             - "includedResources"
@@ -4015,6 +4295,7 @@ definitions:
         - "excludedResources"
         - "excludedResources"
         copyMethod: "copyMethod"
+        displayName: "displayName"
         clusterName: "clusterName"
         includedResources:
         - "includedResources"

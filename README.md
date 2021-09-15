@@ -75,6 +75,7 @@ Class | Method | HTTP request | Description
  - [V1Secret](docs/V1Secret.md)
  - [V1alpha1BackupJob](docs/V1alpha1BackupJob.md)
  - [V1alpha1BackupJobList](docs/V1alpha1BackupJobList.md)
+ - [V1alpha1BackupJobReport](docs/V1alpha1BackupJobReport.md)
  - [V1alpha1BackupJobSpec](docs/V1alpha1BackupJobSpec.md)
  - [V1alpha1BackupJobStatus](docs/V1alpha1BackupJobStatus.md)
  - [V1alpha1BackupPlan](docs/V1alpha1BackupPlan.md)
@@ -90,6 +91,7 @@ Class | Method | HTTP request | Description
  - [V1alpha1Condition](docs/V1alpha1Condition.md)
  - [V1alpha1RestoreJob](docs/V1alpha1RestoreJob.md)
  - [V1alpha1RestoreJobList](docs/V1alpha1RestoreJobList.md)
+ - [V1alpha1RestoreJobReport](docs/V1alpha1RestoreJobReport.md)
  - [V1alpha1RestoreJobSpec](docs/V1alpha1RestoreJobSpec.md)
  - [V1alpha1RestoreJobStatus](docs/V1alpha1RestoreJobStatus.md)
  - [V1alpha1RestorePlan](docs/V1alpha1RestorePlan.md)
@@ -116,5 +118,5 @@ Class | Method | HTTP request | Description
 
 ## Author
 
-zoubo@jibudata.com
+shaofeng@jibudata.com
 

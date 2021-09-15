@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Action** | **string** |  | [optional] [default to null]
 **BackupJobName** | **string** |  | [default to null]
+**BackupJobRef** | [***V1alpha1BackupJobSpec**](v1alpha1.BackupJobSpec.md) |  | [optional] [default to null]
 **Desc** | **string** |  | [optional] [default to null]
 **DisplayName** | **string** |  | [optional] [default to null]
 **RestoreName** | **string** |  | [default to null]
