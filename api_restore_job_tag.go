@@ -18,6 +18,7 @@ import (
 	"net/url"
 	"strings"
 	"fmt"
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -296,10 +297,17 @@ func (a *RestoreJobTagApiService) GetRestoreJob(ctx context.Context, tenant stri
 RestoreJobTagApiService List all restorejobs of a tenant
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param tenant tenant id
+ * @param optional nil or *RestoreJobTagApiListRestoreJobsOpts - Optional Parameters:
+     * @param "PlanName" (optional.String) -  restore plan name
 
 @return V1alpha1RestoreJobList
 */
-func (a *RestoreJobTagApiService) ListRestoreJobs(ctx context.Context, tenant string) (V1alpha1RestoreJobList, *http.Response, error) {
+
+type RestoreJobTagApiListRestoreJobsOpts struct { 
+	PlanName optional.String
+}
+
+func (a *RestoreJobTagApiService) ListRestoreJobs(ctx context.Context, tenant string, localVarOptionals *RestoreJobTagApiListRestoreJobsOpts) (V1alpha1RestoreJobList, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -316,6 +324,9 @@ func (a *RestoreJobTagApiService) ListRestoreJobs(ctx context.Context, tenant st
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.PlanName.IsSet() {
+		localVarQueryParams.Add("plan_name", parameterToString(localVarOptionals.PlanName.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 

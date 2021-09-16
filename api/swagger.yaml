@@ -532,6 +532,13 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Tenant"
+      - name: "plan_name"
+        in: "query"
+        description: "restore plan name"
+        required: false
+        type: "string"
+        x-exportParamName: "PlanName"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"

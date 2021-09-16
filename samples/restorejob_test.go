@@ -8,6 +8,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/antihax/optional"
 	yscli "github.com/jibutech/backup-saas-client"
 )
 
@@ -16,14 +17,14 @@ func TestRestorejob(t *testing.T) {
 	cli := yscli.NewAPIClient(cfg)
 	cli.ChangeBasePath(apiEndpoint)
 
-	listRestoreJobs(cli, t)
+	listRestoreJobs(cli, t, restorePlanName)
 	createRestoreJob(cli, t, restoreJobName)
 	createRestoreJob(cli, t, restoreJobForDeletingName)
-	listRestoreJobs(cli, t)
+	listRestoreJobs(cli, t, restorePlanName)
 	deleteRestoreJob(cli, t, restoreJobForDeletingName)
-	listRestoreJobs(cli, t)
+	listRestoreJobs(cli, t, restorePlanName)
 	waitForRestoreJobReady(cli, t, restoreJobName)
-	listRestoreJobs(cli, t)
+	listRestoreJobs(cli, t, restorePlanName)
 }
 
 func createRestoreJob(cli *yscli.APIClient, t *testing.T, name string) {
@@ -67,11 +68,11 @@ func deleteRestoreJob(cli *yscli.APIClient, t *testing.T, name string) {
 	}
 }
 
-func listRestoreJobs(cli *yscli.APIClient, t *testing.T) {
+func listRestoreJobs(cli *yscli.APIClient, t *testing.T, restorePlanName string) {
 	var err error
 	var ye yscli.Error
 
-	bpList, _, err := cli.RestoreJobTagApi.ListRestoreJobs(context.TODO(), tenantID)
+	bpList, _, err := cli.RestoreJobTagApi.ListRestoreJobs(context.TODO(), tenantID, &yscli.RestoreJobTagApiListRestoreJobsOpts{PlanName: optional.NewString(restorePlanName)})
 	if err != nil {
 		if errors.As(err, &ye) {
 			if ye.StatusCode() == http.StatusNotFound {
