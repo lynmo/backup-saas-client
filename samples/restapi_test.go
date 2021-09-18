@@ -109,28 +109,8 @@ func TestRestAPIs(t *testing.T) {
 			t.Log(ye.OrigError())
 		}
 	}
+
 	listStorages(t, cli)
-	// testStorage.Spec.S3Config.AccessKeyId = accessKey
-	// testStorage.Spec.S3Config.Bucket = bucketName
-	// testStorage.Spec.S3Config.S3url = s3URL
-	// testStorage.Spec.S3Config.SecretAccessKey = secretKey
-	// testStorage.Spec.S3Config.Region = region
-	// for {
-	// 	t.Log("updating storage", storageName)
-	// 	_, _, err = cli.StorageApi.UpdateStorage(context.TODO(), tenantID, storageName, testStorage)
-	// 	if err != nil {
-	// 		t.Error("failed to update storage", err)
-	// 		var ye yscli.Error
-	// 		if errors.As(err, &ye) {
-	// 			t.Log(ye.Code())
-	// 			t.Log(ye.Message())
-	// 			t.Log(ye.OrigError())
-	// 		}
-	// 		time.Sleep(1 * time.Second)
-	// 	} else {
-	// 		break
-	// 	}
-	// }
 
 	for {
 		testTenant, _, err = cli.TenantApi.GetTenant(context.TODO(), tenantID)
@@ -207,9 +187,9 @@ func createCluster(t *testing.T, cli *yscli.APIClient) {
 	var ye yscli.Error
 	t.Log("creating cluster", clusterName)
 	var kubeconfig []byte
-	kubeconfig, err = ioutil.ReadFile("kubeconfig")
+	kubeconfig, err = ioutil.ReadFile("kubeconfig.yaml")
 	if err != nil {
-		t.Log("no kubeconfig file in current dir, will try $HOME/.kube/config")
+		t.Log("no kubeconfig.yaml file in current dir, will try $HOME/.kube/config")
 		usr, err := user.Current()
 		if err != nil {
 			t.Error("failed to get current user")

@@ -1,16 +1,16 @@
 package sample
 
+import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+)
+
 const (
-	apiEndpoint = "http://127.0.0.1:31800"
 	tenantID    = "go-client-test"
 	clusterName = "go-client-test-k8s"
 
 	storageName = "go-client-test-s3"
-	accessKey   = ""
-	bucketName  = ""
-	s3URL       = "http://s3.pek3b.qingstor.com/"
-	secretKey   = ""
-	region      = "pek3b"
 
 	backupPlanName           = "go-client-test-backupplan"
 	backupNamespace          = "wordpress"
@@ -24,3 +24,41 @@ const (
 	restoreJobName            = "go-client-test-restorejob"
 	restoreJobForDeletingName = "go-client-test-restorejob-deleting"
 )
+
+var apiEndpoint string
+var accessKey string
+var bucketName string
+var s3URL string
+var secretKey string
+var region string
+
+type config struct {
+	ApiEndpoint string `json:"apiEndpoint"`
+	AccessKey   string `json:"accessKey"`
+	BucketName  string `json:"bucketName"`
+	S3URL       string `json:"s3URL"`
+	SecretKey   string `json:"secretKey"`
+	Region      string `json:"region"`
+}
+
+func init() {
+	var err error
+	var data []byte
+	data, err = ioutil.ReadFile("config.json")
+	if err != nil {
+		fmt.Printf("error loading config file: %s\n", err)
+		return
+	}
+	var config = config{}
+	err = json.Unmarshal(data, &config)
+	if err != nil {
+		fmt.Printf("error loading config: %s\n", err)
+		return
+	}
+	apiEndpoint = config.ApiEndpoint
+	accessKey = config.AccessKey
+	bucketName = config.BucketName
+	s3URL = config.S3URL
+	secretKey = config.SecretKey
+	region = config.Region
+}

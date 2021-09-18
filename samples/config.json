@@ -1,0 +1,8 @@
+{
+  "apiEndpoint": "http://127.0.0.1:31800",
+  "accessKey": "your access key here",
+  "bucketName": "your bucket name here",
+  "s3URL": "http://s3.pek3b.qingstor.com/",
+  "secretKey": "your secret key here",
+  "region": "pek3b"
+}
