@@ -93,7 +93,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ListRestoreJobs**
-> V1alpha1RestoreJobList ListRestoreJobs(ctx, tenant)
+> V1alpha1RestoreJobList ListRestoreJobs(ctx, tenant, optional)
 List all restorejobs of a tenant
 
 ### Required Parameters
@@ -102,6 +102,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **tenant** | **string**| tenant id | 
+ **optional** | ***RestoreJobTagApiListRestoreJobsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a RestoreJobTagApiListRestoreJobsOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **planName** | **optional.String**| restore plan name | 
 
 ### Return type
 

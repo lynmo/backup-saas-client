@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApiEndpoint** | **string** |  | [optional] [default to null]
 **Desc** | **string** |  | [optional] [default to null]
+**DisplayName** | **string** |  | [optional] [default to null]
 **ExcludedNamespaces** | **[]string** |  | [optional] [default to null]
 **ExtraParams** | **map[string]string** |  | [optional] [default to null]
 **Kubeconfig** | **string** |  | [default to null]
