@@ -598,16 +598,16 @@ spec:
         - /manager
         env:
         - name: QIMING_OPERATOR_REGISTRY
-          value: jibutech
+          value: registry.cn-shanghai.aliyuncs.com/jibudata
         - name: QIMING_OPERATOR_VERSION
-          value: main.ee89515
+          value: main.446b41b
         - name: QIMING_CONTROLLER_VERSION
-          value: main.4e556c0
+          value: main.c25a41b
         - name: VELERO_VERSION
           value: v1.6.3
         - name: VELERO_INSTALLER_VERSION
-          value: main.ee89515
-        image: jibutech/tenant-operator:main.fecac7b
+          value: main.446b41b
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:main.10bcad0
         imagePullPolicy: Always
         name: manager
         resources:

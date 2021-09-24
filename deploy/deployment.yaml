@@ -436,6 +436,12 @@ spec:
                   - type
                   type: object
                 type: array
+              currentJobName:
+                description: CurrentJobName is the backup job is latest backup job
+                type: string
+              currentJobPhase:
+                description: CurrentJobPhase is the phase of latest backup job
+                type: string
               phase:
                 description: Phase describes the overall status of backup plan
                 type: string
@@ -1905,7 +1911,7 @@ spec:
         - --leader-elect
         command:
         - /manager
-        image: jibutech/backup-rest-server:main.dac2365
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.7e345c3
         imagePullPolicy: Always
         name: manager
         resources:

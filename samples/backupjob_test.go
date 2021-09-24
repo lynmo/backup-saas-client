@@ -27,9 +27,11 @@ func TestBackupjob(t *testing.T) {
 
 	deleteBackupJob(cli, t, backupJobForDeletingName)
 	listBackupJobs(cli, t)
+	listBackupPlans(cli, t)
 
 	waitForBackupJobReady(cli, t, backupJobName)
 	listBackupJobs(cli, t)
+	listBackupPlans(cli, t)
 }
 
 func createBackupJob(cli *yscli.APIClient, t *testing.T, name string) {

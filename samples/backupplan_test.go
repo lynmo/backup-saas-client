@@ -67,5 +67,7 @@ func listBackupPlans(cli *yscli.APIClient, t *testing.T) {
 		fmt.Println(t.Metadata.Name)
 		fmt.Println(t.Spec.Desc)
 		fmt.Println(t.Spec.DisplayName)
+		fmt.Println(t.Status.CurrentJobName)
+		fmt.Println(t.Status.CurrentJobPhase)
 	}
 }
