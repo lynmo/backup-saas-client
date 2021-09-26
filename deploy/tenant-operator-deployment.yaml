@@ -602,12 +602,12 @@ spec:
         - name: QIMING_OPERATOR_VERSION
           value: main.446b41b
         - name: QIMING_CONTROLLER_VERSION
-          value: main.c25a41b
+          value: main.0075202
         - name: VELERO_VERSION
           value: v1.6.3
         - name: VELERO_INSTALLER_VERSION
           value: main.446b41b
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:main.10bcad0
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:main.032af1a
         imagePullPolicy: Always
         name: manager
         resources:
