@@ -73,47 +73,10 @@ func TestRestAPIs(t *testing.T) {
 		time.Sleep(1 * time.Second)
 	}
 
-	t.Log("creating tenant", tenantID)
-	testTenant := yscli.V1alpha1Tenant{Metadata: &yscli.V1ObjectMeta{Name: tenantID}}
-	testTenant, _, err = cli.TenantApi.CreateTenant(context.TODO(), testTenant)
-	if err != nil {
-		t.Error("failed to create tenant", err)
-		if errors.As(err, &ye) {
-			t.Log(ye.Code())
-			t.Log(ye.Message())
-			t.Log(ye.OrigError())
-		}
-	}
-
-	t.Log("creating storage", storageName)
-	testStorage := yscli.V1alpha1Storage{
-		Metadata: &yscli.V1ObjectMeta{Name: storageName},
-		Spec: &yscli.V1alpha1StorageSpec{
-			S3Config: &yscli.V1alpha1BackupS3Config{
-				AccessKeyId:     accessKey,
-				Bucket:          bucketName,
-				S3url:           s3URL,
-				SecretAccessKey: secretKey,
-				Region:          region,
-			},
-			Tenant:     tenantID,
-			S3Provider: "aws",
-		},
-	}
-	testStorage, _, err = cli.StorageApi.CreateStorage(context.TODO(), tenantID, testStorage)
-	if err != nil {
-		t.Error("failed to create storage", err)
-		if errors.As(err, &ye) {
-			t.Log(ye.Code())
-			t.Log(ye.Message())
-			t.Log(ye.OrigError())
-		}
-	}
-
-	listStorages(t, cli)
+	createTenant(t, cli)
 
 	for {
-		testTenant, _, err = cli.TenantApi.GetTenant(context.TODO(), tenantID)
+		testTenant, _, err := cli.TenantApi.GetTenant(context.TODO(), tenantID)
 		if err != nil {
 			t.Error("failed to query tenant", tenantID)
 			if errors.As(err, &ye) {
@@ -129,6 +92,50 @@ func TestRestAPIs(t *testing.T) {
 		t.Log("wait for tenant ready")
 		time.Sleep(1 * time.Second)
 	}
+
+	createStorage(t, cli)
+	listStorages(t, cli)
+	createCluster(t, cli)
+}
+
+func TestCreateTenant(t *testing.T) {
+	cfg := yscli.NewConfiguration()
+	cli := yscli.NewAPIClient(cfg)
+	cli.ChangeBasePath(apiEndpoint)
+
+	createTenant(t, cli)
+}
+
+func createTenant(t *testing.T, cli *yscli.APIClient) {
+	var err error
+	var ye yscli.Error
+
+	t.Log("creating tenant", tenantID)
+	testTenant := yscli.V1alpha1Tenant{Metadata: &yscli.V1ObjectMeta{Name: tenantID}}
+	testTenant, _, err = cli.TenantApi.CreateTenant(context.TODO(), testTenant)
+	if err != nil {
+		t.Error("failed to create tenant", err)
+		if errors.As(err, &ye) {
+			t.Log(ye.Code())
+			t.Log(ye.Message())
+			t.Log(ye.OrigError())
+		}
+	}
+
+}
+
+func TestCreateStorage(t *testing.T) {
+	cfg := yscli.NewConfiguration()
+	cli := yscli.NewAPIClient(cfg)
+	cli.ChangeBasePath(apiEndpoint)
+
+	createStorage(t, cli)
+}
+
+func TestCreateCluster(t *testing.T) {
+	cfg := yscli.NewConfiguration()
+	cli := yscli.NewAPIClient(cfg)
+	cli.ChangeBasePath(apiEndpoint)
 
 	createCluster(t, cli)
 }
@@ -219,6 +226,36 @@ func createCluster(t *testing.T, cli *yscli.APIClient) {
 	testCluster, _, err = cli.ClusterApi.CreateCluster(context.TODO(), tenantID, testCluster)
 	if err != nil {
 		t.Error("failed to create cluster", err)
+		if errors.As(err, &ye) {
+			t.Log(ye.Code())
+			t.Log(ye.Message())
+			t.Log(ye.OrigError())
+		}
+	}
+}
+
+func createStorage(t *testing.T, cli *yscli.APIClient) {
+	var err error
+	var ye yscli.Error
+
+	t.Log("creating storage", storageName)
+	testStorage := yscli.V1alpha1Storage{
+		Metadata: &yscli.V1ObjectMeta{Name: storageName},
+		Spec: &yscli.V1alpha1StorageSpec{
+			S3Config: &yscli.V1alpha1BackupS3Config{
+				AccessKeyId:     accessKey,
+				Bucket:          bucketName,
+				S3url:           s3URL,
+				SecretAccessKey: secretKey,
+				Region:          region,
+			},
+			Tenant:     tenantID,
+			S3Provider: "aws",
+		},
+	}
+	testStorage, _, err = cli.StorageApi.CreateStorage(context.TODO(), tenantID, testStorage)
+	if err != nil {
+		t.Error("failed to create storage", err)
 		if errors.As(err, &ye) {
 			t.Log(ye.Code())
 			t.Log(ye.Message())
