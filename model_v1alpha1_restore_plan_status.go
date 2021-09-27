@@ -12,5 +12,7 @@ package swagger
 
 type V1alpha1RestorePlanStatus struct {
 	Conditions []V1alpha1Condition `json:"conditions,omitempty"`
+	CurrentJobName string `json:"currentJobName,omitempty"`
+	CurrentJobPhase string `json:"currentJobPhase,omitempty"`
 	Phase string `json:"phase,omitempty"`
 }

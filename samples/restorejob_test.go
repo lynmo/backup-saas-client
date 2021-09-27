@@ -25,6 +25,7 @@ func TestRestorejob(t *testing.T) {
 	listRestoreJobs(cli, t, restorePlanName)
 	waitForRestoreJobReady(cli, t, restoreJobName)
 	listRestoreJobs(cli, t, restorePlanName)
+	listRestorePlans(cli, t)
 }
 
 func createRestoreJob(cli *yscli.APIClient, t *testing.T, name string) {

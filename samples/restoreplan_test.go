@@ -84,5 +84,7 @@ func listRestorePlans(cli *yscli.APIClient, t *testing.T) {
 	log.Println("list of restorePlans:")
 	for _, t := range bpList.Items {
 		fmt.Println(t.Metadata.Name)
+		fmt.Println(t.Status.CurrentJobName)
+		fmt.Println(t.Status.CurrentJobPhase)
 	}
 }

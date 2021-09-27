@@ -3983,6 +3983,8 @@ definitions:
         desc: "desc"
       status:
         phase: "phase"
+        currentJobPhase: "currentJobPhase"
+        currentJobName: "currentJobName"
         conditions:
         - reason: "reason"
           lastHeartbeatTime: "lastHeartbeatTime"
@@ -4128,6 +4130,8 @@ definitions:
           desc: "desc"
         status:
           phase: "phase"
+          currentJobPhase: "currentJobPhase"
+          currentJobName: "currentJobName"
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -4244,6 +4248,8 @@ definitions:
           desc: "desc"
         status:
           phase: "phase"
+          currentJobPhase: "currentJobPhase"
+          currentJobName: "currentJobName"
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -4343,10 +4349,16 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/v1alpha1.Condition"
+      currentJobName:
+        type: "string"
+      currentJobPhase:
+        type: "string"
       phase:
         type: "string"
     example:
       phase: "phase"
+      currentJobPhase: "currentJobPhase"
+      currentJobName: "currentJobName"
       conditions:
       - reason: "reason"
         lastHeartbeatTime: "lastHeartbeatTime"

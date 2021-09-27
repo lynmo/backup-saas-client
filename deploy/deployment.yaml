@@ -1265,6 +1265,12 @@ spec:
                   - type
                   type: object
                 type: array
+              currentJobName:
+                description: CurrentJobName is the restore job is latest restore job
+                type: string
+              currentJobPhase:
+                description: CurrentJobPhase is the phase of latest restore job
+                type: string
               phase:
                 description: Phase describes the overall status of restore plan
                 type: string
@@ -1911,7 +1917,7 @@ spec:
         - --leader-elect
         command:
         - /manager
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.e0c4b1e
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.f9ccc9c
         imagePullPolicy: Always
         name: manager
         resources:
