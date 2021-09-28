@@ -600,9 +600,9 @@ spec:
         - name: QIMING_OPERATOR_REGISTRY
           value: registry.cn-shanghai.aliyuncs.com/jibudata
         - name: QIMING_OPERATOR_VERSION
-          value: main.446b41b
+          value: main.6cc94c9
         - name: QIMING_CONTROLLER_VERSION
-          value: main.0075202
+          value: main.b740777
         - name: VELERO_VERSION
           value: v1.6.3
         - name: VELERO_INSTALLER_VERSION
