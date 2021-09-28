@@ -20,8 +20,8 @@ func TestBackupjob(t *testing.T) {
 
 	listBackupJobs(cli, t)
 
-	createBackupJob(cli, t, backupJobName)
-	createBackupJob(cli, t, backupJobForDeletingName)
+	createBackupJob(cli, t, backupJobName, true)
+	createBackupJob(cli, t, backupJobForDeletingName, true)
 
 	listBackupJobs(cli, t)
 
@@ -34,9 +34,21 @@ func TestBackupjob(t *testing.T) {
 	listBackupPlans(cli, t)
 }
 
-func createBackupJob(cli *yscli.APIClient, t *testing.T, name string) {
+func TestCreateBackupJob(t *testing.T) {
+	cfg := yscli.NewConfiguration()
+	cli := yscli.NewAPIClient(cfg)
+	cli.ChangeBasePath(apiEndpoint)
+
+	createBackupJob(cli, t, backupJobNameNotStart, false)
+}
+
+func createBackupJob(cli *yscli.APIClient, t *testing.T, name string, start bool) {
 	var err error
 	var ye yscli.Error
+	var action string
+	if start {
+		action = "start"
+	}
 
 	testBackupJob := yscli.V1alpha1BackupJob{
 		Metadata: &yscli.V1ObjectMeta{Name: name},
@@ -44,7 +56,7 @@ func createBackupJob(cli *yscli.APIClient, t *testing.T, name string) {
 			Tenant:      tenantID,
 			BackupName:  backupPlanName,
 			DisplayName: backupPlanName,
-			Action:      "start",
+			Action:      action,
 		},
 	}
 	_, _, err = cli.BackupJobTagApi.CreateBackupJob(context.TODO(), tenantID, testBackupJob)

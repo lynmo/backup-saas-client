@@ -15,6 +15,7 @@ const (
 	backupPlanName           = "go-client-test-backupplan"
 	backupNamespace          = "wordpress"
 	backupJobName            = "go-client-test-backupjob"
+	backupJobNameNotStart    = "go-client-test-backupjob-not-start"
 	backupJobForDeletingName = "go-client-test-backupjob-deleting"
 
 	restorePlanName            = "go-client-test-restoreplan"
@@ -22,6 +23,7 @@ const (
 	restorePlanForDeletingName = "go-client-test-restoreplan-deleting"
 
 	restoreJobName            = "go-client-test-restorejob"
+	restoreJobNameNotStart    = "go-client-test-restorejob-not-start"
 	restoreJobForDeletingName = "go-client-test-restorejob-deleting"
 )
 

@@ -18,8 +18,8 @@ func TestRestorejob(t *testing.T) {
 	cli.ChangeBasePath(apiEndpoint)
 
 	listRestoreJobs(cli, t, restorePlanName)
-	createRestoreJob(cli, t, restoreJobName)
-	createRestoreJob(cli, t, restoreJobForDeletingName)
+	createRestoreJob(cli, t, restoreJobName, true)
+	createRestoreJob(cli, t, restoreJobForDeletingName, true)
 	listRestoreJobs(cli, t, restorePlanName)
 	deleteRestoreJob(cli, t, restoreJobForDeletingName)
 	listRestoreJobs(cli, t, restorePlanName)
@@ -28,14 +28,26 @@ func TestRestorejob(t *testing.T) {
 	listRestorePlans(cli, t)
 }
 
-func createRestoreJob(cli *yscli.APIClient, t *testing.T, name string) {
+func TestCreateRestoreJob(t *testing.T) {
+	cfg := yscli.NewConfiguration()
+	cli := yscli.NewAPIClient(cfg)
+	cli.ChangeBasePath(apiEndpoint)
+
+	createRestoreJob(cli, t, restoreJobNameNotStart, false)
+}
+
+func createRestoreJob(cli *yscli.APIClient, t *testing.T, name string, start bool) {
 	var err error
 	var ye yscli.Error
+	var action string
+	if start {
+		action = "start"
+	}
 
 	restoreJob := yscli.V1alpha1RestoreJob{
 		Metadata: &yscli.V1ObjectMeta{Name: name},
 		Spec: &yscli.V1alpha1RestoreJobSpec{
-			Action:        "start",
+			Action:        action,
 			BackupJobName: backupJobName,
 			RestoreName:   restorePlanName,
 			Tenant:        tenantID,

@@ -1917,7 +1917,7 @@ spec:
         - --leader-elect
         command:
         - /manager
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.f9ccc9c
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.74a0736
         imagePullPolicy: Always
         name: manager
         resources:
