@@ -114,7 +114,10 @@ func waitForRestoreJobReady(cli *yscli.APIClient, t *testing.T, name string) {
 			t.Error("failed to list restoreJobs", err)
 		} else {
 			t.Log("restore job phase:", job.Status.Phase)
-			if job.Status.Phase == "JobCompleted" || job.Status.Phase == "JobCanceled" || job.Status.Phase == "JobFailed" {
+			if job.Status.Phase == "JobCompleted" ||
+				job.Status.Phase == "JobCanceled" ||
+				job.Status.Phase == "JobFailed" ||
+				job.Status.Phase == "Error" {
 				finished = true
 			}
 		}

@@ -115,7 +115,10 @@ func waitForBackupJobReady(cli *yscli.APIClient, t *testing.T, name string) {
 			t.Error("failed to list backupJobs", err)
 		} else {
 			t.Log("backup job phase:", job.Status.Phase)
-			if job.Status.Phase == "JobCompleted" || job.Status.Phase == "JobCanceled" || job.Status.Phase == "JobFailed" {
+			if job.Status.Phase == "JobCompleted" ||
+				job.Status.Phase == "JobCanceled" ||
+				job.Status.Phase == "JobFailed" ||
+				job.Status.Phase == "Error" {
 				finished = true
 			}
 		}
