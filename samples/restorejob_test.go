@@ -41,7 +41,7 @@ func createRestoreJob(cli *yscli.APIClient, t *testing.T, name string, start boo
 	var ye yscli.Error
 	var action string
 	if start {
-		action = "start"
+		action = "StartJob"
 	}
 
 	restoreJob := yscli.V1alpha1RestoreJob{

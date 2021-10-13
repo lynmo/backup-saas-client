@@ -47,7 +47,7 @@ func createBackupJob(cli *yscli.APIClient, t *testing.T, name string, start bool
 	var ye yscli.Error
 	var action string
 	if start {
-		action = "start"
+		action = "StartJob"
 	}
 
 	testBackupJob := yscli.V1alpha1BackupJob{
