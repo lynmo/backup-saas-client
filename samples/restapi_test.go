@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 	"testing"
 	"time"
+	"os"
 
 	yscli "github.com/jibutech/backup-saas-client"
 )
@@ -194,9 +195,12 @@ func createCluster(t *testing.T, cli *yscli.APIClient) {
 	var ye yscli.Error
 	t.Log("creating cluster", clusterName)
 	var kubeconfig []byte
+	var envKubeconfig string
 	kubeconfig, err = ioutil.ReadFile("kubeconfig.yaml")
 	if err != nil {
-		t.Log("no kubeconfig.yaml file in current dir, will try $HOME/.kube/config")
+		//t.Log("no kubeconfig.yaml file in current dir, will try $HOME/.kube/config")
+		t.Log("no kubeconfig.yaml file in current dir, will try to use KUBECONFIG environment")
+		envKubeconfig = os.Getenv("KUBECONFIG")
 		usr, err := user.Current()
 		if err != nil {
 			t.Error("failed to get current user")
@@ -206,13 +210,21 @@ func createCluster(t *testing.T, cli *yscli.APIClient) {
 				t.Log(ye.OrigError())
 			}
 		}
-		kubeconfig, err = ioutil.ReadFile(filepath.Join(usr.HomeDir, ".kube/config"))
-		if err != nil {
-			t.Error("failed to load kubeconfig")
-			if errors.As(err, &ye) {
-				t.Log(ye.Code())
-				t.Log(ye.Message())
-				t.Log(ye.OrigError())
+		// If an env variable is specified with the config locaiton, use that
+		if len(envKubeconfig) > 0 {
+			t.Log("Get the KUBECONFIG env variable ",envKubeconfig)
+		}
+		if envKubeconfig == "" {
+			t.Error("Failed to load KUBECONFIG env variable")
+			// If no KUBECONFIG env variable, try the default location in the user's home directory
+			kubeconfig, err = ioutil.ReadFile(filepath.Join(usr.HomeDir, ".kube/config"))
+			if err != nil {
+				t.Error("failed to load kubeconfig")
+				if errors.As(err, &ye) {
+					t.Log(ye.Code())
+					t.Log(ye.Message())
+					t.Log(ye.OrigError())
+				}
 			}
 		}
 	}
