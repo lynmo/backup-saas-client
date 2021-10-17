@@ -9,6 +9,9 @@ import (
 const (
 	tenantID    = "go-client-test"
 	clusterName = "go-client-test-k8s"
+	clusterNameMulti1 = "go-client-test-k8s-1"
+    clusterNameMulti2 = "go-client-test-k8s-2"
+    clusterNameMulti3 = "go-client-test-k8s-3"
 
 	storageName = "go-client-test-s3"
 
