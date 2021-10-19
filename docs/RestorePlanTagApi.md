@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**CreateRestorePlan**](RestorePlanTagApi.md#CreateRestorePlan) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans | Create a restoreplan.
 [**DeleteRestorePlan**](RestorePlanTagApi.md#DeleteRestorePlan) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans/{restoreplan} | Delete a restoreplan.
 [**GetRestorePlan**](RestorePlanTagApi.md#GetRestorePlan) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans/{restoreplan} | Retrieve restoreplan details.
+[**ListAllRestorePlans**](RestorePlanTagApi.md#ListAllRestorePlans) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/restoreplans | List all restoreplans.
 [**ListRestorePlans**](RestorePlanTagApi.md#ListRestorePlans) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans | List all restoreplans of a tenant
 [**UpdateRestorePlan**](RestorePlanTagApi.md#UpdateRestorePlan) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans/{restoreplan} | Update restoreplan details.
 
@@ -80,6 +81,28 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1alpha1RestorePlan**](v1alpha1.RestorePlan.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ListAllRestorePlans**
+> V1alpha1RestorePlanList ListAllRestorePlans(ctx, )
+List all restoreplans.
+
+### Required Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**V1alpha1RestorePlanList**](v1alpha1.RestorePlanList.md)
 
 ### Authorization
 

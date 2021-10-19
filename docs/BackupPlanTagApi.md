@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**CreateBackupPlan**](BackupPlanTagApi.md#CreateBackupPlan) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans | Create a backupplan.
 [**DeleteBackupPlan**](BackupPlanTagApi.md#DeleteBackupPlan) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans/{backupplan} | Delete a backupplan.
 [**GetBackupPlan**](BackupPlanTagApi.md#GetBackupPlan) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans/{backupplan} | Retrieve backupplan details.
+[**ListAllBackupPlans**](BackupPlanTagApi.md#ListAllBackupPlans) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/backupplans | List all backupplans
 [**ListBackupPlans**](BackupPlanTagApi.md#ListBackupPlans) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans | List all backupplans of a tenant
 [**UpdateBackupPlan**](BackupPlanTagApi.md#UpdateBackupPlan) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans/{backupplan} | Update backupplan details.
 
@@ -80,6 +81,28 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1alpha1BackupPlan**](v1alpha1.BackupPlan.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ListAllBackupPlans**
+> V1alpha1BackupPlanList ListAllBackupPlans(ctx, )
+List all backupplans
+
+### Required Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**V1alpha1BackupPlanList**](v1alpha1.BackupPlanList.md)
 
 ### Authorization
 

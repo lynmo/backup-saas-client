@@ -14,5 +14,6 @@ type V1alpha1BackupJobReport struct {
 	EndTime string `json:"endTime,omitempty"`
 	ExpiredTime string `json:"expiredTime,omitempty"`
 	StartTime string `json:"startTime,omitempty"`
+	SubmitTime string `json:"submitTime,omitempty"`
 	TotalPVC int32 `json:"totalPVC,omitempty"`
 }

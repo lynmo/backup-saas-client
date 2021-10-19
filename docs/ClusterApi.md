@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**DeleteCluster**](ClusterApi.md#DeleteCluster) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster} | Delete a cluster.
 [**GetCluster**](ClusterApi.md#GetCluster) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster} | Retrieve storage details.
 [**GetNamespaces**](ClusterApi.md#GetNamespaces) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster}/resources/namespaces | Get namespaces in a cluster
+[**ListAllClusters**](ClusterApi.md#ListAllClusters) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/clusters | List all clusters.
 [**ListClusters**](ClusterApi.md#ListClusters) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters | List all clusters of a tenant.
 [**UpdateCluster**](ClusterApi.md#UpdateCluster) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster} | Update a cluster.
 
@@ -108,6 +109,28 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1NamespaceList**](v1.NamespaceList.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ListAllClusters**
+> V1alpha1ClusterList ListAllClusters(ctx, )
+List all clusters.
+
+### Required Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**V1alpha1ClusterList**](v1alpha1.ClusterList.md)
 
 ### Authorization
 

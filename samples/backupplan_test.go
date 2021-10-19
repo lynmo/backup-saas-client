@@ -42,7 +42,20 @@ func TestBackupplan(t *testing.T) {
 	_, _, err = cli.BackupPlanTagApi.CreateBackupPlan(context.TODO(), tenantID, testBackupPlan)
 	if err != nil {
 		t.Error("failed to create backupplan", err)
+		if errors.As(err, &ye) {
+			fmt.Println(ye.Code())
+			fmt.Println(ye.Message())
+			fmt.Println(ye.OrigError())
+		}
 	}
+	listBackupPlans(cli, t)
+}
+
+func TestListBackupplan(t *testing.T) {
+	cfg := yscli.NewConfiguration()
+	cli := yscli.NewAPIClient(cfg)
+	cli.ChangeBasePath(apiEndpoint)
+
 	listBackupPlans(cli, t)
 }
 
@@ -69,5 +82,6 @@ func listBackupPlans(cli *yscli.APIClient, t *testing.T) {
 		fmt.Println(t.Spec.DisplayName)
 		fmt.Println(t.Status.CurrentJobName)
 		fmt.Println(t.Status.CurrentJobPhase)
+		fmt.Printf("%v\n", t.Status.JobDetail)
 	}
 }

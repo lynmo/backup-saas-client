@@ -30,12 +30,14 @@ Class | Method | HTTP request | Description
 *BackupPlanTagApi* | [**CreateBackupPlan**](docs/BackupPlanTagApi.md#createbackupplan) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans | Create a backupplan.
 *BackupPlanTagApi* | [**DeleteBackupPlan**](docs/BackupPlanTagApi.md#deletebackupplan) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans/{backupplan} | Delete a backupplan.
 *BackupPlanTagApi* | [**GetBackupPlan**](docs/BackupPlanTagApi.md#getbackupplan) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans/{backupplan} | Retrieve backupplan details.
+*BackupPlanTagApi* | [**ListAllBackupPlans**](docs/BackupPlanTagApi.md#listallbackupplans) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/backupplans | List all backupplans
 *BackupPlanTagApi* | [**ListBackupPlans**](docs/BackupPlanTagApi.md#listbackupplans) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans | List all backupplans of a tenant
 *BackupPlanTagApi* | [**UpdateBackupPlan**](docs/BackupPlanTagApi.md#updatebackupplan) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/backupplans/{backupplan} | Update backupplan details.
 *ClusterApi* | [**CreateCluster**](docs/ClusterApi.md#createcluster) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters | Create a cluster.
 *ClusterApi* | [**DeleteCluster**](docs/ClusterApi.md#deletecluster) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster} | Delete a cluster.
 *ClusterApi* | [**GetCluster**](docs/ClusterApi.md#getcluster) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster} | Retrieve storage details.
 *ClusterApi* | [**GetNamespaces**](docs/ClusterApi.md#getnamespaces) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster}/resources/namespaces | Get namespaces in a cluster
+*ClusterApi* | [**ListAllClusters**](docs/ClusterApi.md#listallclusters) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/clusters | List all clusters.
 *ClusterApi* | [**ListClusters**](docs/ClusterApi.md#listclusters) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters | List all clusters of a tenant.
 *ClusterApi* | [**UpdateCluster**](docs/ClusterApi.md#updatecluster) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/clusters/{cluster} | Update a cluster.
 *RestoreJobTagApi* | [**CreateRestoreJob**](docs/RestoreJobTagApi.md#createrestorejob) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restorejobs | Create a restorejob for a tenant.
@@ -46,12 +48,14 @@ Class | Method | HTTP request | Description
 *RestorePlanTagApi* | [**CreateRestorePlan**](docs/RestorePlanTagApi.md#createrestoreplan) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans | Create a restoreplan.
 *RestorePlanTagApi* | [**DeleteRestorePlan**](docs/RestorePlanTagApi.md#deleterestoreplan) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans/{restoreplan} | Delete a restoreplan.
 *RestorePlanTagApi* | [**GetRestorePlan**](docs/RestorePlanTagApi.md#getrestoreplan) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans/{restoreplan} | Retrieve restoreplan details.
+*RestorePlanTagApi* | [**ListAllRestorePlans**](docs/RestorePlanTagApi.md#listallrestoreplans) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/restoreplans | List all restoreplans.
 *RestorePlanTagApi* | [**ListRestorePlans**](docs/RestorePlanTagApi.md#listrestoreplans) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans | List all restoreplans of a tenant
 *RestorePlanTagApi* | [**UpdateRestorePlan**](docs/RestorePlanTagApi.md#updaterestoreplan) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/restoreplans/{restoreplan} | Update restoreplan details.
 *StorageApi* | [**CreateStorage**](docs/StorageApi.md#createstorage) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages | Create a storage.
 *StorageApi* | [**CreateStorageCredentials**](docs/StorageApi.md#createstoragecredentials) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages/{storage}/credentials | Create a credential for a storage.
 *StorageApi* | [**DeleteStorage**](docs/StorageApi.md#deletestorage) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages/{storage} | Delete a storage.
 *StorageApi* | [**GetStorage**](docs/StorageApi.md#getstorage) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages/{storage} | Retrieve storage details.
+*StorageApi* | [**ListAllStorages**](docs/StorageApi.md#listallstorages) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/storages | List all storages.
 *StorageApi* | [**ListStorages**](docs/StorageApi.md#liststorages) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages | List all storages of a tenant.
 *StorageApi* | [**UpdateStorage**](docs/StorageApi.md#updatestorage) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages/{storage} | Update a storage
 *TenantApi* | [**CreateTenant**](docs/TenantApi.md#createtenant) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants | Create a tenant.

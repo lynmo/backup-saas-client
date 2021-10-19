@@ -232,6 +232,10 @@ spec:
                     description: StartTime is the time backup job is executed
                     format: date-time
                     type: string
+                  submitTime:
+                    description: SubmitTime is when the backup job is submitted from user
+                    format: date-time
+                    type: string
                   totalPVC:
                     description: TotalPVC is number of PVC preserved in the backup job
                     type: integer
@@ -442,6 +446,11 @@ spec:
               currentJobPhase:
                 description: CurrentJobPhase is the phase of latest backup job
                 type: string
+              jobDetail:
+                additionalProperties:
+                  type: string
+                description: JobDetail is some detail info of jobs that referring this plan
+                type: object
               phase:
                 description: Phase describes the overall status of backup plan
                 type: string
@@ -1271,6 +1280,11 @@ spec:
               currentJobPhase:
                 description: CurrentJobPhase is the phase of latest restore job
                 type: string
+              jobDetail:
+                additionalProperties:
+                  type: string
+                description: JobDetail is some detail info of jobs that referring this plan
+                type: object
               phase:
                 description: Phase describes the overall status of restore plan
                 type: string
@@ -1913,11 +1927,9 @@ spec:
         app.kubernetes.io/part-of: jibudata-backup-rest-server
     spec:
       containers:
-      - args:
-        - --leader-elect
-        command:
+      - command:
         - /manager
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.beb76a3
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.a8c3cf9
         imagePullPolicy: Always
         name: manager
         resources:

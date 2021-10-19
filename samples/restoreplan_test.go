@@ -65,6 +65,14 @@ func deleteRestorePlan(cli *yscli.APIClient, t *testing.T, name string) {
 	}
 }
 
+func TestListRestoreplan(t *testing.T) {
+	cfg := yscli.NewConfiguration()
+	cli := yscli.NewAPIClient(cfg)
+	cli.ChangeBasePath(apiEndpoint)
+
+	listRestorePlans(cli, t)
+}
+
 func listRestorePlans(cli *yscli.APIClient, t *testing.T) {
 	var err error
 	var ye yscli.Error
@@ -86,5 +94,6 @@ func listRestorePlans(cli *yscli.APIClient, t *testing.T) {
 		fmt.Println(t.Metadata.Name)
 		fmt.Println(t.Status.CurrentJobName)
 		fmt.Println(t.Status.CurrentJobPhase)
+		fmt.Printf("%v\n", t.Status.JobDetail)
 	}
 }

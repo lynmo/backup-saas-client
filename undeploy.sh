@@ -4,6 +4,10 @@ if [[ "$1" == "--include-clusters" ]];then
     DELETE_MANAGED_CLUSTERS=1
 fi
 
+if [[ "$2" == "--leave-crds" ]];then
+    LEAVE_CRDS=1
+fi
+
 HOST_NS=backup-saas-system
 TENANT_NS_PREFIX=backup-tenant-
 
@@ -59,14 +63,18 @@ done
 echo "deleting host namespace ${HOST_NS}"
 kubectl delete --ignore-not-found=true namespace ${HOST_NS}
 
-echo "deleting crds"
-kubectl delete --ignore-not-found=true -f deploy/crds.yaml
-echo "deleting backend controller rbac"
-kubectl delete --ignore-not-found=true -f deploy/backend-controller-rbac.yaml
-echo "deleting deployment"
-kubectl delete --ignore-not-found=true -f deploy/deployment.yaml
-echo "deleting tenant operator deployment"
-kubectl delete --ignore-not-found=true -f deploy/tenant-operator-deployment.yaml
+if [[ "${LEAVE_CRDS}" == "1" ]];then
+    echo "skipping crd/rbac deleting"
+else
+    echo "deleting crds"
+    kubectl delete --ignore-not-found=true -f deploy/crds.yaml
+    echo "deleting backend controller rbac"
+    kubectl delete --ignore-not-found=true -f deploy/backend-controller-rbac.yaml
+    echo "deleting deployment"
+    kubectl delete --ignore-not-found=true -f deploy/deployment.yaml
+    echo "deleting tenant operator deployment"
+    kubectl delete --ignore-not-found=true -f deploy/tenant-operator-deployment.yaml
+fi
 
 echo "done"
 if [[ "${DELETE_MANAGED_CLUSTERS}" != "1" ]];then

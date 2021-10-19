@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**CreateStorageCredentials**](StorageApi.md#CreateStorageCredentials) | **Post** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages/{storage}/credentials | Create a credential for a storage.
 [**DeleteStorage**](StorageApi.md#DeleteStorage) | **Delete** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages/{storage} | Delete a storage.
 [**GetStorage**](StorageApi.md#GetStorage) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages/{storage} | Retrieve storage details.
+[**ListAllStorages**](StorageApi.md#ListAllStorages) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/storages | List all storages.
 [**ListStorages**](StorageApi.md#ListStorages) | **Get** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages | List all storages of a tenant.
 [**UpdateStorage**](StorageApi.md#UpdateStorage) | **Put** /jibuapis/ys.jibudata.com/v1alpha1/tenants/{tenant}/storages/{storage} | Update a storage
 
@@ -109,6 +110,28 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1alpha1Storage**](v1alpha1.Storage.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ListAllStorages**
+> V1alpha1StorageList ListAllStorages(ctx, )
+List all storages.
+
+### Required Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**V1alpha1StorageList**](v1alpha1.StorageList.md)
 
 ### Authorization
 

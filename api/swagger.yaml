@@ -12,6 +12,62 @@ info:
     name: "Apache 2.0"
     url: "https://www.apache.org/licenses/LICENSE-2.0.html"
 paths:
+  /jibuapis/ys.jibudata.com/v1alpha1/backupplans:
+    get:
+      tags:
+      - "BackupPlanTag"
+      summary: "List all backupplans"
+      operationId: "ListAllBackupPlans"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "ok"
+          schema:
+            $ref: "#/definitions/v1alpha1.BackupPlanList"
+  /jibuapis/ys.jibudata.com/v1alpha1/clusters:
+    get:
+      tags:
+      - "Cluster"
+      summary: "List all clusters."
+      operationId: "ListAllClusters"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "ok"
+          schema:
+            $ref: "#/definitions/v1alpha1.ClusterList"
+  /jibuapis/ys.jibudata.com/v1alpha1/restoreplans:
+    get:
+      tags:
+      - "RestorePlanTag"
+      summary: "List all restoreplans."
+      operationId: "ListAllRestorePlans"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "ok"
+          schema:
+            $ref: "#/definitions/v1alpha1.RestorePlanList"
+  /jibuapis/ys.jibudata.com/v1alpha1/storages:
+    get:
+      tags:
+      - "Storage"
+      summary: "List all storages."
+      operationId: "ListAllStorages"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "ok"
+          schema:
+            $ref: "#/definitions/v1alpha1.StorageList"
   /jibuapis/ys.jibudata.com/v1alpha1/tenants:
     get:
       tags:
@@ -973,7 +1029,7 @@ definitions:
       \ including lists and various status objects. A resource may have only one of\
       \ {ObjectMeta, ListMeta}."
     example:
-      remainingItemCount: 1
+      remainingItemCount: 5
       continue: "continue"
       resourceVersion: "resourceVersion"
       selfLink: "selfLink"
@@ -1152,7 +1208,7 @@ definitions:
     description: "NamespaceList is a list of Namespaces."
     example:
       metadata:
-        remainingItemCount: 1
+        remainingItemCount: 5
         continue: "continue"
         resourceVersion: "resourceVersion"
         selfLink: "selfLink"
@@ -1705,9 +1761,9 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
-            retention: 6
+            retention: 5
             desc: "desc"
-            frequency: 0
+            frequency: 1
           storageName: "storageName"
         displayName: "displayName"
         action: "action"
@@ -1717,10 +1773,11 @@ definitions:
       status:
         phase: "phase"
         report:
+          submitTime: "submitTime"
           startTime: "startTime"
           endTime: "endTime"
           expiredTime: "expiredTime"
-          totalPVC: 1
+          totalPVC: 0
         conditions:
         - reason: "reason"
           lastHeartbeatTime: "lastHeartbeatTime"
@@ -1756,7 +1813,7 @@ definitions:
         $ref: "#/definitions/v1.ListMeta"
     example:
       metadata:
-        remainingItemCount: 1
+        remainingItemCount: 5
         continue: "continue"
         resourceVersion: "resourceVersion"
         selfLink: "selfLink"
@@ -1849,9 +1906,9 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
-              retention: 6
+              retention: 5
               desc: "desc"
-              frequency: 0
+              frequency: 1
             storageName: "storageName"
           displayName: "displayName"
           action: "action"
@@ -1861,10 +1918,11 @@ definitions:
         status:
           phase: "phase"
           report:
+            submitTime: "submitTime"
             startTime: "startTime"
             endTime: "endTime"
             expiredTime: "expiredTime"
-            totalPVC: 1
+            totalPVC: 0
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -1964,9 +2022,9 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
-              retention: 6
+              retention: 5
               desc: "desc"
-              frequency: 0
+              frequency: 1
             storageName: "storageName"
           displayName: "displayName"
           action: "action"
@@ -1976,10 +2034,11 @@ definitions:
         status:
           phase: "phase"
           report:
+            submitTime: "submitTime"
             startTime: "startTime"
             endTime: "endTime"
             expiredTime: "expiredTime"
-            totalPVC: 1
+            totalPVC: 0
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -2001,14 +2060,17 @@ definitions:
         type: "string"
       startTime:
         type: "string"
+      submitTime:
+        type: "string"
       totalPVC:
         type: "integer"
         format: "integer"
     example:
+      submitTime: "submitTime"
       startTime: "startTime"
       endTime: "endTime"
       expiredTime: "expiredTime"
-      totalPVC: 1
+      totalPVC: 0
   v1alpha1.BackupJobSpec:
     required:
     - "backupName"
@@ -2065,9 +2127,9 @@ definitions:
           displayName: "displayName"
           repeat: true
           name: "name"
-          retention: 6
+          retention: 5
           desc: "desc"
-          frequency: 0
+          frequency: 1
         storageName: "storageName"
       displayName: "displayName"
       action: "action"
@@ -2087,10 +2149,11 @@ definitions:
     example:
       phase: "phase"
       report:
+        submitTime: "submitTime"
         startTime: "startTime"
         endTime: "endTime"
         expiredTime: "expiredTime"
-        totalPVC: 1
+        totalPVC: 0
       conditions:
       - reason: "reason"
         lastHeartbeatTime: "lastHeartbeatTime"
@@ -2208,13 +2271,15 @@ definitions:
           displayName: "displayName"
           repeat: true
           name: "name"
-          retention: 6
+          retention: 5
           desc: "desc"
-          frequency: 0
+          frequency: 1
         storageName: "storageName"
       status:
         phase: "phase"
         currentJobPhase: "currentJobPhase"
+        jobDetail:
+          key: "jobDetail"
         currentJobName: "currentJobName"
         conditions:
         - reason: "reason"
@@ -2251,7 +2316,7 @@ definitions:
         $ref: "#/definitions/v1.ListMeta"
     example:
       metadata:
-        remainingItemCount: 1
+        remainingItemCount: 5
         continue: "continue"
         resourceVersion: "resourceVersion"
         selfLink: "selfLink"
@@ -2343,13 +2408,15 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
-            retention: 6
+            retention: 5
             desc: "desc"
-            frequency: 0
+            frequency: 1
           storageName: "storageName"
         status:
           phase: "phase"
           currentJobPhase: "currentJobPhase"
+          jobDetail:
+            key: "jobDetail"
           currentJobName: "currentJobName"
           conditions:
           - reason: "reason"
@@ -2449,13 +2516,15 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
-            retention: 6
+            retention: 5
             desc: "desc"
-            frequency: 0
+            frequency: 1
           storageName: "storageName"
         status:
           phase: "phase"
           currentJobPhase: "currentJobPhase"
+          jobDetail:
+            key: "jobDetail"
           currentJobName: "currentJobName"
           conditions:
           - reason: "reason"
@@ -2544,9 +2613,9 @@ definitions:
         displayName: "displayName"
         repeat: true
         name: "name"
-        retention: 6
+        retention: 5
         desc: "desc"
-        frequency: 0
+        frequency: 1
       storageName: "storageName"
   v1alpha1.BackupPlanStatus:
     properties:
@@ -2558,11 +2627,17 @@ definitions:
         type: "string"
       currentJobPhase:
         type: "string"
+      jobDetail:
+        type: "object"
+        additionalProperties:
+          type: "string"
       phase:
         type: "string"
     example:
       phase: "phase"
       currentJobPhase: "currentJobPhase"
+      jobDetail:
+        key: "jobDetail"
       currentJobName: "currentJobName"
       conditions:
       - reason: "reason"
@@ -2597,9 +2672,9 @@ definitions:
       displayName: "displayName"
       repeat: true
       name: "name"
-      retention: 6
+      retention: 5
       desc: "desc"
-      frequency: 0
+      frequency: 1
   v1alpha1.BackupS3Config:
     required:
     - "accessKeyId"
@@ -2770,7 +2845,7 @@ definitions:
         $ref: "#/definitions/v1.ListMeta"
     example:
       metadata:
-        remainingItemCount: 1
+        remainingItemCount: 5
         continue: "continue"
         resourceVersion: "resourceVersion"
         selfLink: "selfLink"
@@ -3222,9 +3297,9 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
-              retention: 6
+              retention: 5
               desc: "desc"
-              frequency: 0
+              frequency: 1
             storageName: "storageName"
           displayName: "displayName"
           action: "action"
@@ -3281,9 +3356,9 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
-              retention: 6
+              retention: 5
               desc: "desc"
-              frequency: 0
+              frequency: 1
             storageName: "storageName"
           displayName: "displayName"
           backupName: "backupName"
@@ -3331,7 +3406,7 @@ definitions:
         $ref: "#/definitions/v1.ListMeta"
     example:
       metadata:
-        remainingItemCount: 1
+        remainingItemCount: 5
         continue: "continue"
         resourceVersion: "resourceVersion"
         selfLink: "selfLink"
@@ -3426,9 +3501,9 @@ definitions:
                 displayName: "displayName"
                 repeat: true
                 name: "name"
-                retention: 6
+                retention: 5
                 desc: "desc"
-                frequency: 0
+                frequency: 1
               storageName: "storageName"
             displayName: "displayName"
             action: "action"
@@ -3485,9 +3560,9 @@ definitions:
                 displayName: "displayName"
                 repeat: true
                 name: "name"
-                retention: 6
+                retention: 5
                 desc: "desc"
-                frequency: 0
+                frequency: 1
               storageName: "storageName"
             displayName: "displayName"
             backupName: "backupName"
@@ -3601,9 +3676,9 @@ definitions:
                 displayName: "displayName"
                 repeat: true
                 name: "name"
-                retention: 6
+                retention: 5
                 desc: "desc"
-                frequency: 0
+                frequency: 1
               storageName: "storageName"
             displayName: "displayName"
             action: "action"
@@ -3660,9 +3735,9 @@ definitions:
                 displayName: "displayName"
                 repeat: true
                 name: "name"
-                retention: 6
+                retention: 5
                 desc: "desc"
-                frequency: 0
+                frequency: 1
               storageName: "storageName"
             displayName: "displayName"
             backupName: "backupName"
@@ -3764,9 +3839,9 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
-            retention: 6
+            retention: 5
             desc: "desc"
-            frequency: 0
+            frequency: 1
           storageName: "storageName"
         displayName: "displayName"
         action: "action"
@@ -3823,9 +3898,9 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
-            retention: 6
+            retention: 5
             desc: "desc"
-            frequency: 0
+            frequency: 1
           storageName: "storageName"
         displayName: "displayName"
         backupName: "backupName"
@@ -3972,9 +4047,9 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
-            retention: 6
+            retention: 5
             desc: "desc"
-            frequency: 0
+            frequency: 1
           storageName: "storageName"
         displayName: "displayName"
         backupName: "backupName"
@@ -3984,6 +4059,8 @@ definitions:
       status:
         phase: "phase"
         currentJobPhase: "currentJobPhase"
+        jobDetail:
+          key: "jobDetail"
         currentJobName: "currentJobName"
         conditions:
         - reason: "reason"
@@ -4020,7 +4097,7 @@ definitions:
         $ref: "#/definitions/v1.ListMeta"
     example:
       metadata:
-        remainingItemCount: 1
+        remainingItemCount: 5
         continue: "continue"
         resourceVersion: "resourceVersion"
         selfLink: "selfLink"
@@ -4119,9 +4196,9 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
-              retention: 6
+              retention: 5
               desc: "desc"
-              frequency: 0
+              frequency: 1
             storageName: "storageName"
           displayName: "displayName"
           backupName: "backupName"
@@ -4131,6 +4208,8 @@ definitions:
         status:
           phase: "phase"
           currentJobPhase: "currentJobPhase"
+          jobDetail:
+            key: "jobDetail"
           currentJobName: "currentJobName"
           conditions:
           - reason: "reason"
@@ -4237,9 +4316,9 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
-              retention: 6
+              retention: 5
               desc: "desc"
-              frequency: 0
+              frequency: 1
             storageName: "storageName"
           displayName: "displayName"
           backupName: "backupName"
@@ -4249,6 +4328,8 @@ definitions:
         status:
           phase: "phase"
           currentJobPhase: "currentJobPhase"
+          jobDetail:
+            key: "jobDetail"
           currentJobName: "currentJobName"
           conditions:
           - reason: "reason"
@@ -4334,9 +4415,9 @@ definitions:
           displayName: "displayName"
           repeat: true
           name: "name"
-          retention: 6
+          retention: 5
           desc: "desc"
-          frequency: 0
+          frequency: 1
         storageName: "storageName"
       displayName: "displayName"
       backupName: "backupName"
@@ -4353,11 +4434,17 @@ definitions:
         type: "string"
       currentJobPhase:
         type: "string"
+      jobDetail:
+        type: "object"
+        additionalProperties:
+          type: "string"
       phase:
         type: "string"
     example:
       phase: "phase"
       currentJobPhase: "currentJobPhase"
+      jobDetail:
+        key: "jobDetail"
       currentJobName: "currentJobName"
       conditions:
       - reason: "reason"
@@ -4512,7 +4599,7 @@ definitions:
         $ref: "#/definitions/v1.ListMeta"
     example:
       metadata:
-        remainingItemCount: 1
+        remainingItemCount: 5
         continue: "continue"
         resourceVersion: "resourceVersion"
         selfLink: "selfLink"
@@ -4849,7 +4936,7 @@ definitions:
         $ref: "#/definitions/v1.ListMeta"
     example:
       metadata:
-        remainingItemCount: 1
+        remainingItemCount: 5
         continue: "continue"
         resourceVersion: "resourceVersion"
         selfLink: "selfLink"
