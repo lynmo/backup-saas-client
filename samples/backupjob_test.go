@@ -51,6 +51,8 @@ func TestWatchBackupjob(t *testing.T) {
 	go watchBackupjob(cli, t, backupJobNameWatch, watchDone)
 
 	createBackupJob(cli, t, backupJobNameWatch, false)
+	// wait for a while for a modified event
+	time.Sleep(10 * time.Second)
 	deleteBackupJob(cli, t, backupJobNameWatch)
 
 	<-watchDone
@@ -183,7 +185,7 @@ func watchBackupjob(cli *yscli.APIClient, t *testing.T, name string, watchDone c
 		var e yscli.WatchEvent
 		for {
 			select {
-			case <-time.After(20 * time.Second):
+			case <-time.After(60 * time.Second):
 				t.Log("Timeout watching backup jobs")
 				return
 			case e = <-watcher.ResultChan():

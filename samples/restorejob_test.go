@@ -45,6 +45,8 @@ func TestWatchRestorejob(t *testing.T) {
 	go watchRestorejob(cli, t, restoreJobNameWatch, watchDone)
 
 	createRestoreJob(cli, t, restoreJobNameWatch, false)
+	// wait for a while for a modified event
+	time.Sleep(10 * time.Second)
 	deleteRestoreJob(cli, t, restoreJobNameWatch)
 
 	<-watchDone
@@ -182,7 +184,7 @@ func watchRestorejob(cli *yscli.APIClient, t *testing.T, name string, watchDone 
 		var e yscli.WatchEvent
 		for {
 			select {
-			case <-time.After(20 * time.Second):
+			case <-time.After(60 * time.Second):
 				t.Log("Timeout watching restore jobs")
 				return
 			case e = <-watcher.ResultChan():

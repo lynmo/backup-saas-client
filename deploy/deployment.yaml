@@ -1929,7 +1929,7 @@ spec:
       containers:
       - command:
         - /manager
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.a8c3cf9
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.0def831
         imagePullPolicy: Always
         name: manager
         resources:

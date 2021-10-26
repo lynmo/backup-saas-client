@@ -600,13 +600,13 @@ spec:
         - name: QIMING_OPERATOR_REGISTRY
           value: registry.cn-shanghai.aliyuncs.com/jibudata
         - name: QIMING_OPERATOR_VERSION
-          value: main.6cc94c9
+          value: main.2ed91f0
         - name: QIMING_CONTROLLER_VERSION
-          value: main.0120607
+          value: main.2a7a4c2
         - name: VELERO_VERSION
           value: v1.6.3
         - name: VELERO_INSTALLER_VERSION
-          value: main.6cc94c9
+          value: main.2ed91f0
         image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:main.52386fd
         imagePullPolicy: Always
         name: manager
