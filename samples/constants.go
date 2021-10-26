@@ -7,11 +7,11 @@ import (
 )
 
 const (
-	tenantID    = "go-client-test"
-	clusterName = "go-client-test-k8s"
+	tenantID          = "go-client-test"
+	clusterName       = "go-client-test-k8s"
 	clusterNameMulti1 = "go-client-test-k8s-1"
-    clusterNameMulti2 = "go-client-test-k8s-2"
-    clusterNameMulti3 = "go-client-test-k8s-3"
+	clusterNameMulti2 = "go-client-test-k8s-2"
+	clusterNameMulti3 = "go-client-test-k8s-3"
 
 	storageName = "go-client-test-s3"
 
@@ -20,6 +20,7 @@ const (
 	backupJobName            = "go-client-test-backupjob"
 	backupJobNameNotStart    = "go-client-test-backupjob-not-start"
 	backupJobForDeletingName = "go-client-test-backupjob-deleting"
+	backupJobNameWatch       = "go-client-test-backupjob-watch"
 
 	restorePlanName            = "go-client-test-restoreplan"
 	restoreDestNamespace       = "wordpress-restored"
@@ -28,6 +29,7 @@ const (
 	restoreJobName            = "go-client-test-restorejob"
 	restoreJobNameNotStart    = "go-client-test-restorejob-not-start"
 	restoreJobForDeletingName = "go-client-test-restorejob-deleting"
+	restoreJobNameWatch       = "go-client-test-restorejob-watch"
 )
 
 var apiEndpoint string

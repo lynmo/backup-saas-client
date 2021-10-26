@@ -42,6 +42,20 @@ func TestCreateBackupJob(t *testing.T) {
 	createBackupJob(cli, t, backupJobNameNotStart, false)
 }
 
+func TestWatchBackupjob(t *testing.T) {
+	cfg := yscli.NewConfiguration()
+	cli := yscli.NewAPIClient(cfg)
+	cli.ChangeBasePath(apiEndpoint)
+
+	watchDone := make(chan string)
+	go watchBackupjob(cli, t, backupJobNameWatch, watchDone)
+
+	createBackupJob(cli, t, backupJobNameWatch, false)
+	deleteBackupJob(cli, t, backupJobNameWatch)
+
+	<-watchDone
+}
+
 func createBackupJob(cli *yscli.APIClient, t *testing.T, name string, start bool) {
 	var err error
 	var ye yscli.Error
@@ -132,6 +146,67 @@ func waitForBackupJobReady(cli *yscli.APIClient, t *testing.T, name string) {
 				job.Status.Phase == "JobFailed" ||
 				job.Status.Phase == "Error" {
 				finished = true
+			}
+		}
+	}
+}
+
+func watchBackupjob(cli *yscli.APIClient, t *testing.T, name string, watchDone chan string) {
+	var err error
+	var ye yscli.Error
+
+	addEventGot, modifyEventGot, deleteEventGot := false, false, false
+
+	defer func() {
+		if !addEventGot {
+			t.Error("did not get add event")
+		}
+		if !modifyEventGot {
+			t.Error("did not get modify event")
+		}
+		if !deleteEventGot {
+			t.Error("did not get delete event")
+		}
+	}()
+	defer close(watchDone)
+
+	watcher, err := cli.BackupJobTagApi.WatchBackupJobs(context.TODO(), tenantID)
+	if err != nil {
+		if errors.As(err, &ye) {
+			t.Log(ye.StatusCode())
+			t.Log(ye.Code())
+			t.Log(ye.Message())
+		}
+		t.Error("failed to start watching backupJobs", err)
+	} else {
+		defer watcher.Stop()
+		var e yscli.WatchEvent
+		for {
+			select {
+			case <-time.After(20 * time.Second):
+				t.Log("Timeout watching backup jobs")
+				return
+			case e = <-watcher.ResultChan():
+				{
+					t.Log("Event type: ", e.Type)
+					if job, ok := e.Object.(yscli.V1alpha1BackupJob); ok {
+						t.Log("Tenant name: ", job.Spec.Tenant)
+						t.Log("Job name: ", job.Metadata.Name)
+						if job.Metadata.Name == name {
+							switch e.Type {
+							case yscli.WatchEventTypes.Added:
+								addEventGot = true
+							case yscli.WatchEventTypes.Modified:
+								modifyEventGot = true
+							case yscli.WatchEventTypes.Deleted:
+								deleteEventGot = true
+								return
+							}
+						}
+					} else {
+						t.Error("Invalid event object received")
+					}
+				}
 			}
 		}
 	}
