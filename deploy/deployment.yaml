@@ -1995,7 +1995,7 @@ spec:
       containers:
       - command:
         - /manager
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.ce698d2
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.e2025e3
         imagePullPolicy: Always
         name: manager
         resources:
