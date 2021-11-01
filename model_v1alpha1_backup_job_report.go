@@ -11,9 +11,12 @@
 package swagger
 
 type V1alpha1BackupJobReport struct {
+	BackedUpItems int32 `json:"backedUpItems,omitempty"`
+	Details map[string][]string `json:"details,omitempty"`
 	EndTime string `json:"endTime,omitempty"`
 	ExpiredTime string `json:"expiredTime,omitempty"`
 	StartTime string `json:"startTime,omitempty"`
 	SubmitTime string `json:"submitTime,omitempty"`
+	TotalItems int32 `json:"totalItems,omitempty"`
 	TotalPVC int32 `json:"totalPVC,omitempty"`
 }

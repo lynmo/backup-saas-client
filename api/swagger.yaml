@@ -2156,11 +2156,17 @@ definitions:
       status:
         phase: "phase"
         report:
+          totalItems: 5
+          backedUpItems: 1
           submitTime: "submitTime"
+          details:
+            key:
+            - "details"
+            - "details"
           startTime: "startTime"
           endTime: "endTime"
           expiredTime: "expiredTime"
-          totalPVC: 1
+          totalPVC: 5
         progress:
           stepsCompleted: 0
           totalSteps: 6
@@ -2304,11 +2310,17 @@ definitions:
         status:
           phase: "phase"
           report:
+            totalItems: 5
+            backedUpItems: 1
             submitTime: "submitTime"
+            details:
+              key:
+              - "details"
+              - "details"
             startTime: "startTime"
             endTime: "endTime"
             expiredTime: "expiredTime"
-            totalPVC: 1
+            totalPVC: 5
           progress:
             stepsCompleted: 0
             totalSteps: 6
@@ -2423,11 +2435,17 @@ definitions:
         status:
           phase: "phase"
           report:
+            totalItems: 5
+            backedUpItems: 1
             submitTime: "submitTime"
+            details:
+              key:
+              - "details"
+              - "details"
             startTime: "startTime"
             endTime: "endTime"
             expiredTime: "expiredTime"
-            totalPVC: 1
+            totalPVC: 5
           progress:
             stepsCompleted: 0
             totalSteps: 6
@@ -2457,6 +2475,15 @@ definitions:
       totalSteps: 6
   v1alpha1.BackupJobReport:
     properties:
+      backedUpItems:
+        type: "integer"
+        format: "int32"
+      details:
+        type: "object"
+        additionalProperties:
+          type: "array"
+          items:
+            type: "string"
       endTime:
         type: "string"
       expiredTime:
@@ -2465,15 +2492,24 @@ definitions:
         type: "string"
       submitTime:
         type: "string"
+      totalItems:
+        type: "integer"
+        format: "int32"
       totalPVC:
         type: "integer"
         format: "integer"
     example:
+      totalItems: 5
+      backedUpItems: 1
       submitTime: "submitTime"
+      details:
+        key:
+        - "details"
+        - "details"
       startTime: "startTime"
       endTime: "endTime"
       expiredTime: "expiredTime"
-      totalPVC: 1
+      totalPVC: 5
   v1alpha1.BackupJobSpec:
     required:
     - "backupName"
@@ -2554,11 +2590,17 @@ definitions:
     example:
       phase: "phase"
       report:
+        totalItems: 5
+        backedUpItems: 1
         submitTime: "submitTime"
+        details:
+          key:
+          - "details"
+          - "details"
         startTime: "startTime"
         endTime: "endTime"
         expiredTime: "expiredTime"
-        totalPVC: 1
+        totalPVC: 5
       progress:
         stepsCompleted: 0
         totalSteps: 6
@@ -3776,9 +3818,27 @@ definitions:
       status:
         phase: "phase"
         report:
+          totalItems: 5
+          restoredItems: 1
+          details:
+            key:
+            - "details"
+            - "details"
           startTime: "startTime"
           endTime: "endTime"
-          totalPVC: 1
+          results:
+            key:
+              cluster:
+              - "cluster"
+              - "cluster"
+              velero:
+              - "velero"
+              - "velero"
+              namespaces:
+                key:
+                - "namespaces"
+                - "namespaces"
+          totalPVC: 5
         progress:
           stepsCompleted: 0
           totalSteps: 6
@@ -3983,9 +4043,27 @@ definitions:
         status:
           phase: "phase"
           report:
+            totalItems: 5
+            restoredItems: 1
+            details:
+              key:
+              - "details"
+              - "details"
             startTime: "startTime"
             endTime: "endTime"
-            totalPVC: 1
+            results:
+              key:
+                cluster:
+                - "cluster"
+                - "cluster"
+                velero:
+                - "velero"
+                - "velero"
+                namespaces:
+                  key:
+                  - "namespaces"
+                  - "namespaces"
+            totalPVC: 5
           progress:
             stepsCompleted: 0
             totalSteps: 6
@@ -4161,9 +4239,27 @@ definitions:
         status:
           phase: "phase"
           report:
+            totalItems: 5
+            restoredItems: 1
+            details:
+              key:
+              - "details"
+              - "details"
             startTime: "startTime"
             endTime: "endTime"
-            totalPVC: 1
+            results:
+              key:
+                cluster:
+                - "cluster"
+                - "cluster"
+                velero:
+                - "velero"
+                - "velero"
+                namespaces:
+                  key:
+                  - "namespaces"
+                  - "namespaces"
+            totalPVC: 5
           progress:
             stepsCompleted: 0
             totalSteps: 6
@@ -4193,17 +4289,51 @@ definitions:
       totalSteps: 6
   v1alpha1.RestoreJobReport:
     properties:
+      details:
+        type: "object"
+        additionalProperties:
+          type: "array"
+          items:
+            type: "string"
       endTime:
         type: "string"
+      restoredItems:
+        type: "integer"
+        format: "int32"
+      results:
+        type: "object"
+        additionalProperties:
+          $ref: "#/definitions/v1alpha1.Result"
       startTime:
         type: "string"
+      totalItems:
+        type: "integer"
+        format: "int32"
       totalPVC:
         type: "integer"
         format: "integer"
     example:
+      totalItems: 5
+      restoredItems: 1
+      details:
+        key:
+        - "details"
+        - "details"
       startTime: "startTime"
       endTime: "endTime"
-      totalPVC: 1
+      results:
+        key:
+          cluster:
+          - "cluster"
+          - "cluster"
+          velero:
+          - "velero"
+          - "velero"
+          namespaces:
+            key:
+            - "namespaces"
+            - "namespaces"
+      totalPVC: 5
   v1alpha1.RestoreJobSpec:
     required:
     - "backupJobName"
@@ -4350,9 +4480,27 @@ definitions:
     example:
       phase: "phase"
       report:
+        totalItems: 5
+        restoredItems: 1
+        details:
+          key:
+          - "details"
+          - "details"
         startTime: "startTime"
         endTime: "endTime"
-        totalPVC: 1
+        results:
+          key:
+            cluster:
+            - "cluster"
+            - "cluster"
+            velero:
+            - "velero"
+            - "velero"
+            namespaces:
+              key:
+              - "namespaces"
+              - "namespaces"
+        totalPVC: 5
       progress:
         stepsCompleted: 0
         totalSteps: 6
@@ -4892,6 +5040,33 @@ definitions:
         message: "message"
         type: "type"
         status: "status"
+  v1alpha1.Result:
+    properties:
+      cluster:
+        type: "array"
+        items:
+          type: "string"
+      namespaces:
+        type: "object"
+        additionalProperties:
+          type: "array"
+          items:
+            type: "string"
+      velero:
+        type: "array"
+        items:
+          type: "string"
+    example:
+      cluster:
+      - "cluster"
+      - "cluster"
+      velero:
+      - "velero"
+      - "velero"
+      namespaces:
+        key:
+        - "namespaces"
+        - "namespaces"
   v1alpha1.Storage:
     properties:
       apiVersion:

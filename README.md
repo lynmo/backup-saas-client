@@ -104,6 +104,7 @@ Class | Method | HTTP request | Description
  - [V1alpha1RestorePlanList](docs/V1alpha1RestorePlanList.md)
  - [V1alpha1RestorePlanSpec](docs/V1alpha1RestorePlanSpec.md)
  - [V1alpha1RestorePlanStatus](docs/V1alpha1RestorePlanStatus.md)
+ - [V1alpha1Result](docs/V1alpha1Result.md)
  - [V1alpha1Storage](docs/V1alpha1Storage.md)
  - [V1alpha1StorageClass](docs/V1alpha1StorageClass.md)
  - [V1alpha1StorageList](docs/V1alpha1StorageList.md)
