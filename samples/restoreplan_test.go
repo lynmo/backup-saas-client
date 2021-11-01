@@ -77,7 +77,8 @@ func listRestorePlans(cli *yscli.APIClient, t *testing.T) {
 	var err error
 	var ye yscli.Error
 
-	bpList, _, err := cli.RestorePlanTagApi.ListRestorePlans(context.TODO(), tenantID)
+	opts := &yscli.RestorePlanTagApiListRestorePlansOpts{}
+	bpList, _, err := cli.RestorePlanTagApi.ListRestorePlans(context.TODO(), tenantID, opts)
 	if err != nil {
 		if errors.As(err, &ye) {
 			if ye.StatusCode() == http.StatusNotFound {

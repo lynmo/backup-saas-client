@@ -63,7 +63,8 @@ func listBackupPlans(cli *yscli.APIClient, t *testing.T) {
 	var err error
 	var ye yscli.Error
 
-	bpList, _, err := cli.BackupPlanTagApi.ListBackupPlans(context.TODO(), tenantID)
+	opts := &yscli.BackupPlanTagApiListBackupPlansOpts{}
+	bpList, _, err := cli.BackupPlanTagApi.ListBackupPlans(context.TODO(), tenantID, opts)
 	if err != nil {
 		if errors.As(err, &ye) {
 			if ye.StatusCode() == http.StatusNotFound {

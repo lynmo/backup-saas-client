@@ -21,6 +21,7 @@ const (
 	backupJobNameNotStart    = "go-client-test-backupjob-not-start"
 	backupJobForDeletingName = "go-client-test-backupjob-deleting"
 	backupJobNameWatch       = "go-client-test-backupjob-watch"
+	backupJobNameFilter      = "go-client-test-backupjob-filter"
 
 	restorePlanName            = "go-client-test-restoreplan"
 	restoreDestNamespace       = "wordpress-restored"

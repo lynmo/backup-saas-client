@@ -5,11 +5,11 @@ import (
 	"errors"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"os/user"
 	"path/filepath"
 	"testing"
 	"time"
-	"os"
 
 	yscli "github.com/jibutech/backup-saas-client"
 )
@@ -38,13 +38,12 @@ func TestRestAPIs(t *testing.T) {
 		}
 	}
 	//clear multiple cluster
-    t.Log("deleting multiple test cluster",clusterNameMulti1)
-    cli.ClusterApi.DeleteCluster(context.TODO(), tenantID, clusterNameMulti1)
-    t.Log("deleting multiple test cluster",clusterNameMulti2)
-    cli.ClusterApi.DeleteCluster(context.TODO(), tenantID, clusterNameMulti2)
-    t.Log("deleting multiple test cluster",clusterNameMulti3)
-    cli.ClusterApi.DeleteCluster(context.TODO(), tenantID, clusterNameMulti3)
-
+	t.Log("deleting multiple test cluster", clusterNameMulti1)
+	cli.ClusterApi.DeleteCluster(context.TODO(), tenantID, clusterNameMulti1)
+	t.Log("deleting multiple test cluster", clusterNameMulti2)
+	cli.ClusterApi.DeleteCluster(context.TODO(), tenantID, clusterNameMulti2)
+	t.Log("deleting multiple test cluster", clusterNameMulti3)
+	cli.ClusterApi.DeleteCluster(context.TODO(), tenantID, clusterNameMulti3)
 
 	t.Log("deleting storage", storageName)
 	_, _, err = cli.StorageApi.DeleteStorage(context.TODO(), tenantID, storageName)
@@ -152,7 +151,9 @@ func TestCreateCluster(t *testing.T) {
 
 func listTenants(t *testing.T, cli *yscli.APIClient) {
 	var ye yscli.Error
-	tenantList, _, err := cli.TenantApi.ListTenants(context.TODO())
+
+	opts := &yscli.TenantApiListTenantsOpts{}
+	tenantList, _, err := cli.TenantApi.ListTenants(context.TODO(), opts)
 	if err != nil {
 		t.Error("failed to list tenants", err)
 		if errors.As(err, &ye) {
@@ -168,7 +169,9 @@ func listTenants(t *testing.T, cli *yscli.APIClient) {
 }
 func listClusters(t *testing.T, cli *yscli.APIClient) {
 	var ye yscli.Error
-	clusterList, _, err := cli.ClusterApi.ListClusters(context.TODO(), tenantID)
+
+	opts := &yscli.ClusterApiListClustersOpts{}
+	clusterList, _, err := cli.ClusterApi.ListClusters(context.TODO(), tenantID, opts)
 	if err != nil {
 		t.Log("failed to list clusters of tenant ", tenantID, err)
 		if errors.As(err, &ye) {
@@ -184,7 +187,9 @@ func listClusters(t *testing.T, cli *yscli.APIClient) {
 }
 func listStorages(t *testing.T, cli *yscli.APIClient) {
 	var ye yscli.Error
-	storageList, _, err := cli.StorageApi.ListStorages(context.TODO(), tenantID)
+
+	opts := &yscli.StorageApiListStoragesOpts{}
+	storageList, _, err := cli.StorageApi.ListStorages(context.TODO(), tenantID, opts)
 	if err != nil {
 		t.Log("failed to list storages of tenant ", tenantID, err)
 		if errors.As(err, &ye) {
@@ -221,7 +226,7 @@ func createCluster(t *testing.T, cli *yscli.APIClient) {
 		}
 		// If an env variable is specified with the config locaiton, use that
 		if len(envKubeconfig) > 0 {
-			t.Log("Get the KUBECONFIG env variable ",envKubeconfig)
+			t.Log("Get the KUBECONFIG env variable ", envKubeconfig)
 		}
 		if envKubeconfig == "" {
 			t.Error("Failed to load KUBECONFIG env variable")
@@ -237,58 +242,58 @@ func createCluster(t *testing.T, cli *yscli.APIClient) {
 			}
 		}
 	}
-    //create multiple cluster
-    t.Log("creating multiple test cluster", clusterNameMulti1)
-    testCluster1 := yscli.V1alpha1Cluster{
-        Metadata: &yscli.V1ObjectMeta{Name: clusterNameMulti1},
-        Spec: &yscli.V1alpha1ClusterSpec{
-            Tenant:     tenantID,
-            Kubeconfig: string(kubeconfig),
-        },
-    }
-    testCluster1, _, err = cli.ClusterApi.CreateCluster(context.TODO(), tenantID, testCluster1)
-    if err != nil {
-        t.Error("failed to create cluster", err)
-        if errors.As(err, &ye) {
-            t.Log(ye.Code())
-            t.Log(ye.Message())
-            t.Log(ye.OrigError())
-        }
-    }
-    t.Log("creating multiple test cluster", clusterNameMulti2)
-    testCluster2 := yscli.V1alpha1Cluster{
-        Metadata: &yscli.V1ObjectMeta{Name: clusterNameMulti2},
-        Spec: &yscli.V1alpha1ClusterSpec{
-            Tenant:     tenantID,
-            Kubeconfig: string(kubeconfig),
-        },
-    }
-    testCluster2, _, err = cli.ClusterApi.CreateCluster(context.TODO(), tenantID, testCluster2)
-    if err != nil {
-        t.Error("failed to create cluster", err)
-        if errors.As(err, &ye) {
-            t.Log(ye.Code())
-            t.Log(ye.Message())
-            t.Log(ye.OrigError())
-        }
-    }
-    t.Log("creating multiple test cluster", clusterNameMulti3)
-    testCluster3 := yscli.V1alpha1Cluster{
-        Metadata: &yscli.V1ObjectMeta{Name: clusterNameMulti3},
-        Spec: &yscli.V1alpha1ClusterSpec{
-            Tenant:     tenantID,
-            Kubeconfig: string(kubeconfig),
-        },
-    }
-    testCluster3, _, err = cli.ClusterApi.CreateCluster(context.TODO(), tenantID, testCluster3)
-    if err != nil {
-        t.Error("failed to create cluster", err)
-        if errors.As(err, &ye) {
-            t.Log(ye.Code())
-            t.Log(ye.Message())
-            t.Log(ye.OrigError())
-        }
-    }
+	//create multiple cluster
+	t.Log("creating multiple test cluster", clusterNameMulti1)
+	testCluster1 := yscli.V1alpha1Cluster{
+		Metadata: &yscli.V1ObjectMeta{Name: clusterNameMulti1},
+		Spec: &yscli.V1alpha1ClusterSpec{
+			Tenant:     tenantID,
+			Kubeconfig: string(kubeconfig),
+		},
+	}
+	testCluster1, _, err = cli.ClusterApi.CreateCluster(context.TODO(), tenantID, testCluster1)
+	if err != nil {
+		t.Error("failed to create cluster", err)
+		if errors.As(err, &ye) {
+			t.Log(ye.Code())
+			t.Log(ye.Message())
+			t.Log(ye.OrigError())
+		}
+	}
+	t.Log("creating multiple test cluster", clusterNameMulti2)
+	testCluster2 := yscli.V1alpha1Cluster{
+		Metadata: &yscli.V1ObjectMeta{Name: clusterNameMulti2},
+		Spec: &yscli.V1alpha1ClusterSpec{
+			Tenant:     tenantID,
+			Kubeconfig: string(kubeconfig),
+		},
+	}
+	testCluster2, _, err = cli.ClusterApi.CreateCluster(context.TODO(), tenantID, testCluster2)
+	if err != nil {
+		t.Error("failed to create cluster", err)
+		if errors.As(err, &ye) {
+			t.Log(ye.Code())
+			t.Log(ye.Message())
+			t.Log(ye.OrigError())
+		}
+	}
+	t.Log("creating multiple test cluster", clusterNameMulti3)
+	testCluster3 := yscli.V1alpha1Cluster{
+		Metadata: &yscli.V1ObjectMeta{Name: clusterNameMulti3},
+		Spec: &yscli.V1alpha1ClusterSpec{
+			Tenant:     tenantID,
+			Kubeconfig: string(kubeconfig),
+		},
+	}
+	testCluster3, _, err = cli.ClusterApi.CreateCluster(context.TODO(), tenantID, testCluster3)
+	if err != nil {
+		t.Error("failed to create cluster", err)
+		if errors.As(err, &ye) {
+			t.Log(ye.Code())
+			t.Log(ye.Message())
+			t.Log(ye.OrigError())
+		}
+	}
 
 	testCluster := yscli.V1alpha1Cluster{
 		Metadata: &yscli.V1ObjectMeta{Name: clusterName},

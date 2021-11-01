@@ -217,9 +217,27 @@ spec:
               phase:
                 description: Phase describes the overall status of BackupJob
                 type: string
+              progress:
+                description: Progress describes the overall progress of BackupJob
+                properties:
+                  stepsCompleted:
+                    type: integer
+                  totalSteps:
+                    type: integer
+                type: object
               report:
                 description: Report provides a summary status of backup job execution
                 properties:
+                  backedUpItems:
+                    description: Backed up items
+                    type: integer
+                  details:
+                    additionalProperties:
+                      items:
+                        type: string
+                      type: array
+                    description: Resource details
+                    type: object
                   endTime:
                     description: EndTime is the time backup job is completed
                     format: date-time
@@ -236,6 +254,9 @@ spec:
                     description: SubmitTime is when the backup job is submitted from user
                     format: date-time
                     type: string
+                  totalItems:
+                    description: Total items for backup
+                    type: integer
                   totalPVC:
                     description: TotalPVC is number of PVC preserved in the backup job
                     type: integer
@@ -1026,17 +1047,62 @@ spec:
               phase:
                 description: Phase describes the overall status of RestoreJob
                 type: string
+              progress:
+                description: Progress describes the overall progress of RestoreJob
+                properties:
+                  stepsCompleted:
+                    type: integer
+                  totalSteps:
+                    type: integer
+                type: object
               report:
                 description: Report provides a summary status of restore job execution
                 properties:
+                  details:
+                    additionalProperties:
+                      items:
+                        type: string
+                      type: array
+                    description: Resource details
+                    type: object
                   endTime:
                     description: EndTime is the time restore job is completed
                     format: date-time
                     type: string
+                  restoredItems:
+                    description: Restored items
+                    type: integer
+                  results:
+                    additionalProperties:
+                      description: Velero result
+                      properties:
+                        cluster:
+                          description: Cluster is a slice of messages related to restoring cluster- scoped resources.
+                          items:
+                            type: string
+                          type: array
+                        namespaces:
+                          additionalProperties:
+                            items:
+                              type: string
+                            type: array
+                          description: Namespaces is a map of namespace name to slice of messages related to restoring namespace-scoped resources.
+                          type: object
+                        velero:
+                          description: Velero messages
+                          items:
+                            type: string
+                          type: array
+                      type: object
+                    description: Results
+                    type: object
                   startTime:
                     description: StartTime is the time restore job is executed
                     format: date-time
                     type: string
+                  totalItems:
+                    description: Total items for restore
+                    type: integer
                   totalPVC:
                     description: TotalPVC is number of PVC restored in the restore job
                     type: integer
@@ -1929,7 +1995,7 @@ spec:
       containers:
       - command:
         - /manager
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.0def831
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.f67345f
         imagePullPolicy: Always
         name: manager
         resources:
