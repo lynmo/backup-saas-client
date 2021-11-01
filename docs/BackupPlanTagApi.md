@@ -94,11 +94,25 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ListAllBackupPlans**
-> V1alpha1BackupPlanList ListAllBackupPlans(ctx, )
+> V1alpha1BackupPlanList ListAllBackupPlans(ctx, optional)
 List all backupplans
 
 ### Required Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***BackupPlanTagApiListAllBackupPlansOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a BackupPlanTagApiListAllBackupPlansOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **optional.String**| page | [default to page&#x3D;1]
+ **limit** | **optional.String**| limit | 
+ **ascending** | **optional.String**| sort parameters, e.g. reverse&#x3D;true | [default to ascending&#x3D;false]
+ **sortBy** | **optional.String**| sort parameters, e.g. orderBy&#x3D;createTime | 
 
 ### Return type
 
@@ -116,7 +130,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ListBackupPlans**
-> V1alpha1BackupPlanList ListBackupPlans(ctx, tenant)
+> V1alpha1BackupPlanList ListBackupPlans(ctx, tenant, optional)
 List all backupplans of a tenant
 
 ### Required Parameters
@@ -125,6 +139,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **tenant** | **string**| tenant id | 
+ **optional** | ***BackupPlanTagApiListBackupPlansOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a BackupPlanTagApiListBackupPlansOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **page** | **optional.String**| page | [default to page&#x3D;1]
+ **limit** | **optional.String**| limit | 
+ **ascending** | **optional.String**| sort parameters, e.g. reverse&#x3D;true | [default to ascending&#x3D;false]
+ **sortBy** | **optional.String**| sort parameters, e.g. orderBy&#x3D;createTime | 
 
 ### Return type
 

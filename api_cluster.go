@@ -18,6 +18,7 @@ import (
 	"net/url"
 	"strings"
 	"fmt"
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -383,10 +384,23 @@ func (a *ClusterApiService) GetNamespaces(ctx context.Context, tenant string, cl
 /*
 ClusterApiService List all clusters.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *ClusterApiListAllClustersOpts - Optional Parameters:
+     * @param "Page" (optional.String) -  page
+     * @param "Limit" (optional.String) -  limit
+     * @param "Ascending" (optional.String) -  sort parameters, e.g. reverse&#x3D;true
+     * @param "SortBy" (optional.String) -  sort parameters, e.g. orderBy&#x3D;createTime
 
 @return V1alpha1ClusterList
 */
-func (a *ClusterApiService) ListAllClusters(ctx context.Context) (V1alpha1ClusterList, *http.Response, error) {
+
+type ClusterApiListAllClustersOpts struct { 
+	Page optional.String
+	Limit optional.String
+	Ascending optional.String
+	SortBy optional.String
+}
+
+func (a *ClusterApiService) ListAllClusters(ctx context.Context, localVarOptionals *ClusterApiListAllClustersOpts) (V1alpha1ClusterList, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -402,6 +416,18 @@ func (a *ClusterApiService) ListAllClusters(ctx context.Context) (V1alpha1Cluste
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
+		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Limit.IsSet() {
+		localVarQueryParams.Add("limit", parameterToString(localVarOptionals.Limit.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Ascending.IsSet() {
+		localVarQueryParams.Add("ascending", parameterToString(localVarOptionals.Ascending.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.SortBy.IsSet() {
+		localVarQueryParams.Add("sortBy", parameterToString(localVarOptionals.SortBy.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 
@@ -468,10 +494,23 @@ func (a *ClusterApiService) ListAllClusters(ctx context.Context) (V1alpha1Cluste
 ClusterApiService List all clusters of a tenant.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param tenant tenant id
+ * @param optional nil or *ClusterApiListClustersOpts - Optional Parameters:
+     * @param "Page" (optional.String) -  page
+     * @param "Limit" (optional.String) -  limit
+     * @param "Ascending" (optional.String) -  sort parameters, e.g. reverse&#x3D;true
+     * @param "SortBy" (optional.String) -  sort parameters, e.g. orderBy&#x3D;createTime
 
 @return V1alpha1ClusterList
 */
-func (a *ClusterApiService) ListClusters(ctx context.Context, tenant string) (V1alpha1ClusterList, *http.Response, error) {
+
+type ClusterApiListClustersOpts struct { 
+	Page optional.String
+	Limit optional.String
+	Ascending optional.String
+	SortBy optional.String
+}
+
+func (a *ClusterApiService) ListClusters(ctx context.Context, tenant string, localVarOptionals *ClusterApiListClustersOpts) (V1alpha1ClusterList, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -488,6 +527,18 @@ func (a *ClusterApiService) ListClusters(ctx context.Context, tenant string) (V1
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
+		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Limit.IsSet() {
+		localVarQueryParams.Add("limit", parameterToString(localVarOptionals.Limit.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Ascending.IsSet() {
+		localVarQueryParams.Add("ascending", parameterToString(localVarOptionals.Ascending.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.SortBy.IsSet() {
+		localVarQueryParams.Add("sortBy", parameterToString(localVarOptionals.SortBy.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 

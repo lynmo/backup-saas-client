@@ -94,11 +94,25 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ListAllRestorePlans**
-> V1alpha1RestorePlanList ListAllRestorePlans(ctx, )
+> V1alpha1RestorePlanList ListAllRestorePlans(ctx, optional)
 List all restoreplans.
 
 ### Required Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***RestorePlanTagApiListAllRestorePlansOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a RestorePlanTagApiListAllRestorePlansOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **optional.String**| page | [default to page&#x3D;1]
+ **limit** | **optional.String**| limit | 
+ **ascending** | **optional.String**| sort parameters, e.g. reverse&#x3D;true | [default to ascending&#x3D;false]
+ **sortBy** | **optional.String**| sort parameters, e.g. orderBy&#x3D;createTime | 
 
 ### Return type
 
@@ -116,7 +130,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ListRestorePlans**
-> V1alpha1RestorePlanList ListRestorePlans(ctx, tenant)
+> V1alpha1RestorePlanList ListRestorePlans(ctx, tenant, optional)
 List all restoreplans of a tenant
 
 ### Required Parameters
@@ -125,6 +139,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **tenant** | **string**| tenant id | 
+ **optional** | ***RestorePlanTagApiListRestorePlansOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a RestorePlanTagApiListRestorePlansOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **page** | **optional.String**| page | [default to page&#x3D;1]
+ **limit** | **optional.String**| limit | 
+ **ascending** | **optional.String**| sort parameters, e.g. reverse&#x3D;true | [default to ascending&#x3D;false]
+ **sortBy** | **optional.String**| sort parameters, e.g. orderBy&#x3D;createTime | 
 
 ### Return type
 

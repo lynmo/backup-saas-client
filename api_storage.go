@@ -18,6 +18,7 @@ import (
 	"net/url"
 	"strings"
 	"fmt"
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -386,10 +387,23 @@ func (a *StorageApiService) GetStorage(ctx context.Context, tenant string, stora
 /*
 StorageApiService List all storages.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *StorageApiListAllStoragesOpts - Optional Parameters:
+     * @param "Page" (optional.String) -  page
+     * @param "Limit" (optional.String) -  limit
+     * @param "Ascending" (optional.String) -  sort parameters, e.g. reverse&#x3D;true
+     * @param "SortBy" (optional.String) -  sort parameters, e.g. orderBy&#x3D;createTime
 
 @return V1alpha1StorageList
 */
-func (a *StorageApiService) ListAllStorages(ctx context.Context) (V1alpha1StorageList, *http.Response, error) {
+
+type StorageApiListAllStoragesOpts struct { 
+	Page optional.String
+	Limit optional.String
+	Ascending optional.String
+	SortBy optional.String
+}
+
+func (a *StorageApiService) ListAllStorages(ctx context.Context, localVarOptionals *StorageApiListAllStoragesOpts) (V1alpha1StorageList, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -405,6 +419,18 @@ func (a *StorageApiService) ListAllStorages(ctx context.Context) (V1alpha1Storag
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
+		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Limit.IsSet() {
+		localVarQueryParams.Add("limit", parameterToString(localVarOptionals.Limit.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Ascending.IsSet() {
+		localVarQueryParams.Add("ascending", parameterToString(localVarOptionals.Ascending.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.SortBy.IsSet() {
+		localVarQueryParams.Add("sortBy", parameterToString(localVarOptionals.SortBy.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 
@@ -471,10 +497,23 @@ func (a *StorageApiService) ListAllStorages(ctx context.Context) (V1alpha1Storag
 StorageApiService List all storages of a tenant.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param tenant tenant id
+ * @param optional nil or *StorageApiListStoragesOpts - Optional Parameters:
+     * @param "Page" (optional.String) -  page
+     * @param "Limit" (optional.String) -  limit
+     * @param "Ascending" (optional.String) -  sort parameters, e.g. reverse&#x3D;true
+     * @param "SortBy" (optional.String) -  sort parameters, e.g. orderBy&#x3D;createTime
 
 @return V1alpha1StorageList
 */
-func (a *StorageApiService) ListStorages(ctx context.Context, tenant string) (V1alpha1StorageList, *http.Response, error) {
+
+type StorageApiListStoragesOpts struct { 
+	Page optional.String
+	Limit optional.String
+	Ascending optional.String
+	SortBy optional.String
+}
+
+func (a *StorageApiService) ListStorages(ctx context.Context, tenant string, localVarOptionals *StorageApiListStoragesOpts) (V1alpha1StorageList, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -491,6 +530,18 @@ func (a *StorageApiService) ListStorages(ctx context.Context, tenant string) (V1
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
+		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Limit.IsSet() {
+		localVarQueryParams.Add("limit", parameterToString(localVarOptionals.Limit.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Ascending.IsSet() {
+		localVarQueryParams.Add("ascending", parameterToString(localVarOptionals.Ascending.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.SortBy.IsSet() {
+		localVarQueryParams.Add("sortBy", parameterToString(localVarOptionals.SortBy.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 

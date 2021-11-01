@@ -18,6 +18,7 @@ import (
 	"net/url"
 	"strings"
 	"fmt"
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -289,10 +290,23 @@ func (a *TenantApiService) GetTenant(ctx context.Context, tenant string) (V1alph
 /*
 TenantApiService List all tenants
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *TenantApiListTenantsOpts - Optional Parameters:
+     * @param "Page" (optional.String) -  page
+     * @param "Limit" (optional.String) -  limit
+     * @param "Ascending" (optional.String) -  sort parameters, e.g. reverse&#x3D;true
+     * @param "SortBy" (optional.String) -  sort parameters, e.g. orderBy&#x3D;createTime
 
 @return V1alpha1TenantList
 */
-func (a *TenantApiService) ListTenants(ctx context.Context) (V1alpha1TenantList, *http.Response, error) {
+
+type TenantApiListTenantsOpts struct { 
+	Page optional.String
+	Limit optional.String
+	Ascending optional.String
+	SortBy optional.String
+}
+
+func (a *TenantApiService) ListTenants(ctx context.Context, localVarOptionals *TenantApiListTenantsOpts) (V1alpha1TenantList, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -308,6 +322,18 @@ func (a *TenantApiService) ListTenants(ctx context.Context) (V1alpha1TenantList,
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
+		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Limit.IsSet() {
+		localVarQueryParams.Add("limit", parameterToString(localVarOptionals.Limit.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Ascending.IsSet() {
+		localVarQueryParams.Add("ascending", parameterToString(localVarOptionals.Ascending.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.SortBy.IsSet() {
+		localVarQueryParams.Add("sortBy", parameterToString(localVarOptionals.SortBy.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 

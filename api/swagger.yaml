@@ -20,7 +20,38 @@ paths:
       operationId: "ListAllBackupPlans"
       produces:
       - "application/json"
-      parameters: []
+      parameters:
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -34,7 +65,38 @@ paths:
       operationId: "ListAllClusters"
       produces:
       - "application/json"
-      parameters: []
+      parameters:
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -48,7 +110,38 @@ paths:
       operationId: "ListAllRestorePlans"
       produces:
       - "application/json"
-      parameters: []
+      parameters:
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -62,7 +155,38 @@ paths:
       operationId: "ListAllStorages"
       produces:
       - "application/json"
-      parameters: []
+      parameters:
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -76,7 +200,38 @@ paths:
       operationId: "ListTenants"
       produces:
       - "application/json"
-      parameters: []
+      parameters:
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -186,6 +341,58 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "PlanName"
+        x-optionalDataType: "String"
+      - name: "spec.backupName"
+        in: "query"
+        description: "backup plan name"
+        required: false
+        type: "string"
+        x-exportParamName: "SpecBackupName"
+        x-optionalDataType: "String"
+      - name: "name"
+        in: "query"
+        description: "backup job name"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "watch"
+        in: "query"
+        description: "watch"
+        required: false
+        type: "string"
+        x-exportParamName: "Watch"
+        x-optionalDataType: "String"
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
         x-optionalDataType: "String"
       responses:
         "200":
@@ -314,6 +521,37 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Tenant"
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -435,6 +673,37 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Tenant"
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -595,6 +864,58 @@ paths:
         type: "string"
         x-exportParamName: "PlanName"
         x-optionalDataType: "String"
+      - name: "spec.restoreName"
+        in: "query"
+        description: "restore plan name"
+        required: false
+        type: "string"
+        x-exportParamName: "SpecRestoreName"
+        x-optionalDataType: "String"
+      - name: "name"
+        in: "query"
+        description: "restore job name"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "watch"
+        in: "query"
+        description: "watch"
+        required: false
+        type: "string"
+        x-exportParamName: "Watch"
+        x-optionalDataType: "String"
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -722,6 +1043,37 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Tenant"
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -843,6 +1195,37 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Tenant"
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -1777,7 +2160,10 @@ definitions:
           startTime: "startTime"
           endTime: "endTime"
           expiredTime: "expiredTime"
-          totalPVC: 0
+          totalPVC: 1
+        progress:
+          stepsCompleted: 0
+          totalSteps: 6
         conditions:
         - reason: "reason"
           lastHeartbeatTime: "lastHeartbeatTime"
@@ -1922,7 +2308,10 @@ definitions:
             startTime: "startTime"
             endTime: "endTime"
             expiredTime: "expiredTime"
-            totalPVC: 0
+            totalPVC: 1
+          progress:
+            stepsCompleted: 0
+            totalSteps: 6
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -2038,7 +2427,10 @@ definitions:
             startTime: "startTime"
             endTime: "endTime"
             expiredTime: "expiredTime"
-            totalPVC: 0
+            totalPVC: 1
+          progress:
+            stepsCompleted: 0
+            totalSteps: 6
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -2052,6 +2444,17 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+  v1alpha1.BackupJobProgress:
+    properties:
+      stepsCompleted:
+        type: "integer"
+        format: "integer"
+      totalSteps:
+        type: "integer"
+        format: "integer"
+    example:
+      stepsCompleted: 0
+      totalSteps: 6
   v1alpha1.BackupJobReport:
     properties:
       endTime:
@@ -2070,7 +2473,7 @@ definitions:
       startTime: "startTime"
       endTime: "endTime"
       expiredTime: "expiredTime"
-      totalPVC: 0
+      totalPVC: 1
   v1alpha1.BackupJobSpec:
     required:
     - "backupName"
@@ -2144,6 +2547,8 @@ definitions:
           $ref: "#/definitions/v1alpha1.Condition"
       phase:
         type: "string"
+      progress:
+        $ref: "#/definitions/v1alpha1.BackupJobProgress"
       report:
         $ref: "#/definitions/v1alpha1.BackupJobReport"
     example:
@@ -2153,7 +2558,10 @@ definitions:
         startTime: "startTime"
         endTime: "endTime"
         expiredTime: "expiredTime"
-        totalPVC: 0
+        totalPVC: 1
+      progress:
+        stepsCompleted: 0
+        totalSteps: 6
       conditions:
       - reason: "reason"
         lastHeartbeatTime: "lastHeartbeatTime"
@@ -3370,7 +3778,10 @@ definitions:
         report:
           startTime: "startTime"
           endTime: "endTime"
-          totalPVC: 0
+          totalPVC: 1
+        progress:
+          stepsCompleted: 0
+          totalSteps: 6
         conditions:
         - reason: "reason"
           lastHeartbeatTime: "lastHeartbeatTime"
@@ -3574,7 +3985,10 @@ definitions:
           report:
             startTime: "startTime"
             endTime: "endTime"
-            totalPVC: 0
+            totalPVC: 1
+          progress:
+            stepsCompleted: 0
+            totalSteps: 6
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -3749,7 +4163,10 @@ definitions:
           report:
             startTime: "startTime"
             endTime: "endTime"
-            totalPVC: 0
+            totalPVC: 1
+          progress:
+            stepsCompleted: 0
+            totalSteps: 6
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -3763,6 +4180,17 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+  v1alpha1.RestoreJobProgress:
+    properties:
+      stepsCompleted:
+        type: "integer"
+        format: "integer"
+      totalSteps:
+        type: "integer"
+        format: "integer"
+    example:
+      stepsCompleted: 0
+      totalSteps: 6
   v1alpha1.RestoreJobReport:
     properties:
       endTime:
@@ -3775,7 +4203,7 @@ definitions:
     example:
       startTime: "startTime"
       endTime: "endTime"
-      totalPVC: 0
+      totalPVC: 1
   v1alpha1.RestoreJobSpec:
     required:
     - "backupJobName"
@@ -3915,6 +4343,8 @@ definitions:
           $ref: "#/definitions/v1alpha1.Condition"
       phase:
         type: "string"
+      progress:
+        $ref: "#/definitions/v1alpha1.RestoreJobProgress"
       report:
         $ref: "#/definitions/v1alpha1.RestoreJobReport"
     example:
@@ -3922,7 +4352,10 @@ definitions:
       report:
         startTime: "startTime"
         endTime: "endTime"
-        totalPVC: 0
+        totalPVC: 1
+      progress:
+        stepsCompleted: 0
+        totalSteps: 6
       conditions:
       - reason: "reason"
         lastHeartbeatTime: "lastHeartbeatTime"
