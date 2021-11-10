@@ -32,8 +32,8 @@ func TestBackupplan(t *testing.T) {
 		Metadata: &yscli.V1ObjectMeta{Name: backupPlanName},
 		Spec: &yscli.V1alpha1BackupPlanSpec{
 			Tenant:      tenantID,
-			Desc:        "backup plan desc",
-			DisplayName: "backupplan",
+			Desc:        fmt.Sprintf("backup plan %s desc", backupPlanName),
+			DisplayName: fmt.Sprintf("%s display name", backupPlanName),
 			ClusterName: clusterName,
 			StorageName: storageName,
 			Namespaces:  []string{backupNamespace},
