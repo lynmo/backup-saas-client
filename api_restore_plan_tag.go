@@ -407,6 +407,8 @@ RestorePlanTagApiService List all restoreplans of a tenant
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param tenant tenant id
  * @param optional nil or *RestorePlanTagApiListRestorePlansOpts - Optional Parameters:
+     * @param "Name" (optional.String) -  restore plan name
+     * @param "Watch" (optional.String) -  watch
      * @param "Page" (optional.String) -  page
      * @param "Limit" (optional.String) -  limit
      * @param "Ascending" (optional.String) -  sort parameters, e.g. reverse&#x3D;true
@@ -416,6 +418,8 @@ RestorePlanTagApiService List all restoreplans of a tenant
 */
 
 type RestorePlanTagApiListRestorePlansOpts struct { 
+	Name optional.String
+	Watch optional.String
 	Page optional.String
 	Limit optional.String
 	Ascending optional.String
@@ -439,6 +443,12 @@ func (a *RestorePlanTagApiService) ListRestorePlans(ctx context.Context, tenant 
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Name.IsSet() {
+		localVarQueryParams.Add("name", parameterToString(localVarOptionals.Name.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Watch.IsSet() {
+		localVarQueryParams.Add("watch", parameterToString(localVarOptionals.Watch.Value(), ""))
+	}
 	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
 		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
 	}

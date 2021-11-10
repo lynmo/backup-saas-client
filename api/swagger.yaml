@@ -521,6 +521,20 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Tenant"
+      - name: "name"
+        in: "query"
+        description: "backup plan name"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "watch"
+        in: "query"
+        description: "watch"
+        required: false
+        type: "string"
+        x-exportParamName: "Watch"
+        x-optionalDataType: "String"
       - name: "page"
         in: "query"
         description: "page"
@@ -1043,6 +1057,20 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Tenant"
+      - name: "name"
+        in: "query"
+        description: "restore plan name"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "watch"
+        in: "query"
+        description: "watch"
+        required: false
+        type: "string"
+        x-exportParamName: "Watch"
+        x-optionalDataType: "String"
       - name: "page"
         in: "query"
         description: "page"
@@ -2203,6 +2231,9 @@ definitions:
           \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
       metadata:
         $ref: "#/definitions/v1.ListMeta"
+      totalCount:
+        type: "integer"
+        format: "int32"
     example:
       metadata:
         remainingItemCount: 5
@@ -2211,6 +2242,7 @@ definitions:
         selfLink: "selfLink"
       apiVersion: "apiVersion"
       kind: "kind"
+      totalCount: 2
       items:
       - metadata:
           generation: 6
@@ -2764,6 +2796,9 @@ definitions:
           \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
       metadata:
         $ref: "#/definitions/v1.ListMeta"
+      totalCount:
+        type: "integer"
+        format: "int32"
     example:
       metadata:
         remainingItemCount: 5
@@ -2772,6 +2807,7 @@ definitions:
         selfLink: "selfLink"
       apiVersion: "apiVersion"
       kind: "kind"
+      totalCount: 2
       items:
       - metadata:
           generation: 6
@@ -3293,6 +3329,9 @@ definitions:
           \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
       metadata:
         $ref: "#/definitions/v1.ListMeta"
+      totalCount:
+        type: "integer"
+        format: "int32"
     example:
       metadata:
         remainingItemCount: 5
@@ -3301,6 +3340,7 @@ definitions:
         selfLink: "selfLink"
       apiVersion: "apiVersion"
       kind: "kind"
+      totalCount: 0
       items:
       - metadata:
           generation: 6
@@ -3875,6 +3915,9 @@ definitions:
           \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
       metadata:
         $ref: "#/definitions/v1.ListMeta"
+      totalCount:
+        type: "integer"
+        format: "int32"
     example:
       metadata:
         remainingItemCount: 5
@@ -3883,6 +3926,7 @@ definitions:
         selfLink: "selfLink"
       apiVersion: "apiVersion"
       kind: "kind"
+      totalCount: 2
       items:
       - metadata:
           generation: 6
@@ -4676,6 +4720,9 @@ definitions:
           \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
       metadata:
         $ref: "#/definitions/v1.ListMeta"
+      totalCount:
+        type: "integer"
+        format: "int32"
     example:
       metadata:
         remainingItemCount: 5
@@ -4684,6 +4731,7 @@ definitions:
         selfLink: "selfLink"
       apiVersion: "apiVersion"
       kind: "kind"
+      totalCount: 0
       items:
       - metadata:
           generation: 6
@@ -5205,6 +5253,9 @@ definitions:
           \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
       metadata:
         $ref: "#/definitions/v1.ListMeta"
+      totalCount:
+        type: "integer"
+        format: "int32"
     example:
       metadata:
         remainingItemCount: 5
@@ -5213,6 +5264,7 @@ definitions:
         selfLink: "selfLink"
       apiVersion: "apiVersion"
       kind: "kind"
+      totalCount: 0
       items:
       - metadata:
           generation: 6
@@ -5542,6 +5594,9 @@ definitions:
           \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
       metadata:
         $ref: "#/definitions/v1.ListMeta"
+      totalCount:
+        type: "integer"
+        format: "int32"
     example:
       metadata:
         remainingItemCount: 5
@@ -5550,6 +5605,7 @@ definitions:
         selfLink: "selfLink"
       apiVersion: "apiVersion"
       kind: "kind"
+      totalCount: 0
       items:
       - metadata:
           generation: 6
