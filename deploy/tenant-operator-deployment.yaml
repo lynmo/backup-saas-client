@@ -600,13 +600,13 @@ spec:
         - name: QIMING_OPERATOR_REGISTRY
           value: registry.cn-shanghai.aliyuncs.com/jibudata
         - name: QIMING_OPERATOR_VERSION
-          value: main.3be4a0b
+          value: main.7c12a0b
         - name: QIMING_CONTROLLER_VERSION
-          value: main.1216ddf
+          value: main.0e9d349
         - name: VELERO_VERSION
           value: v1.7.0
         - name: VELERO_INSTALLER_VERSION
-          value: main.3be4a0b
+          value: main.7c12a0b
         - name: VELERO_PLUGINS
           value: registry.cn-shanghai.aliyuncs.com/jibudata/velero-plugin-for-aws:v1.3.0,registry.cn-shanghai.aliyuncs.com/jibudata/velero-plugin-for-csi:v0.2.0
         image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:main.3d50226
