@@ -1948,14 +1948,15 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
+    app.kubernetes.io/component: metrics
     app.kubernetes.io/part-of: jibudata-backup-rest-server
   name: jibu-baas-rest-server-metrics-service
   namespace: backup-saas-system
 spec:
   ports:
-  - name: https
-    port: 8443
-    targetPort: https
+  - name: http
+    port: 8080
+    targetPort: 8080
   selector:
     app.kubernetes.io/part-of: jibudata-backup-rest-server
 ---
@@ -1995,7 +1996,7 @@ spec:
       containers:
       - command:
         - /manager
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.0d2407d
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.667c48b
         imagePullPolicy: Always
         name: manager
         resources:
@@ -2009,3 +2010,23 @@ spec:
           allowPrivilegeEscalation: false
       serviceAccountName: jibu-baas-backup-admin
       terminationGracePeriodSeconds: 10
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app.kubernetes.io/part-of: jibudata-backup-rest-server
+  name: jibu-baas-rest-server-metrics-monitor
+  namespace: backup-saas-system
+spec:
+  endpoints:
+  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+    path: /metrics
+    port: http
+    scheme: http
+    tlsConfig:
+      insecureSkipVerify: true
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: metrics
+      app.kubernetes.io/part-of: jibudata-backup-rest-server
