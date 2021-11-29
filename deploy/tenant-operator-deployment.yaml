@@ -603,14 +603,14 @@ spec:
         - name: QIMING_OPERATOR_VERSION
           value: main.7c12a0b
         - name: QIMING_CONTROLLER_VERSION
-          value: main.2bae7ae
+          value: main.dae5e9f
         - name: VELERO_VERSION
           value: v1.7.0
         - name: VELERO_INSTALLER_VERSION
           value: main.7c12a0b
         - name: VELERO_PLUGINS
           value: registry.cn-shanghai.aliyuncs.com/jibudata/velero-plugin-for-aws:v1.3.0,registry.cn-shanghai.aliyuncs.com/jibudata/velero-plugin-for-csi:v0.2.0
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:main.d11cabc
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:main.ec3e443
         imagePullPolicy: Always
         name: manager
         resources:

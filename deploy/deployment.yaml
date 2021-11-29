@@ -86,8 +86,8 @@ spec:
                         description: DisplayName is human-readable name
                         type: string
                       frequency:
-                        description: Frequency of the backup, unit is hour, 1-24 hour is valid
-                        type: integer
+                        description: Frequency of the backup, follow cron job string format
+                        type: string
                       name:
                         description: Name of the policy
                         type: string
@@ -346,8 +346,8 @@ spec:
                     description: DisplayName is human-readable name
                     type: string
                   frequency:
-                    description: Frequency of the backup, unit is hour, 1-24 hour is valid
-                    type: integer
+                    description: Frequency of the backup, follow cron job string format
+                    type: string
                   name:
                     description: Name of the policy
                     type: string
@@ -736,8 +736,8 @@ spec:
                             description: DisplayName is human-readable name
                             type: string
                           frequency:
-                            description: Frequency of the backup, unit is hour, 1-24 hour is valid
-                            type: integer
+                            description: Frequency of the backup, follow cron job string format
+                            type: string
                           name:
                             description: Name of the policy
                             type: string
@@ -894,8 +894,8 @@ spec:
                             description: DisplayName is human-readable name
                             type: string
                           frequency:
-                            description: Frequency of the backup, unit is hour, 1-24 hour is valid
-                            type: integer
+                            description: Frequency of the backup, follow cron job string format
+                            type: string
                           name:
                             description: Name of the policy
                             type: string
@@ -1198,8 +1198,8 @@ spec:
                         description: DisplayName is human-readable name
                         type: string
                       frequency:
-                        description: Frequency of the backup, unit is hour, 1-24 hour is valid
-                        type: integer
+                        description: Frequency of the backup, follow cron job string format
+                        type: string
                       name:
                         description: Name of the policy
                         type: string
@@ -1996,7 +1996,7 @@ spec:
       containers:
       - command:
         - /manager
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.667c48b
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.39e2544
         imagePullPolicy: Always
         name: manager
         resources:
