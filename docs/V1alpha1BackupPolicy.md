@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Desc** | **string** |  | [optional] [default to null]
 **DisplayName** | **string** |  | [optional] [default to null]
-**Frequency** | **int32** |  | [optional] [default to null]
+**Frequency** | **string** |  | [optional] [default to null]
 **Name** | **string** |  | [optional] [default to null]
 **Repeat** | **bool** |  | [optional] [default to null]
 **Retention** | **int32** |  | [optional] [default to null]

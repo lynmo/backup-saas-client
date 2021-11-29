@@ -2172,9 +2172,9 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
-            retention: 5
+            retention: 1
             desc: "desc"
-            frequency: 1
+            frequency: "frequency"
           storageName: "storageName"
         displayName: "displayName"
         action: "action"
@@ -2330,9 +2330,9 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
-              retention: 5
+              retention: 1
               desc: "desc"
-              frequency: 1
+              frequency: "frequency"
             storageName: "storageName"
           displayName: "displayName"
           action: "action"
@@ -2455,9 +2455,9 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
-              retention: 5
+              retention: 1
               desc: "desc"
-              frequency: 1
+              frequency: "frequency"
             storageName: "storageName"
           displayName: "displayName"
           action: "action"
@@ -2598,9 +2598,9 @@ definitions:
           displayName: "displayName"
           repeat: true
           name: "name"
-          retention: 5
+          retention: 1
           desc: "desc"
-          frequency: 1
+          frequency: "frequency"
         storageName: "storageName"
       displayName: "displayName"
       action: "action"
@@ -2753,9 +2753,9 @@ definitions:
           displayName: "displayName"
           repeat: true
           name: "name"
-          retention: 5
+          retention: 1
           desc: "desc"
-          frequency: 1
+          frequency: "frequency"
         storageName: "storageName"
       status:
         phase: "phase"
@@ -2807,7 +2807,7 @@ definitions:
         selfLink: "selfLink"
       apiVersion: "apiVersion"
       kind: "kind"
-      totalCount: 2
+      totalCount: 5
       items:
       - metadata:
           generation: 6
@@ -2894,9 +2894,9 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
-            retention: 5
+            retention: 1
             desc: "desc"
-            frequency: 1
+            frequency: "frequency"
           storageName: "storageName"
         status:
           phase: "phase"
@@ -3002,9 +3002,9 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
-            retention: 5
+            retention: 1
             desc: "desc"
-            frequency: 1
+            frequency: "frequency"
           storageName: "storageName"
         status:
           phase: "phase"
@@ -3099,9 +3099,9 @@ definitions:
         displayName: "displayName"
         repeat: true
         name: "name"
-        retention: 5
+        retention: 1
         desc: "desc"
-        frequency: 1
+        frequency: "frequency"
       storageName: "storageName"
   v1alpha1.BackupPlanStatus:
     properties:
@@ -3145,8 +3145,7 @@ definitions:
       displayName:
         type: "string"
       frequency:
-        type: "integer"
-        format: "int32"
+        type: "string"
       name:
         type: "string"
       repeat:
@@ -3158,9 +3157,9 @@ definitions:
       displayName: "displayName"
       repeat: true
       name: "name"
-      retention: 5
+      retention: 1
       desc: "desc"
-      frequency: 1
+      frequency: "frequency"
   v1alpha1.BackupS3Config:
     required:
     - "accessKeyId"
@@ -3787,9 +3786,9 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
-              retention: 5
+              retention: 1
               desc: "desc"
-              frequency: 1
+              frequency: "frequency"
             storageName: "storageName"
           displayName: "displayName"
           action: "action"
@@ -3846,9 +3845,9 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
-              retention: 5
+              retention: 1
               desc: "desc"
-              frequency: 1
+              frequency: "frequency"
             storageName: "storageName"
           displayName: "displayName"
           backupName: "backupName"
@@ -4016,9 +4015,9 @@ definitions:
                 displayName: "displayName"
                 repeat: true
                 name: "name"
-                retention: 5
+                retention: 1
                 desc: "desc"
-                frequency: 1
+                frequency: "frequency"
               storageName: "storageName"
             displayName: "displayName"
             action: "action"
@@ -4075,9 +4074,9 @@ definitions:
                 displayName: "displayName"
                 repeat: true
                 name: "name"
-                retention: 5
+                retention: 1
                 desc: "desc"
-                frequency: 1
+                frequency: "frequency"
               storageName: "storageName"
             displayName: "displayName"
             backupName: "backupName"
@@ -4212,9 +4211,9 @@ definitions:
                 displayName: "displayName"
                 repeat: true
                 name: "name"
-                retention: 5
+                retention: 1
                 desc: "desc"
-                frequency: 1
+                frequency: "frequency"
               storageName: "storageName"
             displayName: "displayName"
             action: "action"
@@ -4271,9 +4270,9 @@ definitions:
                 displayName: "displayName"
                 repeat: true
                 name: "name"
-                retention: 5
+                retention: 1
                 desc: "desc"
-                frequency: 1
+                frequency: "frequency"
               storageName: "storageName"
             displayName: "displayName"
             backupName: "backupName"
@@ -4441,9 +4440,9 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
-            retention: 5
+            retention: 1
             desc: "desc"
-            frequency: 1
+            frequency: "frequency"
           storageName: "storageName"
         displayName: "displayName"
         action: "action"
@@ -4500,9 +4499,9 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
-            retention: 5
+            retention: 1
             desc: "desc"
-            frequency: 1
+            frequency: "frequency"
           storageName: "storageName"
         displayName: "displayName"
         backupName: "backupName"
@@ -4672,9 +4671,9 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
-            retention: 5
+            retention: 1
             desc: "desc"
-            frequency: 1
+            frequency: "frequency"
           storageName: "storageName"
         displayName: "displayName"
         backupName: "backupName"
@@ -4825,9 +4824,9 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
-              retention: 5
+              retention: 1
               desc: "desc"
-              frequency: 1
+              frequency: "frequency"
             storageName: "storageName"
           displayName: "displayName"
           backupName: "backupName"
@@ -4945,9 +4944,9 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
-              retention: 5
+              retention: 1
               desc: "desc"
-              frequency: 1
+              frequency: "frequency"
             storageName: "storageName"
           displayName: "displayName"
           backupName: "backupName"
@@ -5044,9 +5043,9 @@ definitions:
           displayName: "displayName"
           repeat: true
           name: "name"
-          retention: 5
+          retention: 1
           desc: "desc"
-          frequency: 1
+          frequency: "frequency"
         storageName: "storageName"
       displayName: "displayName"
       backupName: "backupName"
