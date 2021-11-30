@@ -610,7 +610,7 @@ spec:
           value: main.7c12a0b
         - name: VELERO_PLUGINS
           value: registry.cn-shanghai.aliyuncs.com/jibudata/velero-plugin-for-aws:v1.3.0,registry.cn-shanghai.aliyuncs.com/jibudata/velero-plugin-for-csi:v0.2.0
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:main.ec3e443
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:main.7ee487a
         imagePullPolicy: Always
         name: manager
         resources:
