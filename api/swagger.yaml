@@ -5200,6 +5200,10 @@ definitions:
         s3Provider: "s3Provider"
       status:
         phase: "phase"
+        testResults:
+          key:
+            result: "result"
+            reason: "reason"
         conditions:
         - reason: "reason"
           lastHeartbeatTime: "lastHeartbeatTime"
@@ -5332,6 +5336,10 @@ definitions:
           s3Provider: "s3Provider"
         status:
           phase: "phase"
+          testResults:
+            key:
+              result: "result"
+              reason: "reason"
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -5412,6 +5420,10 @@ definitions:
           s3Provider: "s3Provider"
         status:
           phase: "phase"
+          testResults:
+            key:
+              result: "result"
+              reason: "reason"
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -5471,8 +5483,16 @@ definitions:
           $ref: "#/definitions/v1alpha1.Condition"
       phase:
         type: "string"
+      testResults:
+        type: "object"
+        additionalProperties:
+          $ref: "#/definitions/v1alpha1.TestResult"
     example:
       phase: "phase"
+      testResults:
+        key:
+          result: "result"
+          reason: "reason"
       conditions:
       - reason: "reason"
         lastHeartbeatTime: "lastHeartbeatTime"
@@ -5783,6 +5803,15 @@ definitions:
         message: "message"
         type: "type"
         status: "status"
+  v1alpha1.TestResult:
+    properties:
+      reason:
+        type: "string"
+      result:
+        type: "string"
+    example:
+      result: "result"
+      reason: "reason"
   v1alpha1.VolumeSnapshotClass:
     required:
     - "deletionPolicy"

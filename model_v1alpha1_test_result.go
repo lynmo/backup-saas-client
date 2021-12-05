@@ -10,8 +10,7 @@
 
 package swagger
 
-type V1alpha1StorageStatus struct {
-	Conditions []V1alpha1Condition `json:"conditions,omitempty"`
-	Phase string `json:"phase,omitempty"`
-	TestResults map[string]V1alpha1TestResult `json:"testResults,omitempty"`
+type V1alpha1TestResult struct {
+	Reason string `json:"reason,omitempty"`
+	Result string `json:"result,omitempty"`
 }

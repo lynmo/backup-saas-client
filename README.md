@@ -114,6 +114,7 @@ Class | Method | HTTP request | Description
  - [V1alpha1TenantList](docs/V1alpha1TenantList.md)
  - [V1alpha1TenantSpec](docs/V1alpha1TenantSpec.md)
  - [V1alpha1TenantStatus](docs/V1alpha1TenantStatus.md)
+ - [V1alpha1TestResult](docs/V1alpha1TestResult.md)
  - [V1alpha1VolumeSnapshotClass](docs/V1alpha1VolumeSnapshotClass.md)
  - [V1alpha1VolumeSnapshotConfig](docs/V1alpha1VolumeSnapshotConfig.md)
  - [YsapiError](docs/YsapiError.md)
