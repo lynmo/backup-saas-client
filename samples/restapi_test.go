@@ -11,6 +11,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/antihax/optional"
 	yscli "github.com/jibutech/backup-saas-client"
 )
 
@@ -149,6 +150,14 @@ func TestCreateCluster(t *testing.T) {
 	createCluster(t, cli)
 }
 
+func TestListClusters(t *testing.T) {
+	cfg := yscli.NewConfiguration()
+	cli := yscli.NewAPIClient(cfg)
+	cli.ChangeBasePath(apiEndpoint)
+
+	listClusters(t, cli)
+}
+
 func listTenants(t *testing.T, cli *yscli.APIClient) {
 	var ye yscli.Error
 
@@ -170,7 +179,9 @@ func listTenants(t *testing.T, cli *yscli.APIClient) {
 func listClusters(t *testing.T, cli *yscli.APIClient) {
 	var ye yscli.Error
 
-	opts := &yscli.ClusterApiListClustersOpts{}
+	opts := &yscli.ClusterApiListClustersOpts{
+		IncludeKubeconfig: optional.NewString("true"),
+	}
 	clusterList, _, err := cli.ClusterApi.ListClusters(context.TODO(), tenantID, opts)
 	if err != nil {
 		t.Log("failed to list clusters of tenant ", tenantID, err)
@@ -183,6 +194,25 @@ func listClusters(t *testing.T, cli *yscli.APIClient) {
 	t.Log("list of clusters:")
 	for _, c := range clusterList.Items {
 		t.Log(c.Metadata.Name)
+		if c.Spec.Kubeconfig == "" {
+			t.Error("kubeconfig should not be empty")
+		}
+
+		opts := &yscli.ClusterApiGetClusterOpts{
+			IncludeKubeconfig: optional.NewString("true"),
+		}
+		cluster, _, err := cli.ClusterApi.GetCluster(context.TODO(), tenantID, c.Metadata.Name, opts)
+		if err != nil {
+			t.Log("failed to get cluster of tenant ", c.Metadata.Name, err)
+			if errors.As(err, &ye) {
+				t.Log(ye.Code())
+				t.Log(ye.Message())
+				t.Log(ye.OrigError())
+			}
+		}
+		if cluster.Spec.Kubeconfig == "" {
+			t.Error("kubeconfig should not be empty")
+		}
 	}
 }
 func listStorages(t *testing.T, cli *yscli.APIClient) {
