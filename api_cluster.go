@@ -210,10 +210,17 @@ ClusterApiService Retrieve storage details.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param tenant tenant id
  * @param cluster cluster name
+ * @param optional nil or *ClusterApiGetClusterOpts - Optional Parameters:
+     * @param "IncludeKubeconfig" (optional.String) -  include kubeconfig
 
 @return V1alpha1Cluster
 */
-func (a *ClusterApiService) GetCluster(ctx context.Context, tenant string, cluster string) (V1alpha1Cluster, *http.Response, error) {
+
+type ClusterApiGetClusterOpts struct { 
+	IncludeKubeconfig optional.String
+}
+
+func (a *ClusterApiService) GetCluster(ctx context.Context, tenant string, cluster string, localVarOptionals *ClusterApiGetClusterOpts) (V1alpha1Cluster, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -231,6 +238,9 @@ func (a *ClusterApiService) GetCluster(ctx context.Context, tenant string, clust
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.IncludeKubeconfig.IsSet() {
+		localVarQueryParams.Add("include_kubeconfig", parameterToString(localVarOptionals.IncludeKubeconfig.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 
@@ -385,6 +395,7 @@ func (a *ClusterApiService) GetNamespaces(ctx context.Context, tenant string, cl
 ClusterApiService List all clusters.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *ClusterApiListAllClustersOpts - Optional Parameters:
+     * @param "IncludeKubeconfig" (optional.String) -  include kubeconfig
      * @param "Page" (optional.String) -  page
      * @param "Limit" (optional.String) -  limit
      * @param "Ascending" (optional.String) -  sort parameters, e.g. reverse&#x3D;true
@@ -394,6 +405,7 @@ ClusterApiService List all clusters.
 */
 
 type ClusterApiListAllClustersOpts struct { 
+	IncludeKubeconfig optional.String
 	Page optional.String
 	Limit optional.String
 	Ascending optional.String
@@ -416,6 +428,9 @@ func (a *ClusterApiService) ListAllClusters(ctx context.Context, localVarOptiona
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.IncludeKubeconfig.IsSet() {
+		localVarQueryParams.Add("include_kubeconfig", parameterToString(localVarOptionals.IncludeKubeconfig.Value(), ""))
+	}
 	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
 		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
 	}
@@ -495,6 +510,7 @@ ClusterApiService List all clusters of a tenant.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param tenant tenant id
  * @param optional nil or *ClusterApiListClustersOpts - Optional Parameters:
+     * @param "IncludeKubeconfig" (optional.String) -  include kubeconfig
      * @param "Page" (optional.String) -  page
      * @param "Limit" (optional.String) -  limit
      * @param "Ascending" (optional.String) -  sort parameters, e.g. reverse&#x3D;true
@@ -504,6 +520,7 @@ ClusterApiService List all clusters of a tenant.
 */
 
 type ClusterApiListClustersOpts struct { 
+	IncludeKubeconfig optional.String
 	Page optional.String
 	Limit optional.String
 	Ascending optional.String
@@ -527,6 +544,9 @@ func (a *ClusterApiService) ListClusters(ctx context.Context, tenant string, loc
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.IncludeKubeconfig.IsSet() {
+		localVarQueryParams.Add("include_kubeconfig", parameterToString(localVarOptionals.IncludeKubeconfig.Value(), ""))
+	}
 	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
 		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
 	}

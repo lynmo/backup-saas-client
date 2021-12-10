@@ -66,6 +66,13 @@ paths:
       produces:
       - "application/json"
       parameters:
+      - name: "include_kubeconfig"
+        in: "query"
+        description: "include kubeconfig"
+        required: false
+        type: "string"
+        x-exportParamName: "IncludeKubeconfig"
+        x-optionalDataType: "String"
       - name: "page"
         in: "query"
         description: "page"
@@ -687,6 +694,13 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Tenant"
+      - name: "include_kubeconfig"
+        in: "query"
+        description: "include kubeconfig"
+        required: false
+        type: "string"
+        x-exportParamName: "IncludeKubeconfig"
+        x-optionalDataType: "String"
       - name: "page"
         in: "query"
         description: "page"
@@ -769,6 +783,13 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Cluster"
+      - name: "include_kubeconfig"
+        in: "query"
+        description: "include kubeconfig"
+        required: false
+        type: "string"
+        x-exportParamName: "IncludeKubeconfig"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"

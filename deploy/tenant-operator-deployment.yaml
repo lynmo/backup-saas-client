@@ -605,14 +605,14 @@ spec:
         - name: QIMING_CONTROLLER_VERSION
           value: main.23945cc
         - name: TENANT_WORKER_VERSION
-          value: main.a4e7871
+          value: main.c8a28cc
         - name: VELERO_VERSION
           value: v1.7.0
         - name: VELERO_INSTALLER_VERSION
           value: main.7c12a0b
         - name: VELERO_PLUGINS
           value: registry.cn-shanghai.aliyuncs.com/jibudata/velero-plugin-for-aws:v1.3.0,registry.cn-shanghai.aliyuncs.com/jibudata/velero-plugin-for-csi:v0.2.0
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:main.a4e7871
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:main.c8a28cc
         imagePullPolicy: Always
         name: manager
         resources:
