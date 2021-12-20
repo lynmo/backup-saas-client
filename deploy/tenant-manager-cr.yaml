@@ -1,0 +1,11 @@
+apiVersion: ys.jibudata.com/v1alpha1
+kind: TenantManager
+metadata:
+  # DO NOT CHANGE name and namespace here
+  name: tenant-manager
+  namespace: backup-saas-system
+spec:
+  tenantLimit: 4
+  minTenantWorker: 1
+  maxTenantWorker: 4
+  syncIntervalSeconds: 60

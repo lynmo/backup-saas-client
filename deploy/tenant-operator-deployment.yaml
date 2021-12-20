@@ -601,18 +601,18 @@ spec:
         - name: QIMING_OPERATOR_REGISTRY
           value: registry.cn-shanghai.aliyuncs.com/jibudata
         - name: QIMING_OPERATOR_VERSION
-          value: main.7c12a0b
+          value: main.1cf9364
         - name: QIMING_CONTROLLER_VERSION
-          value: main.23945cc
-        - name: TENANT_WORKER_VERSION
-          value: main.c8a28cc
+          value: main.6b00388
+        - name: TENANT_PROCESSOR_VERSION
+          value: main.e5e0413
         - name: VELERO_VERSION
           value: v1.7.0
         - name: VELERO_INSTALLER_VERSION
-          value: main.7c12a0b
+          value: main.1cf9364
         - name: VELERO_PLUGINS
           value: registry.cn-shanghai.aliyuncs.com/jibudata/velero-plugin-for-aws:v1.3.0,registry.cn-shanghai.aliyuncs.com/jibudata/velero-plugin-for-csi:v0.2.0
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:main.c8a28cc
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:main.e5e0413
         imagePullPolicy: Always
         name: manager
         resources:
