@@ -16,6 +16,7 @@ const (
 	storageName = "go-client-test-s3"
 
 	backupPlanName           = "go-client-test-backupplan"
+	backupPlanNameRepeat     = "go-client-test-backupplan-repeat"
 	backupNamespace          = "wordpress"
 	backupJobName            = "go-client-test-backupjob"
 	backupJobNameNotStart    = "go-client-test-backupjob-not-start"

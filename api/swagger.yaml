@@ -2193,6 +2193,7 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
+            pause: true
             retention: 1
             desc: "desc"
             frequency: "frequency"
@@ -2351,6 +2352,7 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
+              pause: true
               retention: 1
               desc: "desc"
               frequency: "frequency"
@@ -2476,6 +2478,7 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
+              pause: true
               retention: 1
               desc: "desc"
               frequency: "frequency"
@@ -2619,6 +2622,7 @@ definitions:
           displayName: "displayName"
           repeat: true
           name: "name"
+          pause: true
           retention: 1
           desc: "desc"
           frequency: "frequency"
@@ -2774,6 +2778,7 @@ definitions:
           displayName: "displayName"
           repeat: true
           name: "name"
+          pause: true
           retention: 1
           desc: "desc"
           frequency: "frequency"
@@ -2915,6 +2920,7 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
+            pause: true
             retention: 1
             desc: "desc"
             frequency: "frequency"
@@ -3023,6 +3029,7 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
+            pause: true
             retention: 1
             desc: "desc"
             frequency: "frequency"
@@ -3120,6 +3127,7 @@ definitions:
         displayName: "displayName"
         repeat: true
         name: "name"
+        pause: true
         retention: 1
         desc: "desc"
         frequency: "frequency"
@@ -3169,6 +3177,8 @@ definitions:
         type: "string"
       name:
         type: "string"
+      pause:
+        type: "boolean"
       repeat:
         type: "boolean"
       retention:
@@ -3178,6 +3188,7 @@ definitions:
       displayName: "displayName"
       repeat: true
       name: "name"
+      pause: true
       retention: 1
       desc: "desc"
       frequency: "frequency"
@@ -3807,6 +3818,7 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
+              pause: true
               retention: 1
               desc: "desc"
               frequency: "frequency"
@@ -3866,6 +3878,7 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
+              pause: true
               retention: 1
               desc: "desc"
               frequency: "frequency"
@@ -4036,6 +4049,7 @@ definitions:
                 displayName: "displayName"
                 repeat: true
                 name: "name"
+                pause: true
                 retention: 1
                 desc: "desc"
                 frequency: "frequency"
@@ -4095,6 +4109,7 @@ definitions:
                 displayName: "displayName"
                 repeat: true
                 name: "name"
+                pause: true
                 retention: 1
                 desc: "desc"
                 frequency: "frequency"
@@ -4232,6 +4247,7 @@ definitions:
                 displayName: "displayName"
                 repeat: true
                 name: "name"
+                pause: true
                 retention: 1
                 desc: "desc"
                 frequency: "frequency"
@@ -4291,6 +4307,7 @@ definitions:
                 displayName: "displayName"
                 repeat: true
                 name: "name"
+                pause: true
                 retention: 1
                 desc: "desc"
                 frequency: "frequency"
@@ -4461,6 +4478,7 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
+            pause: true
             retention: 1
             desc: "desc"
             frequency: "frequency"
@@ -4520,6 +4538,7 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
+            pause: true
             retention: 1
             desc: "desc"
             frequency: "frequency"
@@ -4692,6 +4711,7 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
+            pause: true
             retention: 1
             desc: "desc"
             frequency: "frequency"
@@ -4845,6 +4865,7 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
+              pause: true
               retention: 1
               desc: "desc"
               frequency: "frequency"
@@ -4965,6 +4986,7 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
+              pause: true
               retention: 1
               desc: "desc"
               frequency: "frequency"
@@ -5064,6 +5086,7 @@ definitions:
           displayName: "displayName"
           repeat: true
           name: "name"
+          pause: true
           retention: 1
           desc: "desc"
           frequency: "frequency"
@@ -5597,6 +5620,7 @@ definitions:
         orgName: "orgName"
         displayName: "displayName"
         contact: "contact"
+        isExpired: true
         defaultBackupStorage: "defaultBackupStorage"
         desc: "desc"
       status:
@@ -5698,6 +5722,7 @@ definitions:
           orgName: "orgName"
           displayName: "displayName"
           contact: "contact"
+          isExpired: true
           defaultBackupStorage: "defaultBackupStorage"
           desc: "desc"
         status:
@@ -5766,6 +5791,7 @@ definitions:
           orgName: "orgName"
           displayName: "displayName"
           contact: "contact"
+          isExpired: true
           defaultBackupStorage: "defaultBackupStorage"
           desc: "desc"
         status:
@@ -5793,12 +5819,15 @@ definitions:
         type: "string"
       displayName:
         type: "string"
+      isExpired:
+        type: "boolean"
       orgName:
         type: "string"
     example:
       orgName: "orgName"
       displayName: "displayName"
       contact: "contact"
+      isExpired: true
       defaultBackupStorage: "defaultBackupStorage"
       desc: "desc"
   v1alpha1.TenantStatus:

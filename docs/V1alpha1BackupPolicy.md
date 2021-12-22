@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **DisplayName** | **string** |  | [optional] [default to null]
 **Frequency** | **string** |  | [optional] [default to null]
 **Name** | **string** |  | [optional] [default to null]
+**Pause** | **bool** |  | [optional] [default to null]
 **Repeat** | **bool** |  | [optional] [default to null]
 **Retention** | **int32** |  | [optional] [default to null]
 

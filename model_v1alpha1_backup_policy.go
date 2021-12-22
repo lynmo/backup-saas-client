@@ -15,6 +15,7 @@ type V1alpha1BackupPolicy struct {
 	DisplayName string `json:"displayName,omitempty"`
 	Frequency string `json:"frequency,omitempty"`
 	Name string `json:"name,omitempty"`
+	Pause bool `json:"pause,omitempty"`
 	Repeat bool `json:"repeat,omitempty"`
 	Retention int32 `json:"retention,omitempty"`
 }

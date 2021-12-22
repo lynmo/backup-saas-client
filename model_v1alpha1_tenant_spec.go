@@ -15,5 +15,6 @@ type V1alpha1TenantSpec struct {
 	DefaultBackupStorage string `json:"defaultBackupStorage,omitempty"`
 	Desc string `json:"desc,omitempty"`
 	DisplayName string `json:"displayName,omitempty"`
+	IsExpired bool `json:"isExpired,omitempty"`
 	OrgName string `json:"orgName,omitempty"`
 }

@@ -51,6 +51,43 @@ func TestBackupplan(t *testing.T) {
 	listBackupPlans(cli, t)
 }
 
+func TestCreateRepeatBackupplan(t *testing.T) {
+	var err error
+	var ye yscli.Error
+
+	cfg := yscli.NewConfiguration()
+	cli := yscli.NewAPIClient(cfg)
+	cli.ChangeBasePath(apiEndpoint)
+
+	listBackupPlans(cli, t)
+	testBackupPlan := yscli.V1alpha1BackupPlan{
+		Metadata: &yscli.V1ObjectMeta{Name: backupPlanNameRepeat},
+		Spec: &yscli.V1alpha1BackupPlanSpec{
+			Tenant:      tenantID,
+			Desc:        fmt.Sprintf("backup plan %s desc", backupPlanNameRepeat),
+			DisplayName: fmt.Sprintf("%s display name", backupPlanNameRepeat),
+			ClusterName: clusterName,
+			StorageName: storageName,
+			Namespaces:  []string{backupNamespace},
+			Policy: &yscli.V1alpha1BackupPolicy{
+				Frequency: "0 * * * *",
+				Repeat:    true,
+				Retention: 1,
+			},
+		},
+	}
+	_, _, err = cli.BackupPlanTagApi.CreateBackupPlan(context.TODO(), tenantID, testBackupPlan)
+	if err != nil {
+		t.Error("failed to create backupplan", err)
+		if errors.As(err, &ye) {
+			fmt.Println(ye.Code())
+			fmt.Println(ye.Message())
+			fmt.Println(ye.OrigError())
+		}
+	}
+	listBackupPlans(cli, t)
+}
+
 func TestListBackupplan(t *testing.T) {
 	cfg := yscli.NewConfiguration()
 	cli := yscli.NewAPIClient(cfg)
