@@ -96,7 +96,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetStorage**
-> V1alpha1Storage GetStorage(ctx, tenant, storage)
+> V1alpha1Storage GetStorage(ctx, tenant, storage, optional)
 Retrieve storage details.
 
 ### Required Parameters
@@ -106,6 +106,16 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **tenant** | **string**| tenant id | 
   **storage** | **string**| storage name | 
+ **optional** | ***StorageApiGetStorageOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a StorageApiGetStorageOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **includeSecrets** | **optional.String**| include secrets | 
 
 ### Return type
 
@@ -138,6 +148,7 @@ Optional parameters are passed through a pointer to a StorageApiListAllStoragesO
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **includeSecrets** | **optional.String**| include secrets | 
  **page** | **optional.String**| page | [default to page&#x3D;1]
  **limit** | **optional.String**| limit | 
  **ascending** | **optional.String**| sort parameters, e.g. reverse&#x3D;true | [default to ascending&#x3D;false]
@@ -176,6 +187,7 @@ Optional parameters are passed through a pointer to a StorageApiListStoragesOpts
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **includeSecrets** | **optional.String**| include secrets | 
  **page** | **optional.String**| page | [default to page&#x3D;1]
  **limit** | **optional.String**| limit | 
  **ascending** | **optional.String**| sort parameters, e.g. reverse&#x3D;true | [default to ascending&#x3D;false]

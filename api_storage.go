@@ -301,10 +301,17 @@ StorageApiService Retrieve storage details.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param tenant tenant id
  * @param storage storage name
+ * @param optional nil or *StorageApiGetStorageOpts - Optional Parameters:
+     * @param "IncludeSecrets" (optional.String) -  include secrets
 
 @return V1alpha1Storage
 */
-func (a *StorageApiService) GetStorage(ctx context.Context, tenant string, storage string) (V1alpha1Storage, *http.Response, error) {
+
+type StorageApiGetStorageOpts struct { 
+	IncludeSecrets optional.String
+}
+
+func (a *StorageApiService) GetStorage(ctx context.Context, tenant string, storage string, localVarOptionals *StorageApiGetStorageOpts) (V1alpha1Storage, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -322,6 +329,9 @@ func (a *StorageApiService) GetStorage(ctx context.Context, tenant string, stora
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.IncludeSecrets.IsSet() {
+		localVarQueryParams.Add("include_secrets", parameterToString(localVarOptionals.IncludeSecrets.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 
@@ -388,6 +398,7 @@ func (a *StorageApiService) GetStorage(ctx context.Context, tenant string, stora
 StorageApiService List all storages.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *StorageApiListAllStoragesOpts - Optional Parameters:
+     * @param "IncludeSecrets" (optional.String) -  include secrets
      * @param "Page" (optional.String) -  page
      * @param "Limit" (optional.String) -  limit
      * @param "Ascending" (optional.String) -  sort parameters, e.g. reverse&#x3D;true
@@ -397,6 +408,7 @@ StorageApiService List all storages.
 */
 
 type StorageApiListAllStoragesOpts struct { 
+	IncludeSecrets optional.String
 	Page optional.String
 	Limit optional.String
 	Ascending optional.String
@@ -419,6 +431,9 @@ func (a *StorageApiService) ListAllStorages(ctx context.Context, localVarOptiona
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.IncludeSecrets.IsSet() {
+		localVarQueryParams.Add("include_secrets", parameterToString(localVarOptionals.IncludeSecrets.Value(), ""))
+	}
 	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
 		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
 	}
@@ -498,6 +513,7 @@ StorageApiService List all storages of a tenant.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param tenant tenant id
  * @param optional nil or *StorageApiListStoragesOpts - Optional Parameters:
+     * @param "IncludeSecrets" (optional.String) -  include secrets
      * @param "Page" (optional.String) -  page
      * @param "Limit" (optional.String) -  limit
      * @param "Ascending" (optional.String) -  sort parameters, e.g. reverse&#x3D;true
@@ -507,6 +523,7 @@ StorageApiService List all storages of a tenant.
 */
 
 type StorageApiListStoragesOpts struct { 
+	IncludeSecrets optional.String
 	Page optional.String
 	Limit optional.String
 	Ascending optional.String
@@ -530,6 +547,9 @@ func (a *StorageApiService) ListStorages(ctx context.Context, tenant string, loc
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.IncludeSecrets.IsSet() {
+		localVarQueryParams.Add("include_secrets", parameterToString(localVarOptionals.IncludeSecrets.Value(), ""))
+	}
 	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
 		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
 	}

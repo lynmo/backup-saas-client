@@ -3,6 +3,7 @@ package sample
 import (
 	"context"
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -158,6 +159,15 @@ func TestListClusters(t *testing.T) {
 	listClusters(t, cli)
 }
 
+func TestListStorages(t *testing.T) {
+	cfg := yscli.NewConfiguration()
+	cli := yscli.NewAPIClient(cfg)
+	cli.ChangeBasePath(apiEndpoint)
+
+	listStorages(t, cli)
+	listAllStorages(t, cli)
+}
+
 func listTenants(t *testing.T, cli *yscli.APIClient) {
 	var ye yscli.Error
 
@@ -215,10 +225,13 @@ func listClusters(t *testing.T, cli *yscli.APIClient) {
 		}
 	}
 }
+
 func listStorages(t *testing.T, cli *yscli.APIClient) {
 	var ye yscli.Error
 
-	opts := &yscli.StorageApiListStoragesOpts{}
+	opts := &yscli.StorageApiListStoragesOpts{
+		IncludeSecrets: optional.NewString("true"),
+	}
 	storageList, _, err := cli.StorageApi.ListStorages(context.TODO(), tenantID, opts)
 	if err != nil {
 		t.Log("failed to list storages of tenant ", tenantID, err)
@@ -231,6 +244,31 @@ func listStorages(t *testing.T, cli *yscli.APIClient) {
 	t.Log("list of storages:")
 	for _, i := range storageList.Items {
 		t.Log(i.Metadata.Name)
+		t.Log(fmt.Sprintf("AccessKeyID: %s", i.Spec.S3Config.AccessKeyId))
+		t.Log(fmt.Sprintf("SecretAccessKey: %s", i.Spec.S3Config.SecretAccessKey))
+	}
+}
+
+func listAllStorages(t *testing.T, cli *yscli.APIClient) {
+	var ye yscli.Error
+
+	opts := &yscli.StorageApiListAllStoragesOpts{
+		IncludeSecrets: optional.NewString("true"),
+	}
+	storageList, _, err := cli.StorageApi.ListAllStorages(context.TODO(), opts)
+	if err != nil {
+		t.Log("failed to list all storages", err)
+		if errors.As(err, &ye) {
+			t.Log(ye.Code())
+			t.Log(ye.Message())
+			t.Log(ye.OrigError())
+		}
+	}
+	t.Log("list of all storages:")
+	for _, i := range storageList.Items {
+		t.Log(i.Metadata.Name)
+		t.Log(fmt.Sprintf("AccessKeyID: %s", i.Spec.S3Config.AccessKeyId))
+		t.Log(fmt.Sprintf("SecretAccessKey: %s", i.Spec.S3Config.SecretAccessKey))
 	}
 }
 

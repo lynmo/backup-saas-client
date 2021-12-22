@@ -91,6 +91,9 @@ spec:
                       name:
                         description: Name of the policy
                         type: string
+                      pause:
+                        description: Pause true means scheduled backup is paused
+                        type: boolean
                       repeat:
                         description: Repeat true means scheduled backup, false means on demand backup
                         type: boolean
@@ -351,6 +354,9 @@ spec:
                   name:
                     description: Name of the policy
                     type: string
+                  pause:
+                    description: Pause true means scheduled backup is paused
+                    type: boolean
                   repeat:
                     description: Repeat true means scheduled backup, false means on demand backup
                     type: boolean
@@ -741,6 +747,9 @@ spec:
                           name:
                             description: Name of the policy
                             type: string
+                          pause:
+                            description: Pause true means scheduled backup is paused
+                            type: boolean
                           repeat:
                             description: Repeat true means scheduled backup, false means on demand backup
                             type: boolean
@@ -899,6 +908,9 @@ spec:
                           name:
                             description: Name of the policy
                             type: string
+                          pause:
+                            description: Pause true means scheduled backup is paused
+                            type: boolean
                           repeat:
                             description: Repeat true means scheduled backup, false means on demand backup
                             type: boolean
@@ -1203,6 +1215,9 @@ spec:
                       name:
                         description: Name of the policy
                         type: string
+                      pause:
+                        description: Pause true means scheduled backup is paused
+                        type: boolean
                       repeat:
                         description: Repeat true means scheduled backup, false means on demand backup
                         type: boolean
@@ -2391,7 +2406,7 @@ spec:
       containers:
       - command:
         - /manager
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.44415aa
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.f8891ac
         imagePullPolicy: Always
         name: manager
         resources:

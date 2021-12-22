@@ -163,6 +163,13 @@ paths:
       produces:
       - "application/json"
       parameters:
+      - name: "include_secrets"
+        in: "query"
+        description: "include secrets"
+        required: false
+        type: "string"
+        x-exportParamName: "IncludeSecrets"
+        x-optionalDataType: "String"
       - name: "page"
         in: "query"
         description: "page"
@@ -1244,6 +1251,13 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Tenant"
+      - name: "include_secrets"
+        in: "query"
+        description: "include secrets"
+        required: false
+        type: "string"
+        x-exportParamName: "IncludeSecrets"
+        x-optionalDataType: "String"
       - name: "page"
         in: "query"
         description: "page"
@@ -1326,6 +1340,13 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Storage"
+      - name: "include_secrets"
+        in: "query"
+        description: "include secrets"
+        required: false
+        type: "string"
+        x-exportParamName: "IncludeSecrets"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
