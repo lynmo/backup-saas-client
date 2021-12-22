@@ -1070,6 +1070,9 @@ spec:
               report:
                 description: Report provides a summary status of restore job execution
                 properties:
+                  backedUpItems:
+                    description: Backedup items
+                    type: integer
                   details:
                     additionalProperties:
                       items:
