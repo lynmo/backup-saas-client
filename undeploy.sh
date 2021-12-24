@@ -14,6 +14,19 @@ TENANT_NS_PREFIX=backup-tenant-
 echo "stopping all controllers in host namespace"
 kubectl -n ${HOST_NS} delete --ignore-not-found=true deployment jibu-baas-rest-server
 kubectl -n ${HOST_NS} delete --ignore-not-found=true deployment jibu-tenant-operator
+echo "deleting tenant workers"
+kubectl get tenantworkers.ys.jibudata.com -A -o go-template='{{range $tw := .items}}{{$tw.metadata.name}}{{printf "\n"}}{{end}}' | while read -r tw;do
+    WORKER_NS=${tw}
+    echo "deleting depeloyments in ${WORKER_NS}"
+    kubectl -n ${WORKER_NS} delete --ignore-not-found=true deployment ${tw}
+    kubectl -n ${WORKER_NS} delete --ignore-not-found=true deployment mig-controller-rest
+    kubectl -n ${WORKER_NS} delete --ignore-not-found=true deployment ui-discovery-rest
+    echo "deleting tenant worker CR in ${WORKER_NS}"
+    kubectl -n ${WORKER_NS} patch tenantworkers ${tw} -p '{"metadata":{"finalizers":[]}}' --type=merge
+    kubectl -n ${WORKER_NS} delete --ignore-not-found=true tenantworkers ${tw}
+    echo "deleting tenant worker NS ${WORKER_NS}"
+    kubectl delete --ignore-not-found=true ns ${tw}
+done
 kubectl -n ${HOST_NS} get tenants.ys.jibudata.com -o go-template='{{range $ns := .items}}{{$ns.metadata.name}}{{printf "\n"}}{{end}}' | while read -r tenant;do
     echo "deleting tenant ${tenant}"
     TENANT_NS=${TENANT_NS_PREFIX}${tenant}
@@ -74,6 +87,8 @@ else
     kubectl delete --ignore-not-found=true -f deploy/deployment.yaml
     echo "deleting tenant operator deployment"
     kubectl delete --ignore-not-found=true -f deploy/tenant-operator-deployment.yaml
+    echo "deleting tenant manager crd"
+    kubectl delete --ignore-not-found=true -f deploy/tenant-manager-cr.yaml
 fi
 
 echo "done"
