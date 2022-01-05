@@ -603,7 +603,7 @@ spec:
         - name: QIMING_OPERATOR_VERSION
           value: main.1cf9364
         - name: QIMING_CONTROLLER_VERSION
-          value: kubesphere-cloud-release.4e03a54
+          value: kubesphere-cloud-release.7bda227
         - name: TENANT_PROCESSOR_VERSION
           value: main.d0e31b7
         - name: VELERO_VERSION
