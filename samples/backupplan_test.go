@@ -70,9 +70,9 @@ func TestCreateRepeatBackupplan(t *testing.T) {
 			StorageName: storageName,
 			Namespaces:  []string{backupNamespace},
 			Policy: &yscli.V1alpha1BackupPolicy{
-				Frequency: "0 * * * *",
+				Frequency: "CRON_TZ=Pacific/Honolulu 00 18,21 * * *",
 				Repeat:    true,
-				Retention: 1,
+				Retention: 7,
 			},
 		},
 	}

@@ -2409,7 +2409,7 @@ spec:
       containers:
       - command:
         - /manager
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.4a91c87
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:kubesphere-cloud-release.7ada303
         imagePullPolicy: Always
         name: manager
         resources:
