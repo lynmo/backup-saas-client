@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BackedUpItems** | **int32** |  | [optional] [default to null]
 **Details** | [**map[string][]string**](array.md) |  | [optional] [default to null]
 **EndTime** | **string** |  | [optional] [default to null]
 **RestoredItems** | **int32** |  | [optional] [default to null]

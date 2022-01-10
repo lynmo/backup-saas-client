@@ -14,6 +14,8 @@ type V1alpha1RestorePlanStatus struct {
 	Conditions []V1alpha1Condition `json:"conditions,omitempty"`
 	CurrentJobName string `json:"currentJobName,omitempty"`
 	CurrentJobPhase string `json:"currentJobPhase,omitempty"`
+	// errors
+	Errors []V1alpha1Error `json:"errors,omitempty"`
 	JobDetail map[string]string `json:"jobDetail,omitempty"`
 	Phase string `json:"phase,omitempty"`
 }

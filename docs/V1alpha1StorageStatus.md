@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Conditions** | [**[]V1alpha1Condition**](v1alpha1.Condition.md) |  | [optional] [default to null]
+**Errors** | [**[]V1alpha1Error**](v1alpha1.Error.md) | errors | [optional] [default to null]
 **Phase** | **string** |  | [optional] [default to null]
 **TestResults** | [**map[string]V1alpha1TestResult**](v1alpha1.TestResult.md) |  | [optional] [default to null]
 

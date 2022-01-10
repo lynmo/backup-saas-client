@@ -94,6 +94,7 @@ Class | Method | HTTP request | Description
  - [V1alpha1ClusterSpec](docs/V1alpha1ClusterSpec.md)
  - [V1alpha1ClusterStatus](docs/V1alpha1ClusterStatus.md)
  - [V1alpha1Condition](docs/V1alpha1Condition.md)
+ - [V1alpha1Error](docs/V1alpha1Error.md)
  - [V1alpha1RestoreJob](docs/V1alpha1RestoreJob.md)
  - [V1alpha1RestoreJobList](docs/V1alpha1RestoreJobList.md)
  - [V1alpha1RestoreJobProgress](docs/V1alpha1RestoreJobProgress.md)

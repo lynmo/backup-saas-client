@@ -217,6 +217,21 @@ spec:
                   - type
                   type: object
                 type: array
+              errors:
+                items:
+                  properties:
+                    code:
+                      type: string
+                    message:
+                      type: string
+                    params:
+                      items:
+                        type: string
+                      type: array
+                    severity:
+                      type: string
+                  type: object
+                type: array
               phase:
                 description: Phase describes the overall status of BackupJob
                 type: string
@@ -473,6 +488,21 @@ spec:
               currentJobPhase:
                 description: CurrentJobPhase is the phase of latest backup job
                 type: string
+              errors:
+                items:
+                  properties:
+                    code:
+                      type: string
+                    message:
+                      type: string
+                    params:
+                      items:
+                        type: string
+                      type: array
+                    severity:
+                      type: string
+                  type: object
+                type: array
               jobDetail:
                 additionalProperties:
                   type: string
@@ -631,6 +661,21 @@ spec:
                   required:
                   - status
                   - type
+                  type: object
+                type: array
+              errors:
+                items:
+                  properties:
+                    code:
+                      type: string
+                    message:
+                      type: string
+                    params:
+                      items:
+                        type: string
+                      type: array
+                    severity:
+                      type: string
                   type: object
                 type: array
               phase:
@@ -1056,6 +1101,21 @@ spec:
                   - type
                   type: object
                 type: array
+              errors:
+                items:
+                  properties:
+                    code:
+                      type: string
+                    message:
+                      type: string
+                    params:
+                      items:
+                        type: string
+                      type: array
+                    severity:
+                      type: string
+                  type: object
+                type: array
               phase:
                 description: Phase describes the overall status of RestoreJob
                 type: string
@@ -1364,6 +1424,21 @@ spec:
               currentJobPhase:
                 description: CurrentJobPhase is the phase of latest restore job
                 type: string
+              errors:
+                items:
+                  properties:
+                    code:
+                      type: string
+                    message:
+                      type: string
+                    params:
+                      items:
+                        type: string
+                      type: array
+                    severity:
+                      type: string
+                  type: object
+                type: array
               jobDetail:
                 additionalProperties:
                   type: string
@@ -1504,6 +1579,21 @@ spec:
                   required:
                   - status
                   - type
+                  type: object
+                type: array
+              errors:
+                items:
+                  properties:
+                    code:
+                      type: string
+                    message:
+                      type: string
+                    params:
+                      items:
+                        type: string
+                      type: array
+                    severity:
+                      type: string
                   type: object
                 type: array
               phase:
@@ -1787,6 +1877,21 @@ spec:
                   required:
                   - status
                   - type
+                  type: object
+                type: array
+              errors:
+                items:
+                  properties:
+                    code:
+                      type: string
+                    message:
+                      type: string
+                    params:
+                      items:
+                        type: string
+                      type: array
+                    severity:
+                      type: string
                   type: object
                 type: array
               phase:
@@ -2409,7 +2514,7 @@ spec:
       containers:
       - command:
         - /manager
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:kubesphere-cloud-release.c3fb560
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main-545a350
         imagePullPolicy: Always
         name: manager
         resources:

@@ -2254,6 +2254,19 @@ definitions:
           message: "message"
           type: "type"
           status: "status"
+        errors:
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
   v1alpha1.BackupJobList:
     required:
     - "items"
@@ -2413,6 +2426,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
       - metadata:
           generation: 6
           finalizers:
@@ -2539,6 +2565,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
   v1alpha1.BackupJobProgress:
     properties:
       stepsCompleted:
@@ -2659,6 +2698,11 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/v1alpha1.Condition"
+      errors:
+        type: "array"
+        description: "errors"
+        items:
+          $ref: "#/definitions/v1alpha1.Error"
       phase:
         type: "string"
       progress:
@@ -2695,6 +2739,19 @@ definitions:
         message: "message"
         type: "type"
         status: "status"
+      errors:
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
   v1alpha1.BackupPlan:
     properties:
       apiVersion:
@@ -2823,6 +2880,19 @@ definitions:
           message: "message"
           type: "type"
           status: "status"
+        errors:
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
   v1alpha1.BackupPlanList:
     required:
     - "items"
@@ -2965,6 +3035,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
       - metadata:
           generation: 6
           finalizers:
@@ -3074,6 +3157,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
   v1alpha1.BackupPlanSpec:
     required:
     - "clusterName"
@@ -3163,6 +3259,11 @@ definitions:
         type: "string"
       currentJobPhase:
         type: "string"
+      errors:
+        type: "array"
+        description: "errors"
+        items:
+          $ref: "#/definitions/v1alpha1.Error"
       jobDetail:
         type: "object"
         additionalProperties:
@@ -3188,6 +3289,19 @@ definitions:
         message: "message"
         type: "type"
         status: "status"
+      errors:
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
   v1alpha1.BackupPolicy:
     properties:
       desc:
@@ -3361,6 +3475,19 @@ definitions:
           type: "type"
           status: "status"
         version: "version"
+        errors:
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
   v1alpha1.ClusterList:
     required:
     - "items"
@@ -3494,6 +3621,19 @@ definitions:
             type: "type"
             status: "status"
           version: "version"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
       - metadata:
           generation: 6
           finalizers:
@@ -3594,6 +3734,19 @@ definitions:
             type: "type"
             status: "status"
           version: "version"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
   v1alpha1.ClusterSpec:
     required:
     - "kubeconfig"
@@ -3680,6 +3833,11 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/v1alpha1.Condition"
+      errors:
+        type: "array"
+        description: "errors"
+        items:
+          $ref: "#/definitions/v1alpha1.Error"
       phase:
         type: "string"
       version:
@@ -3700,6 +3858,19 @@ definitions:
         type: "type"
         status: "status"
       version: "version"
+      errors:
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
   v1alpha1.Condition:
     required:
     - "lastHeartbeatTime"
@@ -3732,6 +3903,29 @@ definitions:
       message: "message"
       type: "type"
       status: "status"
+  v1alpha1.Error:
+    properties:
+      code:
+        type: "string"
+        description: "error code"
+      message:
+        type: "string"
+        description: "human readable message of this error"
+      params:
+        type: "array"
+        description: "parameters of this error"
+        items:
+          type: "string"
+      severity:
+        type: "string"
+        description: "severity"
+    example:
+      severity: "severity"
+      code: "code"
+      message: "message"
+      params:
+      - "params"
+      - "params"
   v1alpha1.RestoreJob:
     properties:
       apiVersion:
@@ -3913,7 +4107,8 @@ definitions:
         phase: "phase"
         report:
           totalItems: 5
-          restoredItems: 1
+          backedUpItems: 1
+          restoredItems: 5
           details:
             key:
             - "details"
@@ -3932,7 +4127,7 @@ definitions:
                 key:
                 - "namespaces"
                 - "namespaces"
-          totalPVC: 5
+          totalPVC: 2
         progress:
           stepsCompleted: 0
           totalSteps: 6
@@ -3949,6 +4144,19 @@ definitions:
           message: "message"
           type: "type"
           status: "status"
+        errors:
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
   v1alpha1.RestoreJobList:
     required:
     - "items"
@@ -3980,7 +4188,7 @@ definitions:
         selfLink: "selfLink"
       apiVersion: "apiVersion"
       kind: "kind"
-      totalCount: 2
+      totalCount: 7
       items:
       - metadata:
           generation: 6
@@ -4144,7 +4352,8 @@ definitions:
           phase: "phase"
           report:
             totalItems: 5
-            restoredItems: 1
+            backedUpItems: 1
+            restoredItems: 5
             details:
               key:
               - "details"
@@ -4163,7 +4372,7 @@ definitions:
                   key:
                   - "namespaces"
                   - "namespaces"
-            totalPVC: 5
+            totalPVC: 2
           progress:
             stepsCompleted: 0
             totalSteps: 6
@@ -4180,6 +4389,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
       - metadata:
           generation: 6
           finalizers:
@@ -4342,7 +4564,8 @@ definitions:
           phase: "phase"
           report:
             totalItems: 5
-            restoredItems: 1
+            backedUpItems: 1
+            restoredItems: 5
             details:
               key:
               - "details"
@@ -4361,7 +4584,7 @@ definitions:
                   key:
                   - "namespaces"
                   - "namespaces"
-            totalPVC: 5
+            totalPVC: 2
           progress:
             stepsCompleted: 0
             totalSteps: 6
@@ -4378,6 +4601,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
   v1alpha1.RestoreJobProgress:
     properties:
       stepsCompleted:
@@ -4391,6 +4627,9 @@ definitions:
       totalSteps: 6
   v1alpha1.RestoreJobReport:
     properties:
+      backedUpItems:
+        type: "integer"
+        format: "int32"
       details:
         type: "object"
         additionalProperties:
@@ -4416,7 +4655,8 @@ definitions:
         format: "integer"
     example:
       totalItems: 5
-      restoredItems: 1
+      backedUpItems: 1
+      restoredItems: 5
       details:
         key:
         - "details"
@@ -4435,7 +4675,7 @@ definitions:
             key:
             - "namespaces"
             - "namespaces"
-      totalPVC: 5
+      totalPVC: 2
   v1alpha1.RestoreJobSpec:
     required:
     - "backupJobName"
@@ -4575,6 +4815,11 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/v1alpha1.Condition"
+      errors:
+        type: "array"
+        description: "errors"
+        items:
+          $ref: "#/definitions/v1alpha1.Error"
       phase:
         type: "string"
       progress:
@@ -4585,7 +4830,8 @@ definitions:
       phase: "phase"
       report:
         totalItems: 5
-        restoredItems: 1
+        backedUpItems: 1
+        restoredItems: 5
         details:
           key:
           - "details"
@@ -4604,7 +4850,7 @@ definitions:
               key:
               - "namespaces"
               - "namespaces"
-        totalPVC: 5
+        totalPVC: 2
       progress:
         stepsCompleted: 0
         totalSteps: 6
@@ -4621,6 +4867,19 @@ definitions:
         message: "message"
         type: "type"
         status: "status"
+      errors:
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
   v1alpha1.RestorePlan:
     properties:
       apiVersion:
@@ -4761,6 +5020,19 @@ definitions:
           message: "message"
           type: "type"
           status: "status"
+        errors:
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
   v1alpha1.RestorePlanList:
     required:
     - "items"
@@ -4915,6 +5187,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
       - metadata:
           generation: 6
           finalizers:
@@ -5036,6 +5321,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
   v1alpha1.RestorePlanSpec:
     required:
     - "backupName"
@@ -5127,6 +5425,11 @@ definitions:
         type: "string"
       currentJobPhase:
         type: "string"
+      errors:
+        type: "array"
+        description: "errors"
+        items:
+          $ref: "#/definitions/v1alpha1.Error"
       jobDetail:
         type: "object"
         additionalProperties:
@@ -5152,6 +5455,19 @@ definitions:
         message: "message"
         type: "type"
         status: "status"
+      errors:
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
   v1alpha1.Result:
     properties:
       cluster:
@@ -5282,6 +5598,19 @@ definitions:
           message: "message"
           type: "type"
           status: "status"
+        errors:
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
   v1alpha1.StorageClass:
     properties:
       accessModes:
@@ -5418,6 +5747,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
       - metadata:
           generation: 6
           finalizers:
@@ -5502,6 +5844,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
   v1alpha1.StorageSpec:
     required:
     - "tenant"
@@ -5546,6 +5901,11 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/v1alpha1.Condition"
+      errors:
+        type: "array"
+        description: "errors"
+        items:
+          $ref: "#/definitions/v1alpha1.Error"
       phase:
         type: "string"
       testResults:
@@ -5571,6 +5931,19 @@ definitions:
         message: "message"
         type: "type"
         status: "status"
+      errors:
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
   v1alpha1.Tenant:
     properties:
       apiVersion:
@@ -5659,6 +6032,19 @@ definitions:
           message: "message"
           type: "type"
           status: "status"
+        errors:
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
   v1alpha1.TenantList:
     required:
     - "items"
@@ -5761,6 +6147,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
       - metadata:
           generation: 6
           finalizers:
@@ -5830,6 +6229,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
   v1alpha1.TenantSpec:
     properties:
       contact:
@@ -5857,6 +6269,11 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/v1alpha1.Condition"
+      errors:
+        type: "array"
+        description: "errors"
+        items:
+          $ref: "#/definitions/v1alpha1.Error"
       phase:
         type: "string"
     example:
@@ -5874,6 +6291,19 @@ definitions:
         message: "message"
         type: "type"
         status: "status"
+      errors:
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
   v1alpha1.TestResult:
     properties:
       reason:

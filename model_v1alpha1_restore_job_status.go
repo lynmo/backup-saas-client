@@ -12,6 +12,8 @@ package swagger
 
 type V1alpha1RestoreJobStatus struct {
 	Conditions []V1alpha1Condition `json:"conditions,omitempty"`
+	// errors
+	Errors []V1alpha1Error `json:"errors,omitempty"`
 	Phase string `json:"phase,omitempty"`
 	Progress *V1alpha1RestoreJobProgress `json:"progress,omitempty"`
 	Report *V1alpha1RestoreJobReport `json:"report,omitempty"`
