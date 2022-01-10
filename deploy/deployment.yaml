@@ -2514,7 +2514,7 @@ spec:
       containers:
       - command:
         - /manager
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main-545a350
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.545a350
         imagePullPolicy: Always
         name: manager
         resources:
