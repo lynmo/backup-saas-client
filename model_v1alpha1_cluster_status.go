@@ -12,6 +12,8 @@ package swagger
 
 type V1alpha1ClusterStatus struct {
 	Conditions []V1alpha1Condition `json:"conditions,omitempty"`
+	// errors
+	Errors []V1alpha1Error `json:"errors,omitempty"`
 	Phase string `json:"phase,omitempty"`
 	Version string `json:"version,omitempty"`
 }

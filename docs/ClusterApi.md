@@ -68,7 +68,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetCluster**
-> V1alpha1Cluster GetCluster(ctx, tenant, cluster)
+> V1alpha1Cluster GetCluster(ctx, tenant, cluster, optional)
 Retrieve storage details.
 
 ### Required Parameters
@@ -78,6 +78,16 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **tenant** | **string**| tenant id | 
   **cluster** | **string**| cluster name | 
+ **optional** | ***ClusterApiGetClusterOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a ClusterApiGetClusterOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **includeKubeconfig** | **optional.String**| include kubeconfig | 
 
 ### Return type
 
@@ -122,11 +132,26 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ListAllClusters**
-> V1alpha1ClusterList ListAllClusters(ctx, )
+> V1alpha1ClusterList ListAllClusters(ctx, optional)
 List all clusters.
 
 ### Required Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***ClusterApiListAllClustersOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a ClusterApiListAllClustersOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **includeKubeconfig** | **optional.String**| include kubeconfig | 
+ **page** | **optional.String**| page | [default to page&#x3D;1]
+ **limit** | **optional.String**| limit | 
+ **ascending** | **optional.String**| sort parameters, e.g. reverse&#x3D;true | [default to ascending&#x3D;false]
+ **sortBy** | **optional.String**| sort parameters, e.g. orderBy&#x3D;createTime | 
 
 ### Return type
 
@@ -144,7 +169,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ListClusters**
-> V1alpha1ClusterList ListClusters(ctx, tenant)
+> V1alpha1ClusterList ListClusters(ctx, tenant, optional)
 List all clusters of a tenant.
 
 ### Required Parameters
@@ -153,6 +178,19 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **tenant** | **string**| tenant id | 
+ **optional** | ***ClusterApiListClustersOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a ClusterApiListClustersOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **includeKubeconfig** | **optional.String**| include kubeconfig | 
+ **page** | **optional.String**| page | [default to page&#x3D;1]
+ **limit** | **optional.String**| limit | 
+ **ascending** | **optional.String**| sort parameters, e.g. reverse&#x3D;true | [default to ascending&#x3D;false]
+ **sortBy** | **optional.String**| sort parameters, e.g. orderBy&#x3D;createTime | 
 
 ### Return type
 

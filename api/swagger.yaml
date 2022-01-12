@@ -20,7 +20,38 @@ paths:
       operationId: "ListAllBackupPlans"
       produces:
       - "application/json"
-      parameters: []
+      parameters:
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -34,7 +65,45 @@ paths:
       operationId: "ListAllClusters"
       produces:
       - "application/json"
-      parameters: []
+      parameters:
+      - name: "include_kubeconfig"
+        in: "query"
+        description: "include kubeconfig"
+        required: false
+        type: "string"
+        x-exportParamName: "IncludeKubeconfig"
+        x-optionalDataType: "String"
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -48,7 +117,38 @@ paths:
       operationId: "ListAllRestorePlans"
       produces:
       - "application/json"
-      parameters: []
+      parameters:
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -62,7 +162,45 @@ paths:
       operationId: "ListAllStorages"
       produces:
       - "application/json"
-      parameters: []
+      parameters:
+      - name: "include_secrets"
+        in: "query"
+        description: "include secrets"
+        required: false
+        type: "string"
+        x-exportParamName: "IncludeSecrets"
+        x-optionalDataType: "String"
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -76,7 +214,38 @@ paths:
       operationId: "ListTenants"
       produces:
       - "application/json"
-      parameters: []
+      parameters:
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -186,6 +355,58 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "PlanName"
+        x-optionalDataType: "String"
+      - name: "spec.backupName"
+        in: "query"
+        description: "backup plan name"
+        required: false
+        type: "string"
+        x-exportParamName: "SpecBackupName"
+        x-optionalDataType: "String"
+      - name: "name"
+        in: "query"
+        description: "backup job name"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "watch"
+        in: "query"
+        description: "watch"
+        required: false
+        type: "string"
+        x-exportParamName: "Watch"
+        x-optionalDataType: "String"
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
         x-optionalDataType: "String"
       responses:
         "200":
@@ -314,6 +535,51 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Tenant"
+      - name: "name"
+        in: "query"
+        description: "backup plan name"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "watch"
+        in: "query"
+        description: "watch"
+        required: false
+        type: "string"
+        x-exportParamName: "Watch"
+        x-optionalDataType: "String"
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -435,6 +701,44 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Tenant"
+      - name: "include_kubeconfig"
+        in: "query"
+        description: "include kubeconfig"
+        required: false
+        type: "string"
+        x-exportParamName: "IncludeKubeconfig"
+        x-optionalDataType: "String"
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -486,6 +790,13 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Cluster"
+      - name: "include_kubeconfig"
+        in: "query"
+        description: "include kubeconfig"
+        required: false
+        type: "string"
+        x-exportParamName: "IncludeKubeconfig"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -594,6 +905,58 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "PlanName"
+        x-optionalDataType: "String"
+      - name: "spec.restoreName"
+        in: "query"
+        description: "restore plan name"
+        required: false
+        type: "string"
+        x-exportParamName: "SpecRestoreName"
+        x-optionalDataType: "String"
+      - name: "name"
+        in: "query"
+        description: "restore job name"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "watch"
+        in: "query"
+        description: "watch"
+        required: false
+        type: "string"
+        x-exportParamName: "Watch"
+        x-optionalDataType: "String"
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
         x-optionalDataType: "String"
       responses:
         "200":
@@ -722,6 +1085,51 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Tenant"
+      - name: "name"
+        in: "query"
+        description: "restore plan name"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "watch"
+        in: "query"
+        description: "watch"
+        required: false
+        type: "string"
+        x-exportParamName: "Watch"
+        x-optionalDataType: "String"
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -843,6 +1251,44 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Tenant"
+      - name: "include_secrets"
+        in: "query"
+        description: "include secrets"
+        required: false
+        type: "string"
+        x-exportParamName: "IncludeSecrets"
+        x-optionalDataType: "String"
+      - name: "page"
+        in: "query"
+        description: "page"
+        required: false
+        type: "string"
+        default: "page=1"
+        format: "page=%d"
+        x-exportParamName: "Page"
+        x-optionalDataType: "String"
+      - name: "limit"
+        in: "query"
+        description: "limit"
+        required: false
+        type: "string"
+        x-exportParamName: "Limit"
+        x-optionalDataType: "String"
+      - name: "ascending"
+        in: "query"
+        description: "sort parameters, e.g. reverse=true"
+        required: false
+        type: "string"
+        default: "ascending=false"
+        x-exportParamName: "Ascending"
+        x-optionalDataType: "String"
+      - name: "sortBy"
+        in: "query"
+        description: "sort parameters, e.g. orderBy=createTime"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -894,6 +1340,13 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "Storage"
+      - name: "include_secrets"
+        in: "query"
+        description: "include secrets"
+        required: false
+        type: "string"
+        x-exportParamName: "IncludeSecrets"
+        x-optionalDataType: "String"
       responses:
         "200":
           description: "ok"
@@ -1761,9 +2214,10 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
-            retention: 5
+            pause: true
+            retention: 1
             desc: "desc"
-            frequency: 1
+            frequency: "frequency"
           storageName: "storageName"
         displayName: "displayName"
         action: "action"
@@ -1773,11 +2227,20 @@ definitions:
       status:
         phase: "phase"
         report:
+          totalItems: 5
+          backedUpItems: 1
           submitTime: "submitTime"
+          details:
+            key:
+            - "details"
+            - "details"
           startTime: "startTime"
           endTime: "endTime"
           expiredTime: "expiredTime"
-          totalPVC: 0
+          totalPVC: 5
+        progress:
+          stepsCompleted: 0
+          totalSteps: 6
         conditions:
         - reason: "reason"
           lastHeartbeatTime: "lastHeartbeatTime"
@@ -1791,6 +2254,19 @@ definitions:
           message: "message"
           type: "type"
           status: "status"
+        errors:
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
   v1alpha1.BackupJobList:
     required:
     - "items"
@@ -1811,6 +2287,9 @@ definitions:
           \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
       metadata:
         $ref: "#/definitions/v1.ListMeta"
+      totalCount:
+        type: "integer"
+        format: "int32"
     example:
       metadata:
         remainingItemCount: 5
@@ -1819,6 +2298,7 @@ definitions:
         selfLink: "selfLink"
       apiVersion: "apiVersion"
       kind: "kind"
+      totalCount: 2
       items:
       - metadata:
           generation: 6
@@ -1906,9 +2386,10 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
-              retention: 5
+              pause: true
+              retention: 1
               desc: "desc"
-              frequency: 1
+              frequency: "frequency"
             storageName: "storageName"
           displayName: "displayName"
           action: "action"
@@ -1918,11 +2399,20 @@ definitions:
         status:
           phase: "phase"
           report:
+            totalItems: 5
+            backedUpItems: 1
             submitTime: "submitTime"
+            details:
+              key:
+              - "details"
+              - "details"
             startTime: "startTime"
             endTime: "endTime"
             expiredTime: "expiredTime"
-            totalPVC: 0
+            totalPVC: 5
+          progress:
+            stepsCompleted: 0
+            totalSteps: 6
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -1936,6 +2426,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
       - metadata:
           generation: 6
           finalizers:
@@ -2022,9 +2525,10 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
-              retention: 5
+              pause: true
+              retention: 1
               desc: "desc"
-              frequency: 1
+              frequency: "frequency"
             storageName: "storageName"
           displayName: "displayName"
           action: "action"
@@ -2034,11 +2538,20 @@ definitions:
         status:
           phase: "phase"
           report:
+            totalItems: 5
+            backedUpItems: 1
             submitTime: "submitTime"
+            details:
+              key:
+              - "details"
+              - "details"
             startTime: "startTime"
             endTime: "endTime"
             expiredTime: "expiredTime"
-            totalPVC: 0
+            totalPVC: 5
+          progress:
+            stepsCompleted: 0
+            totalSteps: 6
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -2052,8 +2565,41 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+  v1alpha1.BackupJobProgress:
+    properties:
+      stepsCompleted:
+        type: "integer"
+        format: "integer"
+      totalSteps:
+        type: "integer"
+        format: "integer"
+    example:
+      stepsCompleted: 0
+      totalSteps: 6
   v1alpha1.BackupJobReport:
     properties:
+      backedUpItems:
+        type: "integer"
+        format: "int32"
+      details:
+        type: "object"
+        additionalProperties:
+          type: "array"
+          items:
+            type: "string"
       endTime:
         type: "string"
       expiredTime:
@@ -2062,15 +2608,24 @@ definitions:
         type: "string"
       submitTime:
         type: "string"
+      totalItems:
+        type: "integer"
+        format: "int32"
       totalPVC:
         type: "integer"
         format: "integer"
     example:
+      totalItems: 5
+      backedUpItems: 1
       submitTime: "submitTime"
+      details:
+        key:
+        - "details"
+        - "details"
       startTime: "startTime"
       endTime: "endTime"
       expiredTime: "expiredTime"
-      totalPVC: 0
+      totalPVC: 5
   v1alpha1.BackupJobSpec:
     required:
     - "backupName"
@@ -2127,9 +2682,10 @@ definitions:
           displayName: "displayName"
           repeat: true
           name: "name"
-          retention: 5
+          pause: true
+          retention: 1
           desc: "desc"
-          frequency: 1
+          frequency: "frequency"
         storageName: "storageName"
       displayName: "displayName"
       action: "action"
@@ -2142,18 +2698,34 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/v1alpha1.Condition"
+      errors:
+        type: "array"
+        description: "errors"
+        items:
+          $ref: "#/definitions/v1alpha1.Error"
       phase:
         type: "string"
+      progress:
+        $ref: "#/definitions/v1alpha1.BackupJobProgress"
       report:
         $ref: "#/definitions/v1alpha1.BackupJobReport"
     example:
       phase: "phase"
       report:
+        totalItems: 5
+        backedUpItems: 1
         submitTime: "submitTime"
+        details:
+          key:
+          - "details"
+          - "details"
         startTime: "startTime"
         endTime: "endTime"
         expiredTime: "expiredTime"
-        totalPVC: 0
+        totalPVC: 5
+      progress:
+        stepsCompleted: 0
+        totalSteps: 6
       conditions:
       - reason: "reason"
         lastHeartbeatTime: "lastHeartbeatTime"
@@ -2167,6 +2739,19 @@ definitions:
         message: "message"
         type: "type"
         status: "status"
+      errors:
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
   v1alpha1.BackupPlan:
     properties:
       apiVersion:
@@ -2271,9 +2856,10 @@ definitions:
           displayName: "displayName"
           repeat: true
           name: "name"
-          retention: 5
+          pause: true
+          retention: 1
           desc: "desc"
-          frequency: 1
+          frequency: "frequency"
         storageName: "storageName"
       status:
         phase: "phase"
@@ -2294,6 +2880,19 @@ definitions:
           message: "message"
           type: "type"
           status: "status"
+        errors:
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
   v1alpha1.BackupPlanList:
     required:
     - "items"
@@ -2314,6 +2913,9 @@ definitions:
           \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
       metadata:
         $ref: "#/definitions/v1.ListMeta"
+      totalCount:
+        type: "integer"
+        format: "int32"
     example:
       metadata:
         remainingItemCount: 5
@@ -2322,6 +2924,7 @@ definitions:
         selfLink: "selfLink"
       apiVersion: "apiVersion"
       kind: "kind"
+      totalCount: 5
       items:
       - metadata:
           generation: 6
@@ -2408,9 +3011,10 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
-            retention: 5
+            pause: true
+            retention: 1
             desc: "desc"
-            frequency: 1
+            frequency: "frequency"
           storageName: "storageName"
         status:
           phase: "phase"
@@ -2431,6 +3035,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
       - metadata:
           generation: 6
           finalizers:
@@ -2516,9 +3133,10 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
-            retention: 5
+            pause: true
+            retention: 1
             desc: "desc"
-            frequency: 1
+            frequency: "frequency"
           storageName: "storageName"
         status:
           phase: "phase"
@@ -2539,6 +3157,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
   v1alpha1.BackupPlanSpec:
     required:
     - "clusterName"
@@ -2613,9 +3244,10 @@ definitions:
         displayName: "displayName"
         repeat: true
         name: "name"
-        retention: 5
+        pause: true
+        retention: 1
         desc: "desc"
-        frequency: 1
+        frequency: "frequency"
       storageName: "storageName"
   v1alpha1.BackupPlanStatus:
     properties:
@@ -2627,6 +3259,11 @@ definitions:
         type: "string"
       currentJobPhase:
         type: "string"
+      errors:
+        type: "array"
+        description: "errors"
+        items:
+          $ref: "#/definitions/v1alpha1.Error"
       jobDetail:
         type: "object"
         additionalProperties:
@@ -2652,6 +3289,19 @@ definitions:
         message: "message"
         type: "type"
         status: "status"
+      errors:
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
   v1alpha1.BackupPolicy:
     properties:
       desc:
@@ -2659,10 +3309,11 @@ definitions:
       displayName:
         type: "string"
       frequency:
-        type: "integer"
-        format: "int32"
+        type: "string"
       name:
         type: "string"
+      pause:
+        type: "boolean"
       repeat:
         type: "boolean"
       retention:
@@ -2672,9 +3323,10 @@ definitions:
       displayName: "displayName"
       repeat: true
       name: "name"
-      retention: 5
+      pause: true
+      retention: 1
       desc: "desc"
-      frequency: 1
+      frequency: "frequency"
   v1alpha1.BackupS3Config:
     required:
     - "accessKeyId"
@@ -2823,6 +3475,19 @@ definitions:
           type: "type"
           status: "status"
         version: "version"
+        errors:
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
   v1alpha1.ClusterList:
     required:
     - "items"
@@ -2843,6 +3508,9 @@ definitions:
           \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
       metadata:
         $ref: "#/definitions/v1.ListMeta"
+      totalCount:
+        type: "integer"
+        format: "int32"
     example:
       metadata:
         remainingItemCount: 5
@@ -2851,6 +3519,7 @@ definitions:
         selfLink: "selfLink"
       apiVersion: "apiVersion"
       kind: "kind"
+      totalCount: 0
       items:
       - metadata:
           generation: 6
@@ -2952,6 +3621,19 @@ definitions:
             type: "type"
             status: "status"
           version: "version"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
       - metadata:
           generation: 6
           finalizers:
@@ -3052,6 +3734,19 @@ definitions:
             type: "type"
             status: "status"
           version: "version"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
   v1alpha1.ClusterSpec:
     required:
     - "kubeconfig"
@@ -3138,6 +3833,11 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/v1alpha1.Condition"
+      errors:
+        type: "array"
+        description: "errors"
+        items:
+          $ref: "#/definitions/v1alpha1.Error"
       phase:
         type: "string"
       version:
@@ -3158,6 +3858,19 @@ definitions:
         type: "type"
         status: "status"
       version: "version"
+      errors:
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
   v1alpha1.Condition:
     required:
     - "lastHeartbeatTime"
@@ -3190,6 +3903,29 @@ definitions:
       message: "message"
       type: "type"
       status: "status"
+  v1alpha1.Error:
+    properties:
+      code:
+        type: "string"
+        description: "error code"
+      message:
+        type: "string"
+        description: "human readable message of this error"
+      params:
+        type: "array"
+        description: "parameters of this error"
+        items:
+          type: "string"
+      severity:
+        type: "string"
+        description: "severity"
+    example:
+      severity: "severity"
+      code: "code"
+      message: "message"
+      params:
+      - "params"
+      - "params"
   v1alpha1.RestoreJob:
     properties:
       apiVersion:
@@ -3297,9 +4033,10 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
-              retention: 5
+              pause: true
+              retention: 1
               desc: "desc"
-              frequency: 1
+              frequency: "frequency"
             storageName: "storageName"
           displayName: "displayName"
           action: "action"
@@ -3356,9 +4093,10 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
-              retention: 5
+              pause: true
+              retention: 1
               desc: "desc"
-              frequency: 1
+              frequency: "frequency"
             storageName: "storageName"
           displayName: "displayName"
           backupName: "backupName"
@@ -3368,9 +4106,31 @@ definitions:
       status:
         phase: "phase"
         report:
+          totalItems: 5
+          backedUpItems: 1
+          restoredItems: 5
+          details:
+            key:
+            - "details"
+            - "details"
           startTime: "startTime"
           endTime: "endTime"
-          totalPVC: 0
+          results:
+            key:
+              cluster:
+              - "cluster"
+              - "cluster"
+              velero:
+              - "velero"
+              - "velero"
+              namespaces:
+                key:
+                - "namespaces"
+                - "namespaces"
+          totalPVC: 2
+        progress:
+          stepsCompleted: 0
+          totalSteps: 6
         conditions:
         - reason: "reason"
           lastHeartbeatTime: "lastHeartbeatTime"
@@ -3384,6 +4144,19 @@ definitions:
           message: "message"
           type: "type"
           status: "status"
+        errors:
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
   v1alpha1.RestoreJobList:
     required:
     - "items"
@@ -3404,6 +4177,9 @@ definitions:
           \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
       metadata:
         $ref: "#/definitions/v1.ListMeta"
+      totalCount:
+        type: "integer"
+        format: "int32"
     example:
       metadata:
         remainingItemCount: 5
@@ -3412,6 +4188,7 @@ definitions:
         selfLink: "selfLink"
       apiVersion: "apiVersion"
       kind: "kind"
+      totalCount: 7
       items:
       - metadata:
           generation: 6
@@ -3501,9 +4278,10 @@ definitions:
                 displayName: "displayName"
                 repeat: true
                 name: "name"
-                retention: 5
+                pause: true
+                retention: 1
                 desc: "desc"
-                frequency: 1
+                frequency: "frequency"
               storageName: "storageName"
             displayName: "displayName"
             action: "action"
@@ -3560,9 +4338,10 @@ definitions:
                 displayName: "displayName"
                 repeat: true
                 name: "name"
-                retention: 5
+                pause: true
+                retention: 1
                 desc: "desc"
-                frequency: 1
+                frequency: "frequency"
               storageName: "storageName"
             displayName: "displayName"
             backupName: "backupName"
@@ -3572,9 +4351,31 @@ definitions:
         status:
           phase: "phase"
           report:
+            totalItems: 5
+            backedUpItems: 1
+            restoredItems: 5
+            details:
+              key:
+              - "details"
+              - "details"
             startTime: "startTime"
             endTime: "endTime"
-            totalPVC: 0
+            results:
+              key:
+                cluster:
+                - "cluster"
+                - "cluster"
+                velero:
+                - "velero"
+                - "velero"
+                namespaces:
+                  key:
+                  - "namespaces"
+                  - "namespaces"
+            totalPVC: 2
+          progress:
+            stepsCompleted: 0
+            totalSteps: 6
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -3588,6 +4389,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
       - metadata:
           generation: 6
           finalizers:
@@ -3676,9 +4490,10 @@ definitions:
                 displayName: "displayName"
                 repeat: true
                 name: "name"
-                retention: 5
+                pause: true
+                retention: 1
                 desc: "desc"
-                frequency: 1
+                frequency: "frequency"
               storageName: "storageName"
             displayName: "displayName"
             action: "action"
@@ -3735,9 +4550,10 @@ definitions:
                 displayName: "displayName"
                 repeat: true
                 name: "name"
-                retention: 5
+                pause: true
+                retention: 1
                 desc: "desc"
-                frequency: 1
+                frequency: "frequency"
               storageName: "storageName"
             displayName: "displayName"
             backupName: "backupName"
@@ -3747,9 +4563,31 @@ definitions:
         status:
           phase: "phase"
           report:
+            totalItems: 5
+            backedUpItems: 1
+            restoredItems: 5
+            details:
+              key:
+              - "details"
+              - "details"
             startTime: "startTime"
             endTime: "endTime"
-            totalPVC: 0
+            results:
+              key:
+                cluster:
+                - "cluster"
+                - "cluster"
+                velero:
+                - "velero"
+                - "velero"
+                namespaces:
+                  key:
+                  - "namespaces"
+                  - "namespaces"
+            totalPVC: 2
+          progress:
+            stepsCompleted: 0
+            totalSteps: 6
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -3763,19 +4601,81 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+  v1alpha1.RestoreJobProgress:
+    properties:
+      stepsCompleted:
+        type: "integer"
+        format: "integer"
+      totalSteps:
+        type: "integer"
+        format: "integer"
+    example:
+      stepsCompleted: 0
+      totalSteps: 6
   v1alpha1.RestoreJobReport:
     properties:
+      backedUpItems:
+        type: "integer"
+        format: "int32"
+      details:
+        type: "object"
+        additionalProperties:
+          type: "array"
+          items:
+            type: "string"
       endTime:
         type: "string"
+      restoredItems:
+        type: "integer"
+        format: "int32"
+      results:
+        type: "object"
+        additionalProperties:
+          $ref: "#/definitions/v1alpha1.Result"
       startTime:
         type: "string"
+      totalItems:
+        type: "integer"
+        format: "int32"
       totalPVC:
         type: "integer"
         format: "integer"
     example:
+      totalItems: 5
+      backedUpItems: 1
+      restoredItems: 5
+      details:
+        key:
+        - "details"
+        - "details"
       startTime: "startTime"
       endTime: "endTime"
-      totalPVC: 0
+      results:
+        key:
+          cluster:
+          - "cluster"
+          - "cluster"
+          velero:
+          - "velero"
+          - "velero"
+          namespaces:
+            key:
+            - "namespaces"
+            - "namespaces"
+      totalPVC: 2
   v1alpha1.RestoreJobSpec:
     required:
     - "backupJobName"
@@ -3839,9 +4739,10 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
-            retention: 5
+            pause: true
+            retention: 1
             desc: "desc"
-            frequency: 1
+            frequency: "frequency"
           storageName: "storageName"
         displayName: "displayName"
         action: "action"
@@ -3898,9 +4799,10 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
-            retention: 5
+            pause: true
+            retention: 1
             desc: "desc"
-            frequency: 1
+            frequency: "frequency"
           storageName: "storageName"
         displayName: "displayName"
         backupName: "backupName"
@@ -3913,16 +4815,45 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/v1alpha1.Condition"
+      errors:
+        type: "array"
+        description: "errors"
+        items:
+          $ref: "#/definitions/v1alpha1.Error"
       phase:
         type: "string"
+      progress:
+        $ref: "#/definitions/v1alpha1.RestoreJobProgress"
       report:
         $ref: "#/definitions/v1alpha1.RestoreJobReport"
     example:
       phase: "phase"
       report:
+        totalItems: 5
+        backedUpItems: 1
+        restoredItems: 5
+        details:
+          key:
+          - "details"
+          - "details"
         startTime: "startTime"
         endTime: "endTime"
-        totalPVC: 0
+        results:
+          key:
+            cluster:
+            - "cluster"
+            - "cluster"
+            velero:
+            - "velero"
+            - "velero"
+            namespaces:
+              key:
+              - "namespaces"
+              - "namespaces"
+        totalPVC: 2
+      progress:
+        stepsCompleted: 0
+        totalSteps: 6
       conditions:
       - reason: "reason"
         lastHeartbeatTime: "lastHeartbeatTime"
@@ -3936,6 +4867,19 @@ definitions:
         message: "message"
         type: "type"
         status: "status"
+      errors:
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
   v1alpha1.RestorePlan:
     properties:
       apiVersion:
@@ -4047,9 +4991,10 @@ definitions:
             displayName: "displayName"
             repeat: true
             name: "name"
-            retention: 5
+            pause: true
+            retention: 1
             desc: "desc"
-            frequency: 1
+            frequency: "frequency"
           storageName: "storageName"
         displayName: "displayName"
         backupName: "backupName"
@@ -4075,6 +5020,19 @@ definitions:
           message: "message"
           type: "type"
           status: "status"
+        errors:
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
   v1alpha1.RestorePlanList:
     required:
     - "items"
@@ -4095,6 +5053,9 @@ definitions:
           \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
       metadata:
         $ref: "#/definitions/v1.ListMeta"
+      totalCount:
+        type: "integer"
+        format: "int32"
     example:
       metadata:
         remainingItemCount: 5
@@ -4103,6 +5064,7 @@ definitions:
         selfLink: "selfLink"
       apiVersion: "apiVersion"
       kind: "kind"
+      totalCount: 0
       items:
       - metadata:
           generation: 6
@@ -4196,9 +5158,10 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
-              retention: 5
+              pause: true
+              retention: 1
               desc: "desc"
-              frequency: 1
+              frequency: "frequency"
             storageName: "storageName"
           displayName: "displayName"
           backupName: "backupName"
@@ -4224,6 +5187,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
       - metadata:
           generation: 6
           finalizers:
@@ -4316,9 +5292,10 @@ definitions:
               displayName: "displayName"
               repeat: true
               name: "name"
-              retention: 5
+              pause: true
+              retention: 1
               desc: "desc"
-              frequency: 1
+              frequency: "frequency"
             storageName: "storageName"
           displayName: "displayName"
           backupName: "backupName"
@@ -4344,6 +5321,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
   v1alpha1.RestorePlanSpec:
     required:
     - "backupName"
@@ -4415,9 +5405,10 @@ definitions:
           displayName: "displayName"
           repeat: true
           name: "name"
-          retention: 5
+          pause: true
+          retention: 1
           desc: "desc"
-          frequency: 1
+          frequency: "frequency"
         storageName: "storageName"
       displayName: "displayName"
       backupName: "backupName"
@@ -4434,6 +5425,11 @@ definitions:
         type: "string"
       currentJobPhase:
         type: "string"
+      errors:
+        type: "array"
+        description: "errors"
+        items:
+          $ref: "#/definitions/v1alpha1.Error"
       jobDetail:
         type: "object"
         additionalProperties:
@@ -4459,6 +5455,46 @@ definitions:
         message: "message"
         type: "type"
         status: "status"
+      errors:
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
+  v1alpha1.Result:
+    properties:
+      cluster:
+        type: "array"
+        items:
+          type: "string"
+      namespaces:
+        type: "object"
+        additionalProperties:
+          type: "array"
+          items:
+            type: "string"
+      velero:
+        type: "array"
+        items:
+          type: "string"
+    example:
+      cluster:
+      - "cluster"
+      - "cluster"
+      velero:
+      - "velero"
+      - "velero"
+      namespaces:
+        key:
+        - "namespaces"
+        - "namespaces"
   v1alpha1.Storage:
     properties:
       apiVersion:
@@ -4545,6 +5581,10 @@ definitions:
         s3Provider: "s3Provider"
       status:
         phase: "phase"
+        testResults:
+          key:
+            result: "result"
+            reason: "reason"
         conditions:
         - reason: "reason"
           lastHeartbeatTime: "lastHeartbeatTime"
@@ -4558,6 +5598,19 @@ definitions:
           message: "message"
           type: "type"
           status: "status"
+        errors:
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
   v1alpha1.StorageClass:
     properties:
       accessModes:
@@ -4597,6 +5650,9 @@ definitions:
           \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
       metadata:
         $ref: "#/definitions/v1.ListMeta"
+      totalCount:
+        type: "integer"
+        format: "int32"
     example:
       metadata:
         remainingItemCount: 5
@@ -4605,6 +5661,7 @@ definitions:
         selfLink: "selfLink"
       apiVersion: "apiVersion"
       kind: "kind"
+      totalCount: 0
       items:
       - metadata:
           generation: 6
@@ -4673,6 +5730,10 @@ definitions:
           s3Provider: "s3Provider"
         status:
           phase: "phase"
+          testResults:
+            key:
+              result: "result"
+              reason: "reason"
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -4686,6 +5747,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
       - metadata:
           generation: 6
           finalizers:
@@ -4753,6 +5827,10 @@ definitions:
           s3Provider: "s3Provider"
         status:
           phase: "phase"
+          testResults:
+            key:
+              result: "result"
+              reason: "reason"
           conditions:
           - reason: "reason"
             lastHeartbeatTime: "lastHeartbeatTime"
@@ -4766,6 +5844,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
   v1alpha1.StorageSpec:
     required:
     - "tenant"
@@ -4810,10 +5901,23 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/v1alpha1.Condition"
+      errors:
+        type: "array"
+        description: "errors"
+        items:
+          $ref: "#/definitions/v1alpha1.Error"
       phase:
         type: "string"
+      testResults:
+        type: "object"
+        additionalProperties:
+          $ref: "#/definitions/v1alpha1.TestResult"
     example:
       phase: "phase"
+      testResults:
+        key:
+          result: "result"
+          reason: "reason"
       conditions:
       - reason: "reason"
         lastHeartbeatTime: "lastHeartbeatTime"
@@ -4827,6 +5931,19 @@ definitions:
         message: "message"
         type: "type"
         status: "status"
+      errors:
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
   v1alpha1.Tenant:
     properties:
       apiVersion:
@@ -4897,6 +6014,7 @@ definitions:
         orgName: "orgName"
         displayName: "displayName"
         contact: "contact"
+        isExpired: true
         defaultBackupStorage: "defaultBackupStorage"
         desc: "desc"
       status:
@@ -4914,6 +6032,19 @@ definitions:
           message: "message"
           type: "type"
           status: "status"
+        errors:
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
+        - severity: "severity"
+          code: "code"
+          message: "message"
+          params:
+          - "params"
+          - "params"
   v1alpha1.TenantList:
     required:
     - "items"
@@ -4934,6 +6065,9 @@ definitions:
           \ requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds"
       metadata:
         $ref: "#/definitions/v1.ListMeta"
+      totalCount:
+        type: "integer"
+        format: "int32"
     example:
       metadata:
         remainingItemCount: 5
@@ -4942,6 +6076,7 @@ definitions:
         selfLink: "selfLink"
       apiVersion: "apiVersion"
       kind: "kind"
+      totalCount: 0
       items:
       - metadata:
           generation: 6
@@ -4994,6 +6129,7 @@ definitions:
           orgName: "orgName"
           displayName: "displayName"
           contact: "contact"
+          isExpired: true
           defaultBackupStorage: "defaultBackupStorage"
           desc: "desc"
         status:
@@ -5011,6 +6147,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
       - metadata:
           generation: 6
           finalizers:
@@ -5062,6 +6211,7 @@ definitions:
           orgName: "orgName"
           displayName: "displayName"
           contact: "contact"
+          isExpired: true
           defaultBackupStorage: "defaultBackupStorage"
           desc: "desc"
         status:
@@ -5079,6 +6229,19 @@ definitions:
             message: "message"
             type: "type"
             status: "status"
+          errors:
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
+          - severity: "severity"
+            code: "code"
+            message: "message"
+            params:
+            - "params"
+            - "params"
   v1alpha1.TenantSpec:
     properties:
       contact:
@@ -5089,12 +6252,15 @@ definitions:
         type: "string"
       displayName:
         type: "string"
+      isExpired:
+        type: "boolean"
       orgName:
         type: "string"
     example:
       orgName: "orgName"
       displayName: "displayName"
       contact: "contact"
+      isExpired: true
       defaultBackupStorage: "defaultBackupStorage"
       desc: "desc"
   v1alpha1.TenantStatus:
@@ -5103,6 +6269,11 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/v1alpha1.Condition"
+      errors:
+        type: "array"
+        description: "errors"
+        items:
+          $ref: "#/definitions/v1alpha1.Error"
       phase:
         type: "string"
     example:
@@ -5120,6 +6291,28 @@ definitions:
         message: "message"
         type: "type"
         status: "status"
+      errors:
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
+      - severity: "severity"
+        code: "code"
+        message: "message"
+        params:
+        - "params"
+        - "params"
+  v1alpha1.TestResult:
+    properties:
+      reason:
+        type: "string"
+      result:
+        type: "string"
+    example:
+      result: "result"
+      reason: "reason"
   v1alpha1.VolumeSnapshotClass:
     required:
     - "deletionPolicy"

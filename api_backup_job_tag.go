@@ -299,12 +299,26 @@ BackupJobTagApiService List backupjobs of a tenant, or under a backup plan
  * @param tenant tenant id
  * @param optional nil or *BackupJobTagApiListBackupJobsOpts - Optional Parameters:
      * @param "PlanName" (optional.String) -  backup plan name
+     * @param "SpecBackupName" (optional.String) -  backup plan name
+     * @param "Name" (optional.String) -  backup job name
+     * @param "Watch" (optional.String) -  watch
+     * @param "Page" (optional.String) -  page
+     * @param "Limit" (optional.String) -  limit
+     * @param "Ascending" (optional.String) -  sort parameters, e.g. reverse&#x3D;true
+     * @param "SortBy" (optional.String) -  sort parameters, e.g. orderBy&#x3D;createTime
 
 @return V1alpha1BackupJobList
 */
 
 type BackupJobTagApiListBackupJobsOpts struct { 
 	PlanName optional.String
+	SpecBackupName optional.String
+	Name optional.String
+	Watch optional.String
+	Page optional.String
+	Limit optional.String
+	Ascending optional.String
+	SortBy optional.String
 }
 
 func (a *BackupJobTagApiService) ListBackupJobs(ctx context.Context, tenant string, localVarOptionals *BackupJobTagApiListBackupJobsOpts) (V1alpha1BackupJobList, *http.Response, error) {
@@ -326,6 +340,27 @@ func (a *BackupJobTagApiService) ListBackupJobs(ctx context.Context, tenant stri
 
 	if localVarOptionals != nil && localVarOptionals.PlanName.IsSet() {
 		localVarQueryParams.Add("plan_name", parameterToString(localVarOptionals.PlanName.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.SpecBackupName.IsSet() {
+		localVarQueryParams.Add("spec.backupName", parameterToString(localVarOptionals.SpecBackupName.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Name.IsSet() {
+		localVarQueryParams.Add("name", parameterToString(localVarOptionals.Name.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Watch.IsSet() {
+		localVarQueryParams.Add("watch", parameterToString(localVarOptionals.Watch.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
+		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Limit.IsSet() {
+		localVarQueryParams.Add("limit", parameterToString(localVarOptionals.Limit.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Ascending.IsSet() {
+		localVarQueryParams.Add("ascending", parameterToString(localVarOptionals.Ascending.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.SortBy.IsSet() {
+		localVarQueryParams.Add("sortBy", parameterToString(localVarOptionals.SortBy.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}

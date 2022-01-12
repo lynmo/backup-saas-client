@@ -36,6 +36,22 @@ func TestCreateRestoreJob(t *testing.T) {
 	createRestoreJob(cli, t, restoreJobNameNotStart, false)
 }
 
+func TestWatchRestorejob(t *testing.T) {
+	cfg := yscli.NewConfiguration()
+	cli := yscli.NewAPIClient(cfg)
+	cli.ChangeBasePath(apiEndpoint)
+
+	watchDone := make(chan string)
+	go watchRestorejob(cli, t, restoreJobNameWatch, watchDone)
+
+	createRestoreJob(cli, t, restoreJobNameWatch, false)
+	// wait for a while for a modified event
+	time.Sleep(10 * time.Second)
+	deleteRestoreJob(cli, t, restoreJobNameWatch)
+
+	<-watchDone
+}
+
 func createRestoreJob(cli *yscli.APIClient, t *testing.T, name string, start bool) {
 	var err error
 	var ye yscli.Error
@@ -126,11 +142,73 @@ func waitForRestoreJobReady(cli *yscli.APIClient, t *testing.T, name string) {
 			t.Error("failed to list restoreJobs", err)
 		} else {
 			t.Log("restore job phase:", job.Status.Phase)
-			if job.Status.Phase == "JobCompleted" ||
-				job.Status.Phase == "JobCanceled" ||
-				job.Status.Phase == "JobFailed" ||
-				job.Status.Phase == "Error" {
+			switch job.Status.Phase {
+			case "JobCompleted":
 				finished = true
+			case "JobCanceled", "JobFailed", "Error":
+				t.Error("job completed with error")
+				finished = true
+			}
+		}
+	}
+}
+
+func watchRestorejob(cli *yscli.APIClient, t *testing.T, name string, watchDone chan string) {
+	var err error
+	var ye yscli.Error
+
+	addEventGot, modifyEventGot, deleteEventGot := false, false, false
+
+	defer func() {
+		if !addEventGot {
+			t.Error("did not get add event")
+		}
+		if !modifyEventGot {
+			t.Error("did not get modify event")
+		}
+		if !deleteEventGot {
+			t.Error("did not get delete event")
+		}
+	}()
+	defer close(watchDone)
+
+	watcher, err := cli.RestoreJobTagApi.WatchRestoreJobs(context.TODO(), tenantID)
+	if err != nil {
+		if errors.As(err, &ye) {
+			t.Log(ye.StatusCode())
+			t.Log(ye.Code())
+			t.Log(ye.Message())
+		}
+		t.Error("failed to start watching restoreJobs", err)
+	} else {
+		defer watcher.Stop()
+		var e yscli.WatchEvent
+		for {
+			select {
+			case <-time.After(60 * time.Second):
+				t.Log("Timeout watching restore jobs")
+				return
+			case e = <-watcher.ResultChan():
+				{
+					t.Log("Event type: ", e.Type)
+					if job, ok := e.Object.(yscli.V1alpha1RestoreJob); ok {
+						t.Log("Tenant name: ", job.Spec.Tenant)
+						t.Log("Job name: ", job.Metadata.Name)
+						if job.Metadata.Name == name {
+							switch e.Type {
+							case yscli.WatchEventTypes.Added:
+								addEventGot = true
+							case yscli.WatchEventTypes.Modified:
+								modifyEventGot = true
+							case yscli.WatchEventTypes.Deleted:
+								deleteEventGot = true
+								return
+							}
+						}
+					} else {
+						t.Error("Invalid event object received")
+					}
+				}
 			}
 		}
 	}

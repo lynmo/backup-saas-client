@@ -111,6 +111,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **planName** | **optional.String**| restore plan name | 
+ **specRestoreName** | **optional.String**| restore plan name | 
+ **name** | **optional.String**| restore job name | 
+ **watch** | **optional.String**| watch | 
+ **page** | **optional.String**| page | [default to page&#x3D;1]
+ **limit** | **optional.String**| limit | 
+ **ascending** | **optional.String**| sort parameters, e.g. reverse&#x3D;true | [default to ascending&#x3D;false]
+ **sortBy** | **optional.String**| sort parameters, e.g. orderBy&#x3D;createTime | 
 
 ### Return type
 

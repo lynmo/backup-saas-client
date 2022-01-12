@@ -563,14 +563,15 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
+    app.kubernetes.io/component: tenant-operator-metrics
     app.kubernetes.io/part-of: jibudata-backup-saas
   name: jibu-tenant-operator-metrics-service
   namespace: backup-saas-system
 spec:
   ports:
-  - name: https
-    port: 8443
-    targetPort: https
+  - name: http
+    port: 8080
+    targetPort: 8080
   selector:
     app.kubernetes.io/part-of: jibudata-backup-saas
 ---
@@ -600,14 +601,18 @@ spec:
         - name: QIMING_OPERATOR_REGISTRY
           value: registry.cn-shanghai.aliyuncs.com/jibudata
         - name: QIMING_OPERATOR_VERSION
-          value: main.6cc94c9
+          value: main.1cf9364
         - name: QIMING_CONTROLLER_VERSION
-          value: main.0120607
+          value: main.105a7f7
+        - name: TENANT_PROCESSOR_VERSION
+          value: main.38c0995
         - name: VELERO_VERSION
-          value: v1.6.3
+          value: v1.7.0
         - name: VELERO_INSTALLER_VERSION
-          value: main.6cc94c9
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:main.52386fd
+          value: main.1cf9364
+        - name: VELERO_PLUGINS
+          value: registry.cn-shanghai.aliyuncs.com/jibudata/velero-plugin-for-aws:v1.3.0,registry.cn-shanghai.aliyuncs.com/jibudata/velero-plugin-for-csi:v0.2.0
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:main.38c0995
         imagePullPolicy: Always
         name: manager
         resources:
@@ -621,4 +626,23 @@ spec:
           allowPrivilegeEscalation: false
       serviceAccountName: jibu-tenant-operator
       terminationGracePeriodSeconds: 10
-      
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app.kubernetes.io/part-of: jibudata-backup-saas
+  name: jibu-tenant-operator-metrics-monitor
+  namespace: backup-saas-system
+spec:
+  endpoints:
+  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+    path: /metrics
+    port: http
+    scheme: http
+    tlsConfig:
+      insecureSkipVerify: true
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: tenant-operator-metrics
+      app.kubernetes.io/part-of: jibudata-backup-saas

@@ -32,11 +32,48 @@ func TestBackupplan(t *testing.T) {
 		Metadata: &yscli.V1ObjectMeta{Name: backupPlanName},
 		Spec: &yscli.V1alpha1BackupPlanSpec{
 			Tenant:      tenantID,
-			Desc:        "backup plan desc",
-			DisplayName: "backupplan",
+			Desc:        fmt.Sprintf("backup plan %s desc", backupPlanName),
+			DisplayName: fmt.Sprintf("%s display name", backupPlanName),
 			ClusterName: clusterName,
 			StorageName: storageName,
 			Namespaces:  []string{backupNamespace},
+		},
+	}
+	_, _, err = cli.BackupPlanTagApi.CreateBackupPlan(context.TODO(), tenantID, testBackupPlan)
+	if err != nil {
+		t.Error("failed to create backupplan", err)
+		if errors.As(err, &ye) {
+			fmt.Println(ye.Code())
+			fmt.Println(ye.Message())
+			fmt.Println(ye.OrigError())
+		}
+	}
+	listBackupPlans(cli, t)
+}
+
+func TestCreateRepeatBackupplan(t *testing.T) {
+	var err error
+	var ye yscli.Error
+
+	cfg := yscli.NewConfiguration()
+	cli := yscli.NewAPIClient(cfg)
+	cli.ChangeBasePath(apiEndpoint)
+
+	listBackupPlans(cli, t)
+	testBackupPlan := yscli.V1alpha1BackupPlan{
+		Metadata: &yscli.V1ObjectMeta{Name: backupPlanNameRepeat},
+		Spec: &yscli.V1alpha1BackupPlanSpec{
+			Tenant:      tenantID,
+			Desc:        fmt.Sprintf("backup plan %s desc", backupPlanNameRepeat),
+			DisplayName: fmt.Sprintf("%s display name", backupPlanNameRepeat),
+			ClusterName: clusterName,
+			StorageName: storageName,
+			Namespaces:  []string{backupNamespace},
+			Policy: &yscli.V1alpha1BackupPolicy{
+				Frequency: "CRON_TZ=Pacific/Honolulu 00 18,21 * * *",
+				Repeat:    true,
+				Retention: 7,
+			},
 		},
 	}
 	_, _, err = cli.BackupPlanTagApi.CreateBackupPlan(context.TODO(), tenantID, testBackupPlan)
@@ -63,7 +100,8 @@ func listBackupPlans(cli *yscli.APIClient, t *testing.T) {
 	var err error
 	var ye yscli.Error
 
-	bpList, _, err := cli.BackupPlanTagApi.ListBackupPlans(context.TODO(), tenantID)
+	opts := &yscli.BackupPlanTagApiListBackupPlansOpts{}
+	bpList, _, err := cli.BackupPlanTagApi.ListBackupPlans(context.TODO(), tenantID, opts)
 	if err != nil {
 		if errors.As(err, &ye) {
 			if ye.StatusCode() == http.StatusNotFound {

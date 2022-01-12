@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Items** | [**[]V1alpha1BackupPlan**](v1alpha1.BackupPlan.md) |  | [default to null]
 **Kind** | **string** | Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds | [optional] [default to null]
 **Metadata** | [***V1ListMeta**](v1.ListMeta.md) |  | [optional] [default to null]
+**TotalCount** | **int32** |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

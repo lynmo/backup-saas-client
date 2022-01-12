@@ -18,6 +18,7 @@ import (
 	"net/url"
 	"strings"
 	"fmt"
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -295,10 +296,23 @@ func (a *RestorePlanTagApiService) GetRestorePlan(ctx context.Context, tenant st
 /*
 RestorePlanTagApiService List all restoreplans.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *RestorePlanTagApiListAllRestorePlansOpts - Optional Parameters:
+     * @param "Page" (optional.String) -  page
+     * @param "Limit" (optional.String) -  limit
+     * @param "Ascending" (optional.String) -  sort parameters, e.g. reverse&#x3D;true
+     * @param "SortBy" (optional.String) -  sort parameters, e.g. orderBy&#x3D;createTime
 
 @return V1alpha1RestorePlanList
 */
-func (a *RestorePlanTagApiService) ListAllRestorePlans(ctx context.Context) (V1alpha1RestorePlanList, *http.Response, error) {
+
+type RestorePlanTagApiListAllRestorePlansOpts struct { 
+	Page optional.String
+	Limit optional.String
+	Ascending optional.String
+	SortBy optional.String
+}
+
+func (a *RestorePlanTagApiService) ListAllRestorePlans(ctx context.Context, localVarOptionals *RestorePlanTagApiListAllRestorePlansOpts) (V1alpha1RestorePlanList, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -314,6 +328,18 @@ func (a *RestorePlanTagApiService) ListAllRestorePlans(ctx context.Context) (V1a
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
+		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Limit.IsSet() {
+		localVarQueryParams.Add("limit", parameterToString(localVarOptionals.Limit.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Ascending.IsSet() {
+		localVarQueryParams.Add("ascending", parameterToString(localVarOptionals.Ascending.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.SortBy.IsSet() {
+		localVarQueryParams.Add("sortBy", parameterToString(localVarOptionals.SortBy.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 
@@ -380,10 +406,27 @@ func (a *RestorePlanTagApiService) ListAllRestorePlans(ctx context.Context) (V1a
 RestorePlanTagApiService List all restoreplans of a tenant
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param tenant tenant id
+ * @param optional nil or *RestorePlanTagApiListRestorePlansOpts - Optional Parameters:
+     * @param "Name" (optional.String) -  restore plan name
+     * @param "Watch" (optional.String) -  watch
+     * @param "Page" (optional.String) -  page
+     * @param "Limit" (optional.String) -  limit
+     * @param "Ascending" (optional.String) -  sort parameters, e.g. reverse&#x3D;true
+     * @param "SortBy" (optional.String) -  sort parameters, e.g. orderBy&#x3D;createTime
 
 @return V1alpha1RestorePlanList
 */
-func (a *RestorePlanTagApiService) ListRestorePlans(ctx context.Context, tenant string) (V1alpha1RestorePlanList, *http.Response, error) {
+
+type RestorePlanTagApiListRestorePlansOpts struct { 
+	Name optional.String
+	Watch optional.String
+	Page optional.String
+	Limit optional.String
+	Ascending optional.String
+	SortBy optional.String
+}
+
+func (a *RestorePlanTagApiService) ListRestorePlans(ctx context.Context, tenant string, localVarOptionals *RestorePlanTagApiListRestorePlansOpts) (V1alpha1RestorePlanList, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
@@ -400,6 +443,24 @@ func (a *RestorePlanTagApiService) ListRestorePlans(ctx context.Context, tenant 
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Name.IsSet() {
+		localVarQueryParams.Add("name", parameterToString(localVarOptionals.Name.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Watch.IsSet() {
+		localVarQueryParams.Add("watch", parameterToString(localVarOptionals.Watch.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Page.IsSet() {
+		localVarQueryParams.Add("page", parameterToString(localVarOptionals.Page.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Limit.IsSet() {
+		localVarQueryParams.Add("limit", parameterToString(localVarOptionals.Limit.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Ascending.IsSet() {
+		localVarQueryParams.Add("ascending", parameterToString(localVarOptionals.Ascending.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.SortBy.IsSet() {
+		localVarQueryParams.Add("sortBy", parameterToString(localVarOptionals.SortBy.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{}
 

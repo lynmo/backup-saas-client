@@ -10,9 +10,7 @@
 
 package swagger
 
-type V1alpha1TenantStatus struct {
-	Conditions []V1alpha1Condition `json:"conditions,omitempty"`
-	// errors
-	Errors []V1alpha1Error `json:"errors,omitempty"`
-	Phase string `json:"phase,omitempty"`
+type V1alpha1BackupJobProgress struct {
+	StepsCompleted int32 `json:"stepsCompleted,omitempty"`
+	TotalSteps int32 `json:"totalSteps,omitempty"`
 }

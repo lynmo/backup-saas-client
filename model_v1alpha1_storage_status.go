@@ -12,5 +12,8 @@ package swagger
 
 type V1alpha1StorageStatus struct {
 	Conditions []V1alpha1Condition `json:"conditions,omitempty"`
+	// errors
+	Errors []V1alpha1Error `json:"errors,omitempty"`
 	Phase string `json:"phase,omitempty"`
+	TestResults map[string]V1alpha1TestResult `json:"testResults,omitempty"`
 }

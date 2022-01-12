@@ -416,6 +416,8 @@ rules:
   resources:
   - '*'
   verbs:
+  - create
+  - get
   - list
   - delete
   - watch
