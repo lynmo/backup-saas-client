@@ -2512,7 +2512,7 @@ spec:
         app.kubernetes.io/part-of: jibudata-backup-rest-server
     spec:
       containers:
-      - image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.39225a8
+      - image: registry.cn-shanghai.aliyuncs.com/jibudata/backup-rest-server:main.76d5e75
         imagePullPolicy: Always
         name: manager
         resources:

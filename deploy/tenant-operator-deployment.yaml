@@ -603,14 +603,14 @@ spec:
         - name: QIMING_CONTROLLER_VERSION
           value: kubesphere-cloud-release.e01e60d
         - name: TENANT_PROCESSOR_VERSION
-          value: 20220118182229-main-5824b38
+          value: 20220120202512-main-939d876
         - name: VELERO_VERSION
           value: v1.7.0
         - name: VELERO_INSTALLER_VERSION
           value: main.1cf9364
         - name: VELERO_PLUGINS
           value: registry.cn-shanghai.aliyuncs.com/jibudata/velero-plugin-for-aws:v1.3.0,registry.cn-shanghai.aliyuncs.com/jibudata/velero-plugin-for-csi:v0.2.0
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:20220118182229-main-5824b38
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:20220120202512-main-939d876
         imagePullPolicy: Always
         name: manager
         resources:
