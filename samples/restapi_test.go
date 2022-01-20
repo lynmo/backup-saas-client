@@ -297,7 +297,7 @@ func createCluster(t *testing.T, cli *yscli.APIClient) {
 			t.Log("Get the KUBECONFIG env variable ", envKubeconfig)
 		}
 		if envKubeconfig == "" {
-			t.Error("Failed to load KUBECONFIG env variable")
+			t.Log("Failed to load KUBECONFIG env variable")
 			// If no KUBECONFIG env variable, try the default location in the user's home directory
 			kubeconfig, err = ioutil.ReadFile(filepath.Join(usr.HomeDir, ".kube/config"))
 			if err != nil {
