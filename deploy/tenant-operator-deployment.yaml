@@ -595,24 +595,22 @@ spec:
       containers:
       - args:
         - --leader-elect
-        command:
-        - /manager
         env:
         - name: QIMING_OPERATOR_REGISTRY
           value: registry.cn-shanghai.aliyuncs.com/jibudata
         - name: QIMING_OPERATOR_VERSION
-          value: main.1cf9364
+          value: kubeshpere-cloud-release.a872ee2
         - name: QIMING_CONTROLLER_VERSION
-          value: main.105a7f7
+          value: kubesphere-cloud-release.27e5e6d
         - name: TENANT_PROCESSOR_VERSION
-          value: main.38c0995
+          value: 20220120202512-main-939d876
         - name: VELERO_VERSION
           value: v1.7.0
         - name: VELERO_INSTALLER_VERSION
-          value: main.1cf9364
+          value: kubeshpere-cloud-release.a872ee2
         - name: VELERO_PLUGINS
           value: registry.cn-shanghai.aliyuncs.com/jibudata/velero-plugin-for-aws:v1.3.0,registry.cn-shanghai.aliyuncs.com/jibudata/velero-plugin-for-csi:v0.2.0
-        image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:main.38c0995
+        image: registry.cn-shanghai.aliyuncs.com/jibudata/tenant-operator:20220120202512-main-939d876
         imagePullPolicy: Always
         name: manager
         resources:
